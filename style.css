@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+    background-color:#C39BD3;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #C39BD3; 
+    z-index: 1000; 
+    min-height: 10vw;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    min-height: 100vh;
+    background-color: #faedff;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.page:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color: #ccc;
+    margin: 0 auto;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    left: 10%; /* Adjust this value based on your design */
+}
+
+
+.maintext {
+    font-family: "Playfair Display", serif;
+    color: black;
+    height: 10vw;
+    text-align: left;
+    line-height: 10vw;
+    font-size: 3vw;
+}
+
+.maintext:not(#navname) {
+    top: 50%;
+    height: 50vw;
+    text-align: center;
+    /* line-height: 70vw; */
+    font-size: 4vw;
+    line-height: 50vw;
+}s
+
+
+
+/* 
+#intro {
+    background-color: yellow;
+}
+
+#experience {
+    background-color: blue;
+}
+
+#contact {
+    background-color: purple;
+} */
