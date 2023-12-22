@@ -3,24 +3,66 @@
 <html>
 
 <head> 
+    <meta charset = "UTF_8">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1"> 
     <title> personal website </title>
     <link rel = "stylesheet" href = "style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <body>
-    <div class = "container">
-        <div class = "navbar">
+    <div class = "container" id = "entire-container">
+        <div id = "navbar">
             <h2 class = "maintext" id = "navname"> Krystal Pothilat</h2>
+            <div class = "row-container" id = "icon-container">
+                <a href = "https://github.com/krystalpothilat" target = "_blank">
+                    <img src = "icons/github.png" class = "icon-img"> 
+                </a>
+                <a href = "https://www.linkedin.com/in/krystalpothilat" target = "_blank">
+                    <img src = "icons/linkedin.png" class = "icon-img">
+                </a>
+                <a href = "mailto:krystalpothilat@gmail.com"></a>
+                    <img src = "icons/email.png" class = "icon-img"> 
+                </a>    
+            </div>
         </div>
+        <div id = "pages-container">
+            <div class = "page" id = "intro">
+                <h2 class = "maintext" id = "introheader"> hello! I'm Krystal</h2>
+            </div>
+            <div class = "page" id = "experience">
+                <h2 class = "maintext" id = "expheader"> Experience</h2>
 
-        <div class = "page" id = "intro">
-            <h2 class = "maintext" id = "introheader"> hello! </h2>
-        </div>
-        <div class = "page" id = "experience">
-            <h2 class = "maintext" id = "expheader"> experience</h2>
-        </div>
-        <div class = "page" id = "contact">
-            <h2 class = "maintext" id = "contactheader"> contact</h2>
+                <div class = "row-container" id = "section-info">
+                    <img src = "icons/ga-logo.png" class = "page-logo">
+
+                    <div class = "container" id = "exp-info">
+                        <h1 class = "infoheader"> Summer 2024</h1>
+                        <label class = "infotext"> Payload additions</label>
+                        <h1 class = "infoheader"> Summer 2023</h1>
+                        <label class = "infotext"> HUD ui</label>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class = "page" id = "extracurriculars">
+                <h2 class = "maintext" id = "extracurriculars"> Extracurriculars</h2>
+
+                <div class = "row-container" id = "section-info">
+                    <img src = "icons/winc-logo.png" class = "page-logo">
+
+                    <div class = "container" id = "exp-info">
+                        <h1 class = "infoheader"> President </h1>
+                        <label class = "infotext"> </label>
+                        <h1 class = "infoheader"> Secretary</h1>
+                        <label class = "infotext"> </label>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <!-- <div class = "page" id = "contact">
+                <h2 class = "maintext" id = "contactheader"> contact</h2>
+            </div> -->
         </div>
     </div>
 </body>

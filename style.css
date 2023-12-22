@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -9,27 +10,57 @@
     flex-direction: column;
     /* min-height: 100vh; */
     background-color:#C39BD3;
+    line-height: 1;
 }
 
-.navbar {
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 10%;
     background-color: #C39BD3; 
-    z-index: 1000; 
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
     min-height: 10vw;
+}
+
+#icon-container {
+    position: relative;
+    min-height: 5vw;
+    min-width: 15vw;
+}
+
+.icon-img {
+    max-width: 50px; 
+    height: 50px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+#pages-container {
+    padding-top: 10vh;
+    /* position:sticky; */
 }
 
 .page {
     flex: 1;
     display: flex;
-    min-height: 100vh;
     background-color: #faedff;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
+    box-sizing: border-box;
 }
 
 .page:not(:last-child)::after {
@@ -47,34 +78,50 @@
 
 
 .maintext {
-    font-family: "Playfair Display", serif;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 300;
     color: black;
     height: 10vw;
     text-align: left;
+    margin-left: 40px;
     line-height: 10vw;
     font-size: 3vw;
 }
 
+/* section headers */
 .maintext:not(#navname) {
-    top: 50%;
-    height: 50vw;
-    text-align: center;
-    /* line-height: 70vw; */
-    font-size: 4vw;
-    line-height: 50vw;
-}s
-
-
-
-/* 
-#intro {
-    background-color: yellow;
+    position: absolute;
+    top: 60px;
 }
 
-#experience {
-    background-color: blue;
+#section-info{
+    padding-top: 200px;
+    display: flex;
+    flex-direction: row;
 }
 
-#contact {
-    background-color: purple;
-} */
+
+.page-logo {
+    width: 30vw;
+    height: auto;
+    object-fit: contain;
+    /* align-self: flex-start; */
+    /* margin-top: 20px; */
+    margin-left: 10vw;
+}
+
+#exp-info.container{
+    background-color: transparent;
+    margin-left: 10vw;
+    margin-bottom: 0;
+}
+
+.infoheader {
+    margin: 0;
+    padding: 0;
+}
+
+.infotext {
+    margin: 0px;
+    padding: 0;
+}
