@@ -133,3 +133,17 @@
     margin: 0px;
     padding: 0;
 }
+
+#me-pic{
+    height: 300px;
+    width: auto;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
