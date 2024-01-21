@@ -28,7 +28,15 @@ function List({ data }) {
           </div>
           {showInfo[item.id] && (
             <div className="additional-info">
-              <p>{item.description}</p>
+              {item.description && <p>{item.description}</p>}
+              {item.bulletpoints && (
+            <ul>
+              {item.bulletpoints.map((bulletpoints, index) => (
+                <li key={index}>{bulletpoints}</li>
+              ))}
+            </ul>
+          )}
+              {/* <p>{item.description}</p> */}
             </div>
           )}
         </div>

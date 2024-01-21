@@ -1,6 +1,7 @@
   .List{
     width: 90%;
     background-color: gray;
+    border: 2px solid black;
   }
 
   .info-image {
@@ -14,6 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 30px;
+    border: 2px solid black;
   }
 
   .list-item {
@@ -24,6 +27,7 @@
   }
   
   .list-item .additional-info {
+    text-align: left;
     opacity: 0;
     height: 0;
     overflow: hidden;
@@ -37,5 +41,7 @@
   .list-item.active .additional-info {
     opacity: 1;
     height: auto;
+    border: 2px solid black;
   }
+
   

@@ -10,12 +10,13 @@
     flex-direction: row;
     box-sizing: border-box;
     align-items: center;
+    font-family: serif;
+    font-size: 2vw;
 }
 
 .circle {
-    width: 30vw;
-    height: 30vw;
-    background-color: #3498db;
+    width: 20vw;
+    height: 20vw;
     border: 2px solid black;
     border-radius: 50%; 
     display: flex;
@@ -26,7 +27,7 @@
 
 .section-name {
     text-align: center;
-    color: white; 
+    color: black; 
 }
 
 .profpic {
@@ -45,5 +46,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 60vw;
+    color: black;
+    /* font-family: serif;
+    font-size: 3vw; */
 }
