@@ -1,0 +1,41 @@
+  .List{
+    width: 90%;
+    background-color: gray;
+  }
+
+  .info-image {
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-left: 10px; /* Adjust the spacing between the text and the image */
+    cursor: pointer;
+  }
+  
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .list-item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .list-item .additional-info {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .list-item.active {
+    height: auto;
+  }
+  
+  .list-item.active .additional-info {
+    opacity: 1;
+    height: auto;
+  }
+  

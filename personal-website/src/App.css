@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.navbar {
+  height: 40vh;
+  width: 8vh;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 2%;
+  background-color: #d3d3d3;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  transform: translateY(-50%); /* Adjust to vertically center */
+  border-radius: 10px;
+  justify-content: center; 
+  transition: width 0.3s ease; 
+  overflow: hidden;
+}
+.navbar a {
+  display: flex;
+  align-items: center; 
+}
+.section-img{
+  width: 5vh;
+  height: 5vh;
+  margin: 5px;
+  border-radius: 0%;
+}
+
+.navbar.expanded {
+  width: 17vh; 
+}
+
+.navbar img {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-text {
+  display: none; /* Initially hide text */
+}
+
+.navbar.expanded .nav-text {
+  display: inline; /* Show text when navbar is expanded */
+}
