@@ -8,7 +8,7 @@ function Page({ id, img, about1, section, info, logo }) {
 
         {about1 ? (
         <div className = "mainpage">
-            <div className = "circle">
+            <div className = "img-container">
                 <img src = {img} alt ="" className = "pic"/>
             </div>
             <div id = "mainintro">

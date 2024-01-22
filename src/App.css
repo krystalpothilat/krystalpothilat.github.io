@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: #F2E9D9;
+  /* background-color: #F2E9D9; */
+  background-color: rgba(242, 233, 217, 0.5);
+  /* opacity: 0.5; */
   height: 100vh; /* Set the height of .App to the viewport height */
   display: flex;
   justify-content: center;
@@ -17,6 +19,7 @@
   max-height: 90vh;
   width: 90%;
   padding: 20px;
+  opacity: 1;
 }
 
 .content::-webkit-scrollbar {
@@ -50,7 +53,7 @@
   z-index: 1;
   top: 50%;
   left: 2%;
-  background-color: #dfcebc;
+  background-color: rgba(223, 206, 188, 0.5);
   overflow-x: hidden;
   padding-top: 20px;
   display: flex;

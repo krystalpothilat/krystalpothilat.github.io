@@ -18,11 +18,15 @@ const Navbar = ({ handleScrollToPage }) => {
     setExpanded(false);
   };
 
+  const handleHoverStyle = {
+    backgroundColor: expanded ? "rgba(223, 206, 188, 1)" : "rgba(223, 206, 188, 0.5)",
+  }
 
   return (
     <div className= {`navbar ${expanded ? 'expanded' : ''}`}
         onMouseEnter={handleExpand}
-        onMouseLeave={handleCollapse}>
+        onMouseLeave={handleCollapse}
+        style={handleHoverStyle}>
         <div className="nav-item" onClick={() => handleScrollToPage("home")}>
             <img src={home} className = "section-img"/>
             <span className="nav-text">Home</span>
