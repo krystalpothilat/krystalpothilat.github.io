@@ -52,10 +52,10 @@ function App() {
     <div className="App">
       <div className =  "content">
         <Navbar handleScrollToPage = {handleScrollToPage}/>
-        <Page id = "home" img = {mePic} about1 = "true"> </Page>
-        <Page id = "profexp"  img = {banner} section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
-        <Page id = "proj"  img = {banner}section = "Projects" info = {projdata}> </Page>
-        <Page id = "leadership"  img = {banner}section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
+        <Page id = "home" img = {mePic} alt = "" about1 = "true"> </Page>
+        <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
+        <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata}> </Page>
+        <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
         {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
         {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
       </div>
