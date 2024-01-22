@@ -32,27 +32,27 @@ const Navbar = () => {
         onMouseEnter={handleExpand}
         onMouseLeave={handleCollapse}>
         <div className="nav-item" onClick={() => handleScroll('home')}>
-            <img src={home} alt= "Home" class = "section-img"/>
+            <img src={home} alt= "Home" className = "section-img"/>
             <span className="nav-text">Home</span>
         </div>
         <div className="nav-item">
-            <img src={profexp} alt= "Section 1" class = "section-img"/>
+            <img src={profexp} alt= "Section 1" className = "section-img"/>
             <span className="nav-text">Experience</span>
         </div>
         <div className="nav-item">
-            <img src={proj} alt= "Section 1" class = "section-img"/>
+            <img src={proj} alt= "Section 1" className = "section-img"/>
             <span className="nav-text">Projects</span>
         </div>
         <div className="nav-item">
-            <img src={leadership} alt= "Section 1" class = "section-img"/>
+            <img src={leadership} alt= "Section 1" className = "section-img"/>
             <span className="nav-text">Leadership</span>
         </div>
         <div className="nav-item">
-            <img src={more} alt= "Section 1" class = "section-img"/>
+            <img src={more} alt= "Section 1" className = "section-img"/>
             <span className="nav-text">About Me</span>
         </div>
         <div className="nav-item">
-            <img src={contact} alt= "Section 1" class = "section-img"/>
+            <img src={contact} alt= "Section 1" className = "section-img"/>
             <span className="nav-text">Contact</span>
         </div>
     </div>

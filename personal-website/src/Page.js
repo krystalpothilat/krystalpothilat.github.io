@@ -8,19 +8,18 @@ function Page({ mainCookie, about1, about2, section, info, logo }) {
     <div className="Page">
         <div className = "header-container">
             <div className = "circle">
-                <img src={mainCookie} alt="Circle Content" id ="profpic" />
+                <img src={mainCookie} alt="" className ="pic" />
             </div>
-            <p className = "header">{section}</p>
+                <p className = "header">{section}</p>
         </div>
     
         <div className = "section-info">
             {about1 && 
-                <div className = "mainintro">
+                <div id = "mainintro">
                     <h2> hello! I'm Krystal Pothilat</h2>
                     <ul className = "cookiepoints">
                         <li> San Diego, CA</li>
-                        {/* <li> Software Engineer</li> */}
-                        {/* <li> can you tell I like cookies? :D</li> */}
+                        <li> B.S. in Computer Science at UC Riverside</li>
                     </ul>
                 
                 </div>  

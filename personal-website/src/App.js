@@ -4,7 +4,7 @@ import "./App.css";
 import Page from "./Page";
 import Navbar from "./Navbar";
 
-import mePic from "./imgs/me.jpg";
+import mePic from "./imgs/me2.jpg";
 import ga from "./imgs/ga-logo.png";
 import winc from "./imgs/winc-logo.png";
 import cookie from "./imgs/cookie3.png"
@@ -20,9 +20,9 @@ function App() {
   ];
 
   const leadershipexpdata = [
-    { id: 1, title: "President", description: "Led the largest computer science student organization on campus empowering women in tech", date: "March 2022 - March 2023",
+    { id: 1, title: "President", description: "Led the largest computer science student organization on campus empowering women in tech.", date: "March 2022 - March 2023",
     bulletpoints: ["Achieved expansion of member turn-out at in-person events by 150% throguh successful marketing and community cultivation", "Increased organization funds by 50% during the 5th annual BCOE Match Challenge", "Oversaw and supp[orted 6 offers and 10 in-person events per quarter"]},
-    { id: 2, title: "Secretary", description: "Main support for the organization's  infrastructure and both internal/external communication", date: "March 2021 - March 2022",
+    { id: 2, title: "Secretary", description: "Main support for the organization's  infrastructure and both internal/external communication.", date: "March 2021 - March 2022",
     bulletpoints: ["Facilitated communication and collaboration with various stakeholders: other student organizations, professors, industry professional and faculty members", "Maintained and supported cross-functional relationships with all external connections", "Orchestrated the planning, organization, and hosting of 4 impactful technical worshops and panels with experienced industry professionals"]},
   ];
 
@@ -42,13 +42,15 @@ function App() {
   
   return (
     <div className="App">
+      <div className =  "content">
       <Navbar/>
       <Page id = "home" mainCookie = {mePic} about1 = "true"> </Page>
-      <Page id = "profexp" mainCookie = {cookie} section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
-      <Page id = "proj" mainCookie = {cookie} section = "Projects" info = {projdata}> </Page>
-      <Page id = "leadership" mainCookie = {cookie} section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
-      <Page id = "about" mainCookie = {cookie} section = "About Me" info = "Test"> </Page>
+      <Page id = "profexp"  section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
+      <Page id = "proj"  section = "Projects" info = {projdata}> </Page>
+      <Page id = "leadership"  section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
+      <Page id = "about"  section = "About Me" info = "Test"> </Page>
       {/* <Page id = "contact" mainCookie = "Reach out!" info = "Test"> </Page> */}
+      </div>
     </div>
   );
 }

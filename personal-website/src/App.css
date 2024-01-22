@@ -1,7 +1,35 @@
 .App {
   text-align: center;
+  background-color: #F2E9D9;
+  height: 100vh; /* Set the height of .App to the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.content {
+  /* margin: 10%; */
+  /* border: 10px solid #dfcebc; */
+  height: 100vh;
+  background-color: white;
+  border-radius: 10px;
+  overflow-y: auto;
+  max-height: 90vh;
+  width: 90%;
+  padding: 20px;
+}
+
+.content::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Make the thumb transparent */
+}
+
+.content::-webkit-scrollbar-track {
+  background-color: transparent; /* Make the track transparent */
+}
 
 .App-header {
   background-color: #282c34;
@@ -30,7 +58,7 @@
   align-items: center;
   transform: translateY(-50%); /* Adjust to vertically center */
   border-radius: 10px;
-  justify-content: center; 
+  justify-content:  space-between; 
   transition: width 0.3s ease; 
   overflow: hidden;
 }
@@ -38,9 +66,8 @@
   display: flex;
   align-items: center; 
 }
+
 .section-img{
-  width: 5vh;
-  height: 5vh;
   margin: 5px;
   border-radius: 0%;
 }
@@ -50,8 +77,8 @@
 }
 
 .navbar img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .nav-item {

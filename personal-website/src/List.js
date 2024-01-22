@@ -12,10 +12,10 @@ function List({ data }) {
     }));
   };
 
-  const getWidth = (skill) => {
+  const getWidth = (skill, fontSize) => {
     const textLength = skill.length;
-    const additionalPercentage = 5;
-    const calculatedWidth = `calc(${textLength * 8}px + ${additionalPercentage}%)`;
+    const additionalPercentage = textLength * 0.25;
+    const calculatedWidth = `calc(${textLength * 20}px + ${additionalPercentage}%)`;
     return calculatedWidth;
   };
 
@@ -45,7 +45,7 @@ function List({ data }) {
               {item.skills && (
                 <div className = "skills-container">
                   {item.skills.map((skills, index) => (
-                    <div className = "skill-rectangle" style={{ width: getWidth(skills) }}>
+                    <div className = "skill-rectangle" style={{ width: getWidth(skills, 25) }}>
                       {skills}
                       </div>
                   ))}

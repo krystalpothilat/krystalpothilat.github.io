@@ -7,10 +7,10 @@
 
 @media (min-width: 1000px){
   .item-header {
-    font-size: 20px;
+    font-size: 25px;
   }
   .list-item {
-    font-size: 20px;
+    font-size: 25px;
   }
 }
 
@@ -29,13 +29,14 @@
   border: 2px solid #dfcebc;
   font-weight: bold;
   padding-left: 5px;
+  padding-right: 5px;
 }
 
 .list-item {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: height 0.3s ease, opacity 0.3s ease;
+  transition: height 1s ease, opacity 1s ease;
 }
 
 .list-item .additional-info {
@@ -43,8 +44,7 @@
   opacity: 0;
   height: 0;
   overflow: hidden;
-  transition: height 0.3s ease, opacity 0.3s ease;
-  padding-left: 5px;
+  transition: height 1s ease, opacity 1s ease;
 }
 
 .list-item.active {
@@ -55,6 +55,9 @@
   opacity: 1;
   height: auto;
   border: 2px solid #dfcebc;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  
 }
 
 .skills-container {

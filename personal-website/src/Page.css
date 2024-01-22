@@ -1,30 +1,53 @@
 .Page {
     height: 100vh;
-    padding: 5vh 15vh;
-    padding-left: 20vw;
-    padding-right: 5vw;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
     align-items: center;
+    justify-content: center;
     font-family: serif;
-    font-size: 2vw;
+    overflow: hidden;
 }
 
-@media (min-width: 1000px){
-    ul {
-      font-size: 20px;
+@media (min-width: 1000px){ /* larger screens*/
+    .circle {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%; 
     }
 
-  }
+    ul {
+      font-size: 25px;
+    }
+
+    h2 {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 800px) { /* smaller screens*/
+    .Page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-container {
+        /* height: 30vh; */
+        /* justify-content: left; */
+        /* align-items: center; */
+        
+    }
+
+    .section-info {
+        height: 60vh;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
 
 .circle {
-    width: 20vw;
-    height: 20vw;
-    /* border: 2px solid black; */
     border-radius: 50%; 
     display: flex;
     align-items: center;
@@ -36,7 +59,9 @@
 .header-container {
     position: relative;
     width: 30vw;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-name {
@@ -51,7 +76,7 @@
     font-size: 30px;
 }
 
-#profpic {
+.pic {
     width: 100%; /* Make the image fill the circle */
     height: 100%; /* Make the image fill the circle */
     object-fit: cover; /* Ensure the entire circle is covered by the image */
@@ -67,12 +92,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60vw;
+    width: 70vw;
     color: black;
-}
-
-h2 {
-    font-size: 4vw;
 }
 
 .cookiepoints{
@@ -98,4 +119,13 @@ h2 {
     color: black;
     font-size: 52px;
     font-weight: bolder;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* max-width: 100%; */
+    max-width: 30vw;
+}
+
+#mainintro {
+    padding-left: 0px;
 }
