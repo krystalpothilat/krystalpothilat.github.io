@@ -12,6 +12,12 @@ function List({ data }) {
     }));
   };
 
+  const getWidth = (skill) => {
+    const textLength = skill.length;
+    const additionalPercentage = 5;
+    const calculatedWidth = `calc(${textLength * 8}px + ${additionalPercentage}%)`;
+    return calculatedWidth;
+  };
 
 
   return (
@@ -30,13 +36,21 @@ function List({ data }) {
             <div className="additional-info">
               {item.description && <p>{item.description}</p>}
               {item.bulletpoints && (
-            <ul>
-              {item.bulletpoints.map((bulletpoints, index) => (
-                <li key={index}>{bulletpoints}</li>
-              ))}
-            </ul>
-          )}
-              {/* <p>{item.description}</p> */}
+                <ul>
+                  {item.bulletpoints.map((bulletpoints, index) => (
+                    <li key={index}>{bulletpoints}</li>
+                  ))}
+                </ul>
+              )}
+              {item.skills && (
+                <div className = "skills-container">
+                  {item.skills.map((skills, index) => (
+                    <div className = "skill-rectangle" style={{ width: getWidth(skills) }}>
+                      {skills}
+                      </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

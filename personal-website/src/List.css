@@ -1,47 +1,78 @@
-  .List{
-    width: 90%;
-    background-color: gray;
-    border: 2px solid black;
-  }
+.List{
+  width: 90%;
+  background-color: #F2E9D9;
+  border: 2px solid #dfcebc;
+  border-radius: 4px;
+}
 
-  .info-image {
-    width: 20px; /* Adjust the width as needed */
-    height: 20px; /* Adjust the height as needed */
-    margin-left: 10px; /* Adjust the spacing between the text and the image */
-    cursor: pointer;
-  }
-  
+@media (min-width: 1000px){
   .item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    border: 2px solid black;
+    font-size: 20px;
   }
-
   .list-item {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: height 0.3s ease, opacity 0.3s ease;
+    font-size: 20px;
   }
-  
-  .list-item .additional-info {
-    text-align: left;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .list-item.active {
-    height: auto;
-  }
-  
-  .list-item.active .additional-info {
-    opacity: 1;
-    height: auto;
-    border: 2px solid black;
-  }
+}
 
-  
+.info-image {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  margin-left: 10px; /* Adjust the spacing between the text and the image */
+  cursor: pointer;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border: 2px solid #dfcebc;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.list-item .additional-info {
+  text-align: left;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  padding-left: 5px;
+}
+
+.list-item.active {
+  height: auto;
+}
+
+.list-item.active .additional-info {
+  opacity: 1;
+  height: auto;
+  border: 2px solid #dfcebc;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2px;
+}
+
+.skill-rectangle {
+  height: 28px;
+  width: calc(fit-content + 5%);
+  background-color: #DED4BA;
+  margin: 2px;
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+

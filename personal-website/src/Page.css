@@ -14,23 +14,44 @@
     font-size: 2vw;
 }
 
+@media (min-width: 1000px){
+    ul {
+      font-size: 20px;
+    }
+
+  }
+
 .circle {
     width: 20vw;
     height: 20vw;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 50%; 
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Ensure content doesn't overflow the circle */
-  }
-
-.section-name {
-    text-align: center;
-    color: black; 
 }
 
-.profpic {
+
+.header-container {
+    position: relative;
+    width: 30vw;
+    
+}
+
+.section-name {
+    position: absolute;
+    top: 35%; 
+    left: 50%;     
+    transform: translate(-50%, -50%);
+    text-align: center;
+    /* color: #664229; */
+    color: #504538;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#profpic {
     width: 100%; /* Make the image fill the circle */
     height: 100%; /* Make the image fill the circle */
     object-fit: cover; /* Ensure the entire circle is covered by the image */
@@ -48,6 +69,33 @@
     align-items: center;
     width: 60vw;
     color: black;
-    /* font-family: serif;
-    font-size: 3vw; */
+}
+
+h2 {
+    font-size: 4vw;
+}
+
+.cookiepoints{
+    list-style-type: none;
+    text-align: left;
+    background-color: #dfcebc;
+    border-radius: 4px;
+}
+
+.cookiepoints li {
+    padding-left: 30px;
+    background: url("./imgs/fullcookie.png") no-repeat left center;
+    background-size: 25px;
+}
+
+.header{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    text-align: center;
+    color: black;
+    font-size: 52px;
+    font-weight: bolder;
 }

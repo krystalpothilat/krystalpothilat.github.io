@@ -22,7 +22,7 @@
   z-index: 1;
   top: 50%;
   left: 2%;
-  background-color: #d3d3d3;
+  background-color: #dfcebc;
   overflow-x: hidden;
   padding-top: 20px;
   display: flex;
@@ -61,6 +61,7 @@
 
 .nav-text {
   display: none; /* Initially hide text */
+  color: white;
 }
 
 .navbar.expanded .nav-text {
