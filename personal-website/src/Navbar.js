@@ -36,25 +36,25 @@ const Navbar = () => {
             <span className="nav-text">Home</span>
         </div>
         <div className="nav-item">
-            <img src={profexp} alt= "Section 1" className = "section-img"/>
+            <img src={profexp} className = "section-img"/>
             <span className="nav-text">Experience</span>
         </div>
         <div className="nav-item">
-            <img src={proj} alt= "Section 1" className = "section-img"/>
+            <img src={proj} className = "section-img"/>
             <span className="nav-text">Projects</span>
         </div>
         <div className="nav-item">
-            <img src={leadership} alt= "Section 1" className = "section-img"/>
+            <img src={leadership}  className = "section-img"/>
             <span className="nav-text">Leadership</span>
         </div>
-        <div className="nav-item">
-            <img src={more} alt= "Section 1" className = "section-img"/>
+        {/* <div className="nav-item">
+            <img src={more}className = "section-img"/>
             <span className="nav-text">About Me</span>
         </div>
         <div className="nav-item">
-            <img src={contact} alt= "Section 1" className = "section-img"/>
+            <img src={contact} className = "section-img"/>
             <span className="nav-text">Contact</span>
-        </div>
+        </div> */}
     </div>
   );
 };

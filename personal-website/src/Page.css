@@ -1,12 +1,13 @@
 .Page {
-    height: 100vh;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
     font-family: serif;
-    overflow: hidden;
+    /* overflow: hidden; */
+    margin: 0;
 }
 
 @media (min-width: 1000px){ /* larger screens*/
@@ -21,7 +22,10 @@
     }
 
     h2 {
-        font-size: 80px;
+        font-size: 60px;
+    }
+    #title {
+        font-size: 35px;
     }
 }
 
@@ -29,13 +33,6 @@
     .Page {
         flex-direction: column;
         align-items: center;
-    }
-
-    .header-container {
-        /* height: 30vh; */
-        /* justify-content: left; */
-        /* align-items: center; */
-        
     }
 
     .section-info {
@@ -47,33 +44,47 @@
     }
 }
 
+.mainpage {
+    display: flex;
+    flex-direction: row;
+}
+
+#mainintro{
+    padding: 30px;
+}
+
 .circle {
-    border-radius: 50%; 
+    border-radius: 20%; 
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Ensure content doesn't overflow the circle */
 }
 
+.header-banner{
+    width: 500px;
+    height: 90px;
+}
 
-.header-container {
-    position: relative;
-    width: 30vw;
+.infopage{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.section-name {
-    position: absolute;
-    top: 35%; 
-    left: 50%;     
-    transform: translate(-50%, -50%);
-    text-align: center;
-    /* color: #664229; */
-    color: #504538;
-    font-weight: bold;
-    font-size: 30px;
+.info{
+    display: flex;
+    flex-direction: row;
+}
+
+.info-container{
+    padding: 20px;
+    border: 2px solid #dfcebc;
+    margin: 30px;
+    border-radius: 15px;
+    text-align: left;
+    flex: 1;
 }
 
 .pic {
@@ -84,16 +95,15 @@
 
 .logo {
     width: 50vh;
-    padding: 10%;
+    padding: 30px;
 }
 
-.section-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 70vw;
-    color: black;
+#title{
+    margin-top: 0;
+}
+
+#desc{
+    font-size: 25px;
 }
 
 .cookiepoints{
@@ -107,25 +117,4 @@
     padding-left: 30px;
     background: url("./imgs/fullcookie.png") no-repeat left center;
     background-size: 25px;
-}
-
-.header{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    text-align: center;
-    color: black;
-    font-size: 52px;
-    font-weight: bolder;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* max-width: 100%; */
-    max-width: 30vw;
-}
-
-#mainintro {
-    padding-left: 0px;
 }
