@@ -7,7 +7,6 @@ import Navbar from "./Navbar";
 import mePic from "./imgs/me2.jpg";
 import ga from "./imgs/ga-logo.png";
 import winc from "./imgs/winc-logo.png";
-import cookie from "./imgs/cookie3.png";
 import banner from "./imgs/banner.png";
 
 function App() {
@@ -39,18 +38,26 @@ function App() {
     skills: ["Python"]},
   ];
   
+  const handleScrollToPage = (pageId) => {
+    const p = document.getElementById(pageId);
+    console.log ("beginning scroll");
+    if( p ){
+      p.scrollIntoView({ behavior: "smooth"});
+      console.log ("scrolling to page");
+    }
+  };
 
   
   return (
     <div className="App">
       <div className =  "content">
-      <Navbar/>
-      <Page id = "home" img = {mePic} about1 = "true"> </Page>
-      <Page id = "profexp"  img = {banner} section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
-      <Page id = "proj"  img = {banner}section = "Projects" info = {projdata}> </Page>
-      <Page id = "leadership"  img = {banner}section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
-      {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
-      {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
+        <Navbar handleScrollToPage = {handleScrollToPage}/>
+        <Page id = "home" img = {mePic} about1 = "true"> </Page>
+        <Page id = "profexp"  img = {banner} section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
+        <Page id = "proj"  img = {banner}section = "Projects" info = {projdata}> </Page>
+        <Page id = "leadership"  img = {banner}section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
+        {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
+        {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
       </div>
     </div>
   );

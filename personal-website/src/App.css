@@ -84,11 +84,13 @@
 .nav-item {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .nav-text {
   display: none; /* Initially hide text */
   color: white;
+  
 }
 
 .navbar.expanded .nav-text {

@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     font-family: serif;
-    /* overflow: hidden; */
     margin: 0;
 }
 
@@ -24,8 +23,13 @@
     h2 {
         font-size: 60px;
     }
+
     #title {
         font-size: 35px;
+    }
+
+    .header {
+        font-size: 40px;
     }
 }
 
@@ -61,9 +65,28 @@
     overflow: hidden; /* Ensure content doesn't overflow the circle */
 }
 
+.header-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .header-banner{
+    /* position: relative; */
     width: 500px;
     height: 90px;
+}
+
+.header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    text-align: center; /* Center the text horizontally */
+    color: black; /* Set text color */
+    font-weight: bold; /* Set text weight if needed */
+    white-space: nowrap;
 }
 
 .infopage{

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Page.css";
 
-function Page({ img, about1, about2, section, info, logo }) {
+function Page({ id, img, about1, section, info, logo }) {
 
   return (
-    <div className="Page">
+    <div className="Page" id = {id}>
 
         {about1 ? (
         <div className = "mainpage">
@@ -21,7 +21,11 @@ function Page({ img, about1, about2, section, info, logo }) {
         </div>  
         ) : (
             <div className = "infopage">
-                <img src = {img} alt = "" className = "header-banner"/>
+                <div className = "header-container">
+                    <img src = {img} alt = "" className = "header-banner"/>
+                    <p className = "header"> {section} </p>
+                </div>
+        
                 {logo && <img src={logo} alt="Logo" className="logo" />}
                 <div className = "info">
                     {Array.isArray(info) && info.map((item) => (
