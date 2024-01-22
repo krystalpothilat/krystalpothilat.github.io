@@ -1,6 +1,5 @@
 import React from "react";
 import "./Page.css";
-import List from "./List";
 
 function Page({ img, about1, about2, section, info, logo }) {
 
