@@ -28,19 +28,19 @@ const Navbar = ({ handleScrollToPage }) => {
         onMouseLeave={handleCollapse}
         style={handleHoverStyle}>
         <div className="nav-item" onClick={() => handleScrollToPage("home")}>
-            <img src={home} className = "section-img"/>
+            <img src={home} alt = "" className = "section-img"/>
             <span className="nav-text">Home</span>
         </div>
         <div className="nav-item" onClick={() => handleScrollToPage("profexp")}>
-            <img src={profexp} className = "section-img"/>
+            <img src={profexp} alt = "" className = "section-img"/>
             <span className="nav-text">Experience</span>
         </div>
         <div className="nav-item" onClick={() => handleScrollToPage("proj")}>
-            <img src={proj} className = "section-img"/>
+            <img src={proj} alt = "" className = "section-img"/>
             <span className="nav-text">Projects</span>
         </div>
         <div className="nav-item" onClick={() => handleScrollToPage("leadership")}>
-            <img src={leadership}  className = "section-img"/>
+            <img src={leadership}  alt = "" className = "section-img"/>
             <span className="nav-text">Leadership</span>
         </div>
         {/* <div className="nav-item">

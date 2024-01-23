@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f0b8bf5d.css",
-    "main.js": "/static/js/main.bf2a24c3.js",
+    "main.css": "/static/css/main.72b76426.css",
+    "main.js": "/static/js/main.dcb7ac74.js",
     "static/js/787.0f15b36d.chunk.js": "/static/js/787.0f15b36d.chunk.js",
     "static/media/me2.jpg": "/static/media/me2.ba084d24c58c183834e2.jpg",
     "static/media/winc-logo.png": "/static/media/winc-logo.ff735c3fe3c1bfa1e0c8.png",
@@ -12,12 +12,12 @@
     "static/media/home.png": "/static/media/home.6528278e0cec015a4270.png",
     "static/media/profexp.png": "/static/media/profexp.b9cf0aed31fc56ff0e81.png",
     "index.html": "/index.html",
-    "main.f0b8bf5d.css.map": "/static/css/main.f0b8bf5d.css.map",
-    "main.bf2a24c3.js.map": "/static/js/main.bf2a24c3.js.map",
+    "main.72b76426.css.map": "/static/css/main.72b76426.css.map",
+    "main.dcb7ac74.js.map": "/static/js/main.dcb7ac74.js.map",
     "787.0f15b36d.chunk.js.map": "/static/js/787.0f15b36d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0b8bf5d.css",
-    "static/js/main.bf2a24c3.js"
+    "static/css/main.72b76426.css",
+    "static/js/main.dcb7ac74.js"
   ]
 }
