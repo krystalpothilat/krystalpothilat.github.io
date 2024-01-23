@@ -1,5 +1,8 @@
+
+
 .Page {
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -7,20 +10,48 @@
     justify-content: center;
     font-family: serif;
     margin: 0;
+    /* border: 2px solid black; */
 }
 
-@media (min-width: 1000px){ /* larger screens*/
-    /* .img-container {
+@media (min-width: 768px){ /* larger screens*/
+    .img-container {
         width: 300px;
         height: 300px;
-        border-radius: 50%; 
-    } */
-
-    ul {
-      font-size: 25px;
     }
 
-    h2 {
+    .mainpage {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        /* width: 100%; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mainintro{
+        padding: 30px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .infopage {
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text {
+        font-size: 25px;
+    }
+
+    .info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        /* height: 60%; */
+    }
+
+    #mainintro #main {
         font-size: 60px;
     }
 
@@ -31,47 +62,83 @@
     .header {
         font-size: 40px;
     }
+
+    .logo {
+        width: 50vh;
+        padding: 30px;
+    }
+
+
+
 }
 
-@media (max-width: 800px) { /* smaller screens*/
+@media (max-width: 767px) { /* smaller screens*/
+    .img-container {
+        width: 200px;
+        height: 200px;
+    }
+
     .mainpage {
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
     }
 
     #mainintro {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    #mainintro #cookiepoints{
+        font-size: 25px;
+    }
+
+    #mainintro #main {
+        font-size: 35px;
+    }
+    .infopage{
+        height: auto;
+        flex-direction: column;
+    }
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .text:not(#cookiepoints){
+        font-size: 15px;
     }
 
     .section-info {
         height: 60vh;
     }
 
-    h2 {
-        font-size: 20px;
+    .header {
+        font-size: 40px;
     }
+
+    .logo {
+        width: 5vh;
+        padding: 20px;
+    }
+    
 }
 
-.mainpage {
-    display: flex;
-    flex-direction: row;
-}
-
-#mainintro{
-    padding: 30px;
-}
 
 .img-container {
-    height: 300px;
-    width: 300px;
     border-radius: 20%; 
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Ensure content doesn't overflow the circle */
+    overflow: hidden;
 }
 
 .header-container{
@@ -79,9 +146,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 30%;
 }
+
 .header-banner{
-    /* position: relative; */
+    position: relative;
+    top: 20px;
     width: 500px;
     height: 90px;
 }
@@ -90,24 +160,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -60%);
 
-    text-align: center; /* Center the text horizontally */
-    color: black; /* Set text color */
-    font-weight: bold; /* Set text weight if needed */
+    text-align: center; 
+    font-weight: bold;
     white-space: nowrap;
-}
-
-.infopage{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.info{
-    display: flex;
-    flex-direction: row;
 }
 
 .info-container{
@@ -120,9 +177,9 @@
 }
 
 .pic {
-    width: 100%; /* Make the image fill the circle */
-    height: 100%; /* Make the image fill the circle */
-    object-fit: cover; /* Ensure the entire circle is covered by the image */
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
 }
 
 .logo {
@@ -130,22 +187,18 @@
     padding: 30px;
 }
 
-#title{
-    margin-top: 0;
+#title {
+    margin: 0;
 }
 
-#desc{
-    font-size: 25px;
-}
-
-.cookiepoints{
+#cookiepoints{
     list-style-type: none;
     text-align: left;
     background-color: #F2E9D9;
     border-radius: 4px;
 }
 
-.cookiepoints li {
+#cookiepoints li {
     padding-left: 30px;
     background: url("./imgs/fullcookie.png") no-repeat left center;
     background-size: 25px;
