@@ -4,7 +4,7 @@
     .img-container{
         width: 20vw;
         max-width: 400px;
-        min-width: 200px;
+        min-width: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -13,12 +13,13 @@
     .mainpage {
         display: flex;
         flex-direction: row;
-        min-height: 100%;
         height: 90vh;
         width: auto;
         justify-content: center;
         align-items: center;
         padding: 30px;
+        margin: 0;
+        padding: 0;
     }
     
     .infopage {
@@ -81,10 +82,12 @@
 
 @media (max-width: 767px) { /* smaller screens*/
     .img-container {
-        width: 200px;
-        height: 200px;
+        height: 50vh;
+        min-height: 300px;
+        width: 100%;
+        display:flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
     }
 
     .mainpage {
@@ -100,8 +103,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 100%;
+        /* justify-content: center; */
+        height: 50%;
         width: 100%;
     }
 
@@ -110,11 +113,18 @@
     }
 
     #mainintro #main {
-        font-size: 35px;
+        font-size: 30px;
     }
 
-    .infopage{
-        height: auto;
+    .infopage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        min-height: 90vh;
+        overflow: hidden;
     }
 
     /* .info{
@@ -132,7 +142,7 @@
     }
 
     .header {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .logo {
@@ -141,8 +151,6 @@
     }
     
 }
-
-
 
 
 .header-container{
@@ -184,9 +192,8 @@
 }
 
 .pic {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover; 
+    width: 300px;
+    height: 300px; 
     border-radius: 20px;
 }
 
