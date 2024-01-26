@@ -1,5 +1,5 @@
-import React from "react";
-// import React, { useRef } from 'react';
+// import React from "react";
+import React, { useRef, useState } from 'react';
 import "./App.css";
 import Page from "./Page";
 import Navbar from "./Navbar";
@@ -8,6 +8,7 @@ import mePic from "./imgs/me2.jpg";
 import ga from "./imgs/ga-logo.png";
 import winc from "./imgs/winc-logo.png";
 import banner from "./imgs/banner.png";
+import cookie from "./imgs/fullcookie.png";
 
 function App() {
   const profexpdata = [
@@ -20,11 +21,8 @@ function App() {
   ];
 
   const leadershipexpdata = [
-    { id: 1, title: "President", description: "Led the largest computer science student organization on campus empowering women in tech.", date: "March 2022 - March 2023",
-    bulletpoints: ["Achieved expansion of member turn-out at in-person events by 150% throguh successful marketing and community cultivation", "Increased organization funds by 50% during the 5th annual BCOE Match Challenge", "Oversaw and supported 6 offers and 10 in-person events per quarter"]},
-    { id: 2, title: "Secretary", description: "Main support for the organization's  infrastructure and both internal/external communication.", date: "March 2021 - March 2022",
-    bulletpoints: ["Facilitated communication and collaboration with various stakeholders: other student organizations, professors, industry professional and faculty members", "Maintained and supported cross-functional relationships with all external connections", "Orchestrated the planning, organization, and hosting of 4 impactful technical worshops and panels with experienced industry professionals"]},
-  ];
+    { id: 1, title: "President", description: "Led the largest computer science student organization on campus empowering women in tech.", date: "March 2022 - March 2023",},
+    { id: 2, title: "Secretary", description: "Main support for the organization's  infrastructure and both internal/external communication.", date: "March 2021 - March 2022",}  ];
 
   const projdata = [
     { id: 1, title: "Notion Customizable Bingo Widget", 
@@ -37,7 +35,11 @@ function App() {
     description: "Play Tic-Tac-Toe against an AI player!",
     skills: ["Python"]},
   ];
-  
+
+  const [raindrops, setRaindrops] = useState([]);
+  const [isAnimationRunning, setIsAnimationRunning] = useState(false);
+
+
   const handleScrollToPage = (pageId) => {
     const p = document.getElementById(pageId);
     console.log ("beginning scroll");
@@ -47,19 +49,65 @@ function App() {
     }
   };
 
-  
+  const startRainfall = () => {
+    if (isAnimationRunning) {
+      return;
+    }
+
+    setIsAnimationRunning(true);
+
+    const newRaindrops = [];
+
+    for (let i = 0; i < 75; i++) {
+      const startTime = Math.random() * 2; // Random start times between 0 and 5 seconds
+      const speed = Math.random() * 3 + 1;
+
+      newRaindrops.push({
+        id: i,
+        left: `${Math.random() * 100}vw`,
+        startTime: `${startTime}s`,
+        speed: `${speed}s`,
+      });
+    }
+
+    setRaindrops(newRaindrops);
+    
+    setTimeout(() => {
+      setIsAnimationRunning(false);
+      setRaindrops([]);
+    },5000);
+  };
+
   return (
-    <div className="App">
-      <div className =  "content">
-        <Navbar handleScrollToPage = {handleScrollToPage}/>
-        <Page id = "home" img = {mePic} alt = "" about1 = "true"> </Page>
-        <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga}> </Page>
-        <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata}> </Page>
-        <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc}> </Page>
-        {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
-        {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
+    <div>
+      <div className="raindrops-container">
+        {raindrops.length > 0 &&
+          raindrops.map((raindrop) => (
+            <div
+              key={raindrop.id}
+              className="raindrop"
+              style={{
+                left: raindrop.left,
+                top: "-30px",
+                backgroundImage: `url(${cookie})`,
+                animation: `fly ${raindrop.speed} ease-out ${raindrop.startTime}`,
+              }}
+            />
+          ))}
+      </div>
+      <div className="App">
+        <div className =  "content">
+          <Navbar handleScrollToPage = {handleScrollToPage} startRainfall={startRainfall} isAnimationRunning={isAnimationRunning}/>
+          <Page id = "home" img = {mePic} alt = "" about1 = "true" style={{ backgroundColor: "blue" }}></Page>
+          <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga} style={{ backgroundColor: "yellow" }}></Page>
+          <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata} style={{ backgroundColor: "pink" }}></Page>
+          <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc} style={{ backgroundColor: "orange" }}></Page>
+          {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
+          {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
+        </div>
       </div>
     </div>
+
   );
 }
 

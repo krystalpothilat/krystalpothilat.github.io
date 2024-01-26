@@ -1,3 +1,6 @@
+body {
+  overflow: hidden;
+}
 .App {
   text-align: center;
   background-color: rgba(242, 233, 217, 0.5);
@@ -5,16 +8,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .content {
-  height: 100vh;
+  height: 90vh;
   background-color: white;
   border-radius: 10px;
   overflow-y: auto;
-  max-height: 90vh;
+  /* max-height: 90vh; */
   width: 90%;
   opacity: 1;
+  position: absolute;
 }
 
 .content::-webkit-scrollbar {
@@ -42,23 +48,22 @@
 
 
 .navbar {
-  height: 25vh;
-  width: 8vh;
+  min-height: 30vh;
+  width: 6vh;
   position: fixed;
   z-index: 1;
   top: 50%;
   left: 2%;
   background-color: rgba(223, 206, 188, 0.5);
   overflow-x: hidden;
-  padding-top: 20px;
   display: flex;
   flex-direction: column; 
-  align-items: center;
+  align-items: flex-start;
   transform: translateY(-50%); /* Adjust to vertically center */
   border-radius: 10px;
-  justify-content:  space-between; 
-  transition: width 0.3s ease; 
+  justify-content: space-evenly; 
   overflow: hidden;
+  transition: background-color 0.3s ease, width 0.5s ease-in-out;;
 }
 
 .navbar a {
@@ -73,6 +78,7 @@
 
 .navbar.expanded {
   width: 17vh; 
+
 }
 
 .navbar img {
@@ -83,15 +89,59 @@
 .nav-item {
   display: flex;
   align-items: center;
+  /* margin: 5px; */
   cursor: pointer;
+  width: 100%;
+  /* justify-content: center; */
+  padding-left: 7px;
+
 }
 
 .nav-text {
   display: none; /* Initially hide text */
   color: white;
+  white-space: nowrap;
   
 }
 
 .navbar.expanded .nav-text {
   display: inline; /* Show text when navbar is expanded */
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.raindrop {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  animation: fall 50s linear infinite;
+  pointer-events: none !important;
+  z-index: 1;
+}
+
+.raindrop-container{
+  position: absolute;
+  overflow: hidden;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(150vh);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(150vh);
+    opacity: 1;
+  }
 }

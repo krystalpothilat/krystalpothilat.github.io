@@ -4,12 +4,14 @@ import "./Page.css";
 function Page({ id, img, about1, section, info, logo }) {
 
   return (
-    <div className="Page" id = {id}>
+    <div>
 
         {about1 ? (
-        <div className = "mainpage">
+        <div className = "mainpage" id = {id}>
             <div className = "img-container">
+                <div>
                 <img src = {img} alt ="" className = "pic"/>
+                </div>
             </div>
             <div id = "mainintro">
                 <h2 id = "main"> hello! I'm Krystal Pothilat</h2>
@@ -18,9 +20,10 @@ function Page({ id, img, about1, section, info, logo }) {
                     <li> B.S. in Computer Science at UC Riverside</li>
                 </ul>
             </div>
-        </div>  
+        </div> 
+         
         ) : (
-            <div className = "infopage">
+            <div className = "infopage" id = {id}>
                 <div className = "header-container">
                     <img src = {img} alt = "" className = "header-banner"/>
                     <p className = "header"> {section} </p>
@@ -30,7 +33,8 @@ function Page({ id, img, about1, section, info, logo }) {
                 <div className = "info">
                     {Array.isArray(info) && info.map((item) => (
                         <div className = "info-container">
-                            <h2 id = "title"> {item.title}</h2>
+                            <h2 className = "title"> {item.title}</h2>
+                            <h3 className = "date">{item.date}</h3>
                             <p className = "text"> {item.description} </p>
                             {item.bulletpoints && (
                             <ul className = "text">

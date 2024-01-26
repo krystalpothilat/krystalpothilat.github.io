@@ -6,8 +6,9 @@ import proj from "./imgs/proj.png";
 import more from "./imgs/girl.png";
 import contact from "./imgs/email.png";
 import home from "./imgs/home.png";
+import cookie from "./imgs/cookie.png";
 
-const Navbar = ({ handleScrollToPage }) => {
+const Navbar = ({ handleScrollToPage, startRainfall, isAnimationRunning }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpand = () => {
@@ -42,6 +43,10 @@ const Navbar = ({ handleScrollToPage }) => {
         <div className="nav-item" onClick={() => handleScrollToPage("leadership")}>
             <img src={leadership}  alt = "" className = "section-img"/>
             <span className="nav-text">Leadership</span>
+        </div>
+        <div className="nav-item" onClick={() => !isAnimationRunning && startRainfall()}>
+          <img src = {cookie} alt = "" className = "section-img"/>
+          <span className="nav-text">Try me!</span>
         </div>
         {/* <div className="nav-item">
             <img src={more}className = "section-img"/>
