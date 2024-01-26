@@ -1,5 +1,6 @@
 import React from "react";
 import "./Page.css";
+import externtab from "./imgs/externtab.png";
 
 function Page({ id, img, about1, section, info, logo }) {
 
@@ -33,15 +34,28 @@ function Page({ id, img, about1, section, info, logo }) {
                 <div className = "info">
                     {Array.isArray(info) && info.map((item) => (
                         <div className = "info-container">
-                            <h2 className = "title"> {item.title}</h2>
+                            <div className = "sec-header">
+                                <h2 className = "title"> {item.title}</h2>
+                                {!(item.id=="leader1" || item.id=="leader2") && (
+                                    <img src ={externtab} alt = "" className="link"/>
+                                )}
+                            </div>
                             <h3 className = "date">{item.date}</h3>
                             <p className = "text"> {item.description} </p>
                             {item.bulletpoints && (
-                            <ul className = "text">
+                            <ul className = "text" id = "info-bulletpoints">
                                 {item.bulletpoints.map((bulletpoints, index) => (
                                     <li key={index}>{bulletpoints}</li>
                                 ))}
                             </ul>
+                            )}
+                            {Array.isArray(item.skills) && (
+                                <div className="skills-container">
+                                {item.skills.map((skill) => (
+                                    <p className="text" id = "skill">{skill}</p>
+                                ))}
+                                </div>
+                                                       
                             )}
                         </div>
                     ))}
