@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import profexp from "./imgs/profexp.png";
-import leadership from "./imgs/leadership.png";
-import proj from "./imgs/proj.png";
-import more from "./imgs/girl.png";
-import contact from "./imgs/email.png";
+import profexp from "./imgs/code.png";
+import leadership from "./imgs/leader2.png";
+import proj from "./imgs/folder.png";
 import home from "./imgs/home.png";
-import cookie from "./imgs/cookie.png";
+import cookie from "./imgs/cookie2.png";
 
 const Navbar = ({ handleScrollToPage, startRainfall, isAnimationRunning }) => {
   const [expanded, setExpanded] = useState(false);

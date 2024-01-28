@@ -36,8 +36,10 @@ function Page({ id, img, about1, section, info, logo }) {
                         <div className = "info-container">
                             <div className = "sec-header">
                                 <h2 className = "title"> {item.title}</h2>
-                                {!(item.id=="leader1" || item.id=="leader2") && (
-                                    <img src ={externtab} alt = "" className="link"/>
+                                {item.id.startsWith("proj") && (
+                                    <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ marginLeft: 'auto' }}>
+                                        <img src ={externtab} alt = "" className="link"  />
+                                    </a>
                                 )}
                             </div>
                             <h3 className = "date">{item.date}</h3>

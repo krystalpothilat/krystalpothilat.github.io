@@ -1,5 +1,5 @@
 // import React from "react";
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import "./App.css";
 import Page from "./Page";
 import Navbar from "./Navbar";
@@ -9,6 +9,10 @@ import ga from "./imgs/ga-logo.png";
 import winc from "./imgs/winc-logo.png";
 import banner from "./imgs/banner.png";
 import cookie from "./imgs/fullcookie.png";
+import github from "./imgs/github.png";
+import linkedin from "./imgs/linkedin.png";
+import email from "./imgs/email.png";
+import resume from "./imgs/resume.png";
 
 function App() {
   const profexpdata = [
@@ -27,13 +31,16 @@ function App() {
   const projdata = [
     { id: "proj1", title: "Notion Customizable Bingo Widget", 
     description: "A website that allows users to create a custom Notion Bingo Widget that is embeddable onto their personal Notion workspace. Inspired by the '2024 Bingo Card' trend on TikTok, this widget aims to provide Notion users with an electronic version of the New Years' goals and resolutions checklist format.",
-    skills: ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"]},
+    skills: ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"],
+    link: "https://github.com/krystalpothilat/notion-bingo-widget"},
     { id: "proj2", title: "FastFoodDealsNearMe", 
     description: "A website that congregates all fast food deals (advertised or through Rewards membership) within a specified radius from a certain location, providing a one-stop-shop for users looking for the best fast food deals when hunger calls. Inspired by multiple late night fast food trips during college, scouring the Internet and mobile apps to find the best bang for our buck.",
-    skills: ["HTML", "CSS", "JavaScript"] },
+    skills: ["HTML", "CSS", "JavaScript"],
+    link: "https://github.com/krystalpothilat/fastfooddeals"},
     { id: "proj3", title: "TicTacToe", 
     description: "Play Tic-Tac-Toe against an AI player!",
-    skills: ["Python"]},
+    skills: ["Python"],
+    link: "https://github.com/krystalpothilat/tic-tac-toe"},
   ];
 
   const [raindrops, setRaindrops] = useState([]);
@@ -78,6 +85,8 @@ function App() {
     },5000);
   };
 
+  const resumeurl = process.env.PUBLIC_URL + "KrystalPothilatResume.pdf";
+
   return (
     <div>
       <div className="raindrops-container">
@@ -96,14 +105,28 @@ function App() {
           ))}
       </div>
       <div className="App">
+        <div className = "container"> 
+        </div>
         <div className =  "content">
           <Navbar handleScrollToPage = {handleScrollToPage} startRainfall={startRainfall} isAnimationRunning={isAnimationRunning}/>
           <Page id = "home" img = {mePic} alt = "" about1 = "true" style={{ backgroundColor: "blue" }}></Page>
           <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga} style={{ backgroundColor: "yellow" }}></Page>
           <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata} style={{ backgroundColor: "pink" }}></Page>
           <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc} style={{ backgroundColor: "orange" }}></Page>
-          {/* <Page id = "about"  img = {banner} section = "About Me" info = "Test"> </Page> */}
-          {/* <Page id = "contact" img = "Reach out!" info = "Test"> </Page> */}
+        </div>
+        <div className = "links">
+          <a href={resumeurl} target="_blank" rel="noopener noreferrer">
+              <img src ={resume} alt = "" className="link-img"/>
+          </a>
+          <a href={`mailto:${"krystalpothilat@gmail.com"}`} target="_blank" rel="noopener noreferrer"  >
+              <img src ={email} alt = "" className="link-img"  />
+          </a>
+          <a href={"https://www.linkedin.com/in/krystalpothilat"} target="_blank" rel="noopener noreferrer">
+              <img src ={linkedin} alt = "" className="link-img" />
+          </a>
+          <a href={"https://github.com/krystalpothilat"} target="_blank" rel="noopener noreferrer">
+              <img src ={github} alt = "" className="link-img" />
+          </a>
         </div>
       </div>
     </div>
