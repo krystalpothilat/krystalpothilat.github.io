@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.ac52c149.css",
-    "main.js": "/static/js/main.3c1b4335.js",
+    "main.css": "/static/css/main.5148ec84.css",
+    "main.js": "/static/js/main.64b33716.js",
     "static/js/787.0f15b36d.chunk.js": "/static/js/787.0f15b36d.chunk.js",
     "static/media/me2.jpg": "/static/media/me2.ba084d24c58c183834e2.jpg",
     "static/media/winc-logo.png": "/static/media/winc-logo.ff735c3fe3c1bfa1e0c8.png",
     "static/media/fullcookie.png": "/static/media/fullcookie.7d1228746bd497f83e64.png",
     "static/media/ga-logo.png": "/static/media/ga-logo.e860ed14b68c324a5c43.png",
-    "static/media/cookie.png": "/static/media/cookie.c4ff8314cb402a6485e5.png",
-    "static/media/leadership.png": "/static/media/leadership.57e384dd135111e87bc3.png",
-    "static/media/proj.png": "/static/media/proj.5abec8a932edf916e08e.png",
+    "static/media/github.png": "/static/media/github.79e8b24eb22af764bdcd.png",
+    "static/media/linkedin.png": "/static/media/linkedin.6f26645cba6b7c352647.png",
+    "static/media/resume.png": "/static/media/resume.556ee2d3092c974683a0.png",
     "static/media/home.png": "/static/media/home.6528278e0cec015a4270.png",
-    "static/media/profexp.png": "/static/media/profexp.b9cf0aed31fc56ff0e81.png",
     "index.html": "/index.html",
-    "main.ac52c149.css.map": "/static/css/main.ac52c149.css.map",
-    "main.3c1b4335.js.map": "/static/js/main.3c1b4335.js.map",
+    "main.5148ec84.css.map": "/static/css/main.5148ec84.css.map",
+    "main.64b33716.js.map": "/static/js/main.64b33716.js.map",
     "787.0f15b36d.chunk.js.map": "/static/js/787.0f15b36d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac52c149.css",
-    "static/js/main.3c1b4335.js"
+    "static/css/main.5148ec84.css",
+    "static/js/main.64b33716.js"
   ]
 }

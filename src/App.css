@@ -20,8 +20,8 @@ body {
   width: 90%;
   opacity: 1;
   position: absolute;
-  z-index: 10;
 }
+
 @media (min-width: 1000px){ /* larger screens*/
   .links {
     position: sticky;
@@ -31,7 +31,7 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 10vh;
+    width: 5%;
     height: 20vh;
     margin-bottom: 35px;
   }
