@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Navbar.css";
 import profexp from "./imgs/code.png";
 import leadership from "./imgs/leader2.png";
 import proj from "./imgs/folder.png";

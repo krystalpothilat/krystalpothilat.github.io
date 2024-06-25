@@ -32,15 +32,17 @@ function App() {
     { id: "proj1", title: "Notion Customizable Bingo Widget", 
     description: "A website that allows users to create a custom Notion Bingo Widget that is embeddable onto their personal Notion workspace. Inspired by the '2024 Bingo Card' trend on TikTok, this widget aims to provide Notion users with an electronic version of the New Years' goals and resolutions checklist format.",
     skills: ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"],
-    link: "https://github.com/krystalpothilat/notion-bingo-widget"},
-    { id: "proj2", title: "FastFoodDealsNearMe", 
-    description: "A website that congregates all fast food deals (advertised or through Rewards membership) within a specified radius from a certain location, providing a one-stop-shop for users looking for the best fast food deals when hunger calls. Inspired by multiple late night fast food trips during college, scouring the Internet and mobile apps to find the best bang for our buck.",
-    skills: ["HTML", "CSS", "JavaScript"],
-    link: "https://github.com/krystalpothilat/fastfooddeals"},
+    link: "https://notion-bingo-widget.vercel.app/",
+    githublink: "https://github.com/krystalpothilat/notion-bingo-widget"},
+    // { id: "proj2", title: "FastFoodDealsNearMe", 
+    // description: "A website that congregates all fast food deals (advertised or through Rewards membership) within a specified radius from a certain location, providing a one-stop-shop for users looking for the best fast food deals when hunger calls. Inspired by multiple late night fast food trips during college, scouring the Internet and mobile apps to find the best bang for our buck.",
+    // skills: ["HTML", "CSS", "JavaScript"],
+    // link: "https://github.com/krystalpothilat/fastfooddeals"},
     { id: "proj3", title: "TicTacToe", 
     description: "Play Tic-Tac-Toe against an AI player!",
     skills: ["Python"],
-    link: "https://github.com/krystalpothilat/tic-tac-toe"},
+    link: "https://tictactoe-kp.vercel.app/",
+    githublink: "https://github.com/krystalpothilat/tictactoe"},
   ];
 
   const [raindrops, setRaindrops] = useState([]);

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Page.css";
 import externtab from "./imgs/externtab.png";
-
+import githubtab from "./imgs/githublogo2.png";
 function Page({ id, img, about1, section, info, logo }) {
 
   return (
@@ -36,11 +36,21 @@ function Page({ id, img, about1, section, info, logo }) {
                         <div className = "info-container">
                             <div className = "sec-header">
                                 <h2 className = "title"> {item.title}</h2>
+                                <div className = "projectlinks">
+
+                                {item.id.startsWith("proj") && (
+                                    <a href={item.githublink} target="_blank" rel="noopener noreferrer" style={{ marginLeft: 'auto' }}>
+                                        <img src ={githubtab} alt = "" className="link" />
+                                    </a>
+
+                                )}
                                 {item.id.startsWith("proj") && (
                                     <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ marginLeft: 'auto' }}>
-                                        <img src ={externtab} alt = "" className="link"  />
+                                        <img src ={externtab} alt = "" className="link" />
                                     </a>
+
                                 )}
+                                </div>
                             </div>
                             <h3 className = "date">{item.date}</h3>
                             <p className = "text"> {item.description} </p>
