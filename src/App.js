@@ -39,7 +39,7 @@ function App() {
     // skills: ["HTML", "CSS", "JavaScript"],
     // link: "https://github.com/krystalpothilat/fastfooddeals"},
     { id: "proj3", title: "TicTacToe", 
-    description: "Play Tic-Tac-Toe against an AI player!",
+    description: "Play Tic-Tac-Toe against an AI player",
     skills: ["Python"],
     link: "https://tictactoe-kp.vercel.app/",
     githublink: "https://github.com/krystalpothilat/tictactoe"},
@@ -112,9 +112,9 @@ function App() {
         <div className =  "content">
           <Navbar handleScrollToPage = {handleScrollToPage} startRainfall={startRainfall} isAnimationRunning={isAnimationRunning}/>
           <Page id = "home" img = {mePic} alt = "" about1 = "true" style={{ backgroundColor: "blue" }}></Page>
-          <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga} style={{ backgroundColor: "yellow" }}></Page>
-          <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata} style={{ backgroundColor: "pink" }}></Page>
-          <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc} style={{ backgroundColor: "orange" }}></Page>
+          <Page id = "profexp"  img = {banner} alt = "" section = "Industry Experience" info = {profexpdata} logo = {ga} ></Page>
+          <Page id = "proj"  img = {banner} alt = "" section = "Projects" info = {projdata} ></Page>
+          <Page id = "leadership"  img = {banner} alt = "" section = "Leadership" info = {leadershipexpdata} logo = {winc} ></Page>
         </div>
         <div className = "links">
           <a href={resumeurl} target="_blank" rel="noopener noreferrer">
