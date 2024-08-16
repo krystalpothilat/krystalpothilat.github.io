@@ -1,0 +1,15 @@
+[
+    {
+      "id": "leader1",
+      "title": "President",
+      "description": "Led the largest computer science student organization on campus empowering women in tech.",
+      "date": "March 2022 - March 2023"
+    },
+    {
+      "id": "leader2",
+      "title": "Secretary",
+      "description": "Main support for the organization's infrastructure and both internal/external communication.",
+      "date": "March 2021 - March 2022"
+    }
+  ]
+  

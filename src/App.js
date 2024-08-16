@@ -14,37 +14,11 @@ import linkedin from "./imgs/linkedin.png";
 import email from "./imgs/email.png";
 import resume from "./imgs/resume.png";
 
+import profexpdata from './data/profexpdata.json';
+import leadershipexpdata from './data/leadershipexpdata.json';
+import projdata from './data/projdata.json';
+
 function App() {
-  const profexpdata = [
-    { id: "pe1", title: "Summer 2024", description: "Expanded payload configurations on the P3E.", date: "June 2023 - August 2023",
-    bulletpoints: ["Implementing 2 new function payloads", "Developing the messaging process and updating the user interface on the AV Config page to provide functionality for the new payloads"],
-    skills: ["C++", "XML", "JavaScript", "TortoiseSVN"]},
-    { id: "pe2", title: "Summer 2023", description: "Updated user interface for increased functionality for CGCS and P3E.", date: "June 2022 - August 2022",
-    bulletpoints: ["Reorganizing and enhancement of 10+ visual components on the Heads-Up Display for the CGCS", "Expanding informational components on the Payloads Page on the P3E to allow ID visibility"],
-    skills: ["C++",  "XML", "JavaScript"]},
-  ];
-
-  const leadershipexpdata = [
-    { id: "leader1", title: "President", description: "Led the largest computer science student organization on campus empowering women in tech.", date: "March 2022 - March 2023",},
-    { id: "leader2", title: "Secretary", description: "Main support for the organization's  infrastructure and both internal/external communication.", date: "March 2021 - March 2022",}  ];
-
-  const projdata = [
-    { id: "proj1", title: "Notion Customizable Bingo Widget", 
-    description: "Create a custom 'Bingo Card-esque' widget that is embeddable onto a Notion workspace. Inspired by the '2024 Bingo Card' trend on TikTok, this widget provides Notion users with an electronic version of the New Years resolutions checklist format.",
-    skills: ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"],
-    link: "https://notion-bingo-widget.vercel.app/",
-    githublink: "https://github.com/krystalpothilat/notion-bingo-widget"},
-    { id: "proj2", title: "Movie Bucket List", 
-    description: "A virtual version of my movie bucket list, filled with IMDB's top 100 movies and more.",
-    skills: ["ReactJS", "Node.s", "Express.js", "MongoDB", "Git"],
-    link: "https://movie-bucketlist.vercel.app/",
-    githublink: "https://github.com/krystalpothilat/movie-bucketlist"},
-    { id: "proj3", title: "TicTacToe", 
-    description: "Play Tic-Tac-Toe against an AI player",
-    skills: ["HTML", "CSS", "Javascript"],
-    link: "https://tictactoe-kp.vercel.app/",
-    githublink: "https://github.com/krystalpothilat/tictactoe"},
-  ];
 
   const [raindrops, setRaindrops] = useState([]);
   const [isAnimationRunning, setIsAnimationRunning] = useState(false);

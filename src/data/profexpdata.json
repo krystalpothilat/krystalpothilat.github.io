@@ -1,0 +1,25 @@
+[
+    {
+      "id": "pe1",
+      "title": "Summer 2024",
+      "description": "Expanded payload configurations on the P3E.",
+      "date": "June 2023 - August 2023",
+      "bulletpoints": [
+        "Implemented 2 new function payloads",
+        "Developed the messaging process and updated the user interface on the AV Config page to provide functionality for the new payloads"
+      ],
+      "skills": ["C++", "JavaScript", "XML", "TortoiseSVN"]
+    },
+    {
+      "id": "pe2",
+      "title": "Summer 2023",
+      "description": "Updated user interface for increased functionality for CGCS and P3E.",
+      "date": "June 2022 - August 2022",
+      "bulletpoints": [
+        "Reorganized and enhanced 10+ visual components on the Heads-Up Display for the CGCS",
+        "Expanded informational components on the Payloads Page on the P3E to allow ID visibility"
+      ],
+      "skills": ["C++", "JavaScript", "XML"]
+    }
+  ]
+  

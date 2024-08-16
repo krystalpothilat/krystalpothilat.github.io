@@ -33,6 +33,11 @@
     justify-content: space-between;
 }
 
+.projectlinks{
+    display: flex;
+    flex-direction: row;
+}
+
 
 @media (min-width: 768px){ /* larger screens*/
    

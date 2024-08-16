@@ -1,0 +1,28 @@
+[
+    {
+        "id": "proj1",
+        "title": "Movie Bucket List",
+        "description": "A virtual version of my movie bucket list, filled with IMDB's top 100 movies and more. Featuring the OMDb API.",
+        "skills": ["ReactJS", "Node.s", "Express.js", "MongoDB", "Git"],
+        "link": "https://movie-bucketlist.vercel.app/",
+        "githublink": "https://github.com/krystalpothilat/movie-bucketlist"
+    },
+    {
+      "id": "proj2",
+      "title": "Notion Customizable Bingo Widget",
+      "description": "Create a custom 'Bingo Card-esque' widget that is embeddable onto a Notion workspace",
+
+      "skills": ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"],
+      "link": "https://notion-bingo-widget.vercel.app/",
+      "githublink": "https://github.com/krystalpothilat/notion-bingo-widget"
+    },
+    {
+      "id": "proj3",
+      "title": "TicTacToe",
+      "description": "Play Tic-Tac-Toe against an AI player",
+      "skills": ["HTML", "CSS", "Javascript"],
+      "link": "https://tictactoe-kp.vercel.app/",
+      "githublink": "https://github.com/krystalpothilat/tictactoe"
+    }
+  ]
+  
