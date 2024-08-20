@@ -39,6 +39,17 @@
 }
 
 
+.header-banner{
+    position: relative;
+    width: 500px;
+    height: 90px;
+}
+
+.logo {
+    width: 50vh;
+    padding: 30px;
+}
+
 @media (min-width: 768px){ /* larger screens*/
    
     .img-container{
@@ -129,8 +140,20 @@
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0,0,0, 0.75);
     }
-
-
+    
+    #cookiepoints{
+        list-style-type: none;
+        text-align: left;
+        background-color: #F2E9D9;
+        border-radius: 4px;
+        padding: 10px;
+    }
+    
+    #cookiepoints li {
+        padding-left: 30px;
+        background: url("./imgs/fullcookie.png") no-repeat left center;
+        background-size: 25px;
+    }
 }
 
 
@@ -157,13 +180,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* justify-content: center; */
         height: 50%;
-        width: 100%;
+        width: 60vw;
     }
 
     #mainintro #cookiepoints{
-        font-size: 18px;
+        font-size:15px;
     }
 
     #mainintro #main {
@@ -181,6 +203,8 @@
         overflow: hidden;
     }
     
+
+
     .text:not(#cookiepoints){
         font-size: 15px;
     }
@@ -190,11 +214,11 @@
     }
 
     .header {
-        font-size: 30px;
+        font-size: 23px;
     }
 
     .logo {
-        width: 5vh;
+        width: 70vw;
         padding: 20px;
     }
 
@@ -203,8 +227,38 @@
         height: 200px; 
         border-radius: 20px;
     }
+
+    .header-banner{
+        position: relative;
+        width: 80vw;
+        /* height: 90px; */
+    }
+
+    #cookiepoints{
+        list-style-type: none;
+        text-align: left;
+        background-color: #F2E9D9;
+        border-radius: 4px;
+        padding: 10px;
+    }
     
-}
+    #cookiepoints li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 5px;
+      }
+      
+      #cookiepoints li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 10px; 
+        height: 12px; 
+        background: url("./imgs/fullcookie.png") no-repeat center center;
+        background-size: 12px; 
+      }
+}   
 
 
 .header-container{
@@ -219,11 +273,6 @@
     padding: 0;
 }
 
-.header-banner{
-    position: relative;
-    width: 500px;
-    height: 90px;
-}
 
 .header {
     position: absolute;
@@ -251,29 +300,11 @@
 }
 
 
-.logo {
-    width: 50vh;
-    padding: 30px;
-}
 
 .title {
     margin: 0;
 }
 
-#cookiepoints{
-    list-style-type: none;
-    text-align: left;
-    background-color: #F2E9D9;
-    border-radius: 4px;
-    padding: 10px;
-    
-}
-
-#cookiepoints li {
-    padding-left: 30px;
-    background: url("./imgs/fullcookie.png") no-repeat left center;
-    background-size: 25px;
-}
 
 .date{
     color: #636363;
