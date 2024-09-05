@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.863f38fb.css",
-    "main.js": "/static/js/main.47131e8d.js",
+    "main.js": "/static/js/main.866e5e98.js",
     "static/js/787.0f15b36d.chunk.js": "/static/js/787.0f15b36d.chunk.js",
     "static/media/me2.jpg": "/static/media/me2.ba084d24c58c183834e2.jpg",
     "static/media/winc-logo.png": "/static/media/winc-logo.ff735c3fe3c1bfa1e0c8.png",
@@ -13,11 +13,11 @@
     "static/media/home.png": "/static/media/home.6528278e0cec015a4270.png",
     "index.html": "/index.html",
     "main.863f38fb.css.map": "/static/css/main.863f38fb.css.map",
-    "main.47131e8d.js.map": "/static/js/main.47131e8d.js.map",
+    "main.866e5e98.js.map": "/static/js/main.866e5e98.js.map",
     "787.0f15b36d.chunk.js.map": "/static/js/787.0f15b36d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.863f38fb.css",
-    "static/js/main.47131e8d.js"
+    "static/js/main.866e5e98.js"
   ]
 }
