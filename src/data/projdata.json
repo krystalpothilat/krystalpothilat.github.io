@@ -9,11 +9,11 @@
     },
     {
       "id": "proj2",
-      "title": "Notion Customizable Bingo Widget",
+      "title": "Bingo Widget Creator for Notion",
       "description": "Create a custom 'Bingo Card-esque' widget that is embeddable onto a Notion workspace",
 
       "skills": ["ReactJS", "Node.js", "Express.js", "MongoDB", "Git"],
-      "link": "https://notion-bingo-widget.vercel.app/",
+      "link": "https://notion-bingo-widget.vercel.app/home",
       "githublink": "https://github.com/krystalpothilat/notion-bingo-widget"
     },
     {

@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.90c2db13.css",
-    "main.js": "/static/js/main.da7d4070.js",
+    "main.css": "/static/css/main.863f38fb.css",
+    "main.js": "/static/js/main.47131e8d.js",
     "static/js/787.0f15b36d.chunk.js": "/static/js/787.0f15b36d.chunk.js",
     "static/media/me2.jpg": "/static/media/me2.ba084d24c58c183834e2.jpg",
     "static/media/winc-logo.png": "/static/media/winc-logo.ff735c3fe3c1bfa1e0c8.png",
-    "static/media/fullcookie.png": "/static/media/fullcookie.7d1228746bd497f83e64.png",
+    "static/media/fullcookie.png": "/static/media/fullcookie.9fff28ba2450302f2bae.png",
     "static/media/ga-logo.png": "/static/media/ga-logo.e860ed14b68c324a5c43.png",
     "static/media/github.png": "/static/media/github.79e8b24eb22af764bdcd.png",
     "static/media/linkedin.png": "/static/media/linkedin.6f26645cba6b7c352647.png",
     "static/media/resume.png": "/static/media/resume.556ee2d3092c974683a0.png",
     "static/media/home.png": "/static/media/home.6528278e0cec015a4270.png",
     "index.html": "/index.html",
-    "main.90c2db13.css.map": "/static/css/main.90c2db13.css.map",
-    "main.da7d4070.js.map": "/static/js/main.da7d4070.js.map",
+    "main.863f38fb.css.map": "/static/css/main.863f38fb.css.map",
+    "main.47131e8d.js.map": "/static/js/main.47131e8d.js.map",
     "787.0f15b36d.chunk.js.map": "/static/js/787.0f15b36d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90c2db13.css",
-    "static/js/main.da7d4070.js"
+    "static/css/main.863f38fb.css",
+    "static/js/main.47131e8d.js"
   ]
 }
