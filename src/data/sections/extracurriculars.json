@@ -1,0 +1,65 @@
+{
+  "id": "extracurriculars",
+  "label": "Extracurriculars",
+  "puzzleCol": 0,
+  "puzzleRow": 8,
+  "pieces": [
+    {
+      "localCol": 2,
+      "localRow": 1,
+      "locked": true,
+      "type": "section-header",
+      "label": "Extracurriculars"
+    },
+    {
+      "localCol": 1,
+      "localRow": 2,
+      "locked": false,
+      "type": "activity",
+      "label": "Robotics Club",
+      "sublabel": "President",
+      "linksTo": "extra_robotics"
+    },
+    {
+      "localCol": 4,
+      "localRow": 3,
+      "locked": false,
+      "type": "activity",
+      "label": "Hackathon Org",
+      "sublabel": "Lead Organizer",
+      "linksTo": "extra_hackathon"
+    },
+    { "localCol": 3, "localRow": 2, "locked": false },
+    { "localCol": 2, "localRow": 4, "locked": false },
+    {
+      "localCol": 1,
+      "localRow": 5,
+      "locked": true,
+      "type": "nav",
+      "label": "← Home",
+      "linksTo": "home"
+    }
+  ],
+  "details": {
+    "extra_robotics": {
+      "title": "Robotics Club",
+      "company": "MIT",
+      "period": "2020 – 2023",
+      "bullets": [
+        "Led team of 12 to build autonomous navigation robot",
+        "Won 2nd place at regional FIRST robotics competition"
+      ],
+      "tags": ["ROS", "C++", "Python", "Leadership"]
+    },
+    "extra_hackathon": {
+      "title": "HackMIT Organizer",
+      "company": "HackMIT",
+      "period": "2021 – 2022",
+      "bullets": [
+        "Coordinated 1,200-person hackathon logistics and sponsor relations",
+        "Managed $80k budget and 40-person volunteer team"
+      ],
+      "tags": ["Event Planning", "Sponsorship", "Leadership"]
+    }
+  }
+}

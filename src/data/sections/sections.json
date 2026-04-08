@@ -1,0 +1,26 @@
+{
+  "home": {
+    "id": "home",
+    "label": "Home",
+    "puzzleCol": 0,
+    "puzzleRow": 0
+  },
+  "experience": {
+    "id": "experience",
+    "label": "Experience",
+    "puzzleCol": 12,
+    "puzzleRow": 0
+  },
+  "projects": {
+    "id": "projects",
+    "label": "Projects",
+    "puzzleCol": 12,
+    "puzzleRow": 8
+  },
+  "extracurriculars": {
+    "id": "extracurriculars",
+    "label": "Extracurriculars",
+    "puzzleCol": 0,
+    "puzzleRow": 8
+  }
+}

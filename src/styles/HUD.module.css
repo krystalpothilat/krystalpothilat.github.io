@@ -1,0 +1,157 @@
+/*
+    HUD Styles
+    - static only
+*/
+
+.topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.sectionName {
+  pointer-events: auto;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.completionPill {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: all 0.4s;
+}
+
+.zoomButton,
+.resetButton,
+.menuButton,
+.menuItem {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+}
+
+.zoomButton,
+.resetButton,
+.menuButton {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  color: rgba(255,255,255,0.6);
+}
+
+.resetButton {
+  color: rgba(255,110,110,0.8);
+  border-color: rgba(255,110,110,0.25);
+}
+
+.menuContainer {
+  position: relative;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #111318;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 180px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+}
+
+.menuSection {
+  padding: 8px 0 4px;
+}
+
+.menuSectionLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 14px 6px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  color: rgba(255,255,255,0.7);
+  transition: background 0.15s, color 0.15s;
+}
+
+.menuItem.danger {
+  color: rgba(255,80,80,0.7);
+}
+
+.menuItem.done {
+  color: rgba(80,200,120,0.8);
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.bottomBarFill {
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.6s ease, background 0.4s;
+}
+
+.tooltip {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  pointer-events: none;
+  letter-spacing: 0.06em;
+  z-index: 100;
+  white-space: nowrap;
+}

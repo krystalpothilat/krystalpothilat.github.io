@@ -1,0 +1,46 @@
+{
+  "id": "projects",
+  "label": "Projects",
+  "puzzleCol": 12,
+  "puzzleRow": 8,
+  "pieces": [
+    { "localCol": 2, "localRow": 1, "locked": true, "type": "section-header", "label": "Projects" },
+    { "localCol": 1, "localRow": 2, "locked": false, "type": "project", "label": "Puzzle Portfolio", "sublabel": "React · Vite", "linksTo": "proj_puzzle" },
+    { "localCol": 4, "localRow": 3, "locked": false, "type": "project", "label": "Open Source CLI", "sublabel": "Rust · 2k ⭐", "linksTo": "proj_cli" },
+    { "localCol": 2, "localRow": 4, "locked": false, "type": "project", "label": "ML Classifier", "sublabel": "PyTorch", "linksTo": "proj_ml" },
+    { "localCol": 4, "localRow": 2, "locked": false },
+    { "localCol": 1, "localRow": 5, "locked": true, "type": "nav", "label": "← Home", "linksTo": "home" }
+  ],
+  "details": {
+    "proj_puzzle": {
+      "title": "Puzzle Portfolio Engine",
+      "company": "Personal Project",
+      "period": "2024",
+      "bullets": [
+        "Interactive jigsaw puzzle in React with drag-and-snap mechanics",
+        "Custom SVG clip-path generation for authentic interlocking shapes"
+      ],
+      "tags": ["React", "Framer Motion", "SVG", "Vite"]
+    },
+    "proj_cli": {
+      "title": "Open Source CLI Tool",
+      "company": "Open Source",
+      "period": "2023",
+      "bullets": [
+        "Rust-based developer CLI with 2,000+ GitHub stars",
+        "Plugin architecture allows community extensions"
+      ],
+      "tags": ["Rust", "CLI", "Open Source"]
+    },
+    "proj_ml": {
+      "title": "ML Image Classifier",
+      "company": "Research",
+      "period": "2022",
+      "bullets": [
+        "Novel architecture achieving SOTA on benchmark dataset",
+        "Published at workshop; 50+ citations"
+      ],
+      "tags": ["PyTorch", "Python", "Research"]
+    }
+  }
+}

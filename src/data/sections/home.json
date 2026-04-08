@@ -1,0 +1,50 @@
+{
+  "id": "home",
+  "label": "Home",
+  "puzzleCol": 0,
+  "puzzleRow": 0,
+  "pieces": [
+    {
+      "localCol": 2,
+      "localRow": 1,
+      "locked": true,
+      "type": "title",
+      "label": "Your Name",
+      "sublabel": "Software Engineer"
+    },
+    {
+      "localCol": 1,
+      "localRow": 2,
+      "locked": false,
+      "type": "nav",
+      "label": "Experience",
+      "linksTo": "experience"
+    },
+    {
+      "localCol": 4,
+      "localRow": 2,
+      "locked": false,
+      "type": "nav",
+      "label": "Projects",
+      "linksTo": "projects"
+    },
+    {
+      "localCol": 1,
+      "localRow": 4,
+      "locked": false,
+      "type": "nav",
+      "label": "Extracurriculars",
+      "linksTo": "extracurriculars"
+    },
+    {
+      "localCol": 4,
+      "localRow": 4,
+      "locked": false,
+      "type": "nav",
+      "label": "🧩 Puzzle Zone",
+      "linksTo": "fun1"
+    },
+    { "localCol": 3, "localRow": 3, "locked": false },
+    { "localCol": 2, "localRow": 4, "locked": false }
+  ]
+}

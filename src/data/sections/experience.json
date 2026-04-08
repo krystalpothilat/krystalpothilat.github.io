@@ -1,0 +1,52 @@
+{
+  "id": "experience",
+  "label": "Experience",
+  "puzzleCol": 12,
+  "puzzleRow": 0,
+  "pieces": [
+    { "localCol": 2, "localRow": 1, "locked": true, "type": "section-header", "label": "Experience" },
+    { "localCol": 1, "localRow": 2, "locked": false, "type": "job", "label": "Software Engineer", "sublabel": "Google", "linksTo": "job_google" },
+    { "localCol": 4, "localRow": 3, "locked": false, "type": "job", "label": "SWE Intern", "sublabel": "Meta", "linksTo": "job_meta" },
+    { "localCol": 2, "localRow": 4, "locked": false, "type": "job", "label": "Research Asst.", "sublabel": "MIT CSAIL", "linksTo": "job_research" },
+    { "localCol": 1, "localRow": 4, "locked": false },
+    { "localCol": 4, "localRow": 2, "locked": false },
+    { "localCol": 1, "localRow": 5, "locked": true, "type": "nav", "label": "← Home", "linksTo": "home" }
+  ],
+  "details": {
+    "job_google": {
+      "title": "Software Engineer",
+      "company": "Google",
+      "period": "Jun 2023 – Present",
+      "location": "Mountain View, CA",
+      "bullets": [
+        "Built and shipped features impacting millions of users",
+        "Led migration of legacy system, reducing latency by 40%",
+        "Mentored 2 junior engineers; ran weekly design reviews"
+      ],
+      "tags": ["Go", "Kubernetes", "BigQuery", "Spanner"],
+      "link": "https://google.com"
+    },
+    "job_meta": {
+      "title": "Software Engineer Intern",
+      "company": "Meta",
+      "period": "May 2022 – Aug 2022",
+      "location": "Menlo Park, CA",
+      "bullets": [
+        "Shipped end-to-end feature in React Native for Instagram Stories",
+        "Wrote benchmarks catching 3 regressions pre-launch"
+      ],
+      "tags": ["React Native", "Hack", "Python"]
+    },
+    "job_research": {
+      "title": "Undergraduate Research Assistant",
+      "company": "MIT CSAIL",
+      "period": "Sep 2021 – May 2022",
+      "location": "Cambridge, MA",
+      "bullets": [
+        "Co-authored paper on adversarial robustness in vision transformers",
+        "Implemented novel data augmentation pipeline in PyTorch"
+      ],
+      "tags": ["PyTorch", "Python", "LaTeX"]
+    }
+  }
+}
