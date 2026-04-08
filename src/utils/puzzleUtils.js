@@ -134,11 +134,11 @@ export function buildPuzzlePieces() {
         const minY = puzzleRow * PIECE_SIZE + margin
         const maxY = (puzzleRow + SECTION_ROWS - 1) * PIECE_SIZE - margin
 
+        const maxOffset = PIECE_SIZE * 4; 
         const positionOffsetX = isLocked ? homeX
-          : Math.min(maxX, Math.max(minX, homeX + (Math.random() - 0.5) * PIECE_SIZE * 1.4))
+        : Math.min(maxX, Math.max(minX, homeX + (Math.random() - 0.5) * maxOffset));
         const positionOffsetY = isLocked ? homeY
-          : Math.min(maxY, Math.max(minY, homeY + (Math.random() - 0.5) * PIECE_SIZE * 1.4))
-
+        : Math.min(maxY, Math.max(minY, homeY + (Math.random() - 0.5) * maxOffset));
         pieces.push({
           id: `piece_${pc}_${pr}`,
           puzzleCol: pc, puzzleRow: pr,
@@ -205,4 +205,23 @@ function getPieceClipPathFromEdges(s, edges) {
   const left   = edges.left   === null ? `L 0,0`       : nub('left', s, T, N, H, edges.left)
 
   return `M 0,0 ${top} ${right} ${bottom} ${left} Z`
+}
+
+function checkOverlap(x1, y1, x2, y2, size, maxOverlap = 0.75) {
+  const dx = Math.max(0, size - Math.abs(x1 - x2));
+  const dy = Math.max(0, size - Math.abs(y1 - y2));
+  const overlapArea = dx * dy;
+  return overlapArea > size * size * maxOverlap;
+}
+
+function getNonOverlappingOffset(homeX, homeY, minX, maxX, minY, maxY, size, placedPieces) {
+  let x, y;
+  let attempts = 0;
+  do {
+    x = minX + Math.random() * (maxX - minX);
+    y = minY + Math.random() * (maxY - minY);
+    attempts++;
+    if (attempts > 50) break; // fallback in case we can’t find a spot
+  } while (placedPieces.some(p => checkOverlap(x, y, p.x, p.y, size)));
+  return { x, y };
 }
