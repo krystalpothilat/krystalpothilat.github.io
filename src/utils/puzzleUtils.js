@@ -5,20 +5,7 @@ import {
   SECTION_ROWS,
   PUZZLE_COLS,
   PUZZLE_ROWS,
-  SECTION_BOUNDARY_COLS,
-  SECTION_BOUNDARY_ROWS,
 } from "../data/puzzleData.js";
-
-// Classic jigsaw pattern: tabs/holes alternate in a checkerboard way
-export function edgeIsTab(col, row, side) {
-  // Only interior edges get tabs, boundaries stay flat
-  if (side === "right") {
-    return !flatRight(col) && (row + col) % 2 === 0;
-  } else if (side === "bottom") {
-    return !flatBottom(row) && (row + col) % 2 !== 0;
-  }
-  return false;
-}
 
 // Flat edge rules:
 // - Puzzle border = always flat
@@ -33,32 +20,6 @@ function flatBottom(row) {
 }
 function flatTop(row) {
   return row === 0;
-}
-
-// GET PIECE CLIP PATH ─────────────────────────────────────────────────────
-export function getPieceClipPath(col, row, size = PIECE_SIZE) {
-  const s = size;
-  const T = s * 0.22; // tab height
-  const N = s * 0.13; // tab width control
-  const H = s * 0.2; // tab curve control
-
-  const fTop = flatTop(row);
-  const fRight = flatRight(col);
-  const fBottom = flatBottom(row);
-  const fLeft = flatLeft(col);
-
-  // Determine if edges have tabs
-  const tabTop = !fTop && edgeIsTab(col, row - 1, "bottom");
-  const tabRight = !fRight && edgeIsTab(col, row, "right");
-  const tabBottom = !fBottom && edgeIsTab(col, row, "bottom");
-  const tabLeft = !fLeft && edgeIsTab(col - 1, row, "right");
-
-  const top = fTop ? `L ${s},0` : nub("top", s, T, N, H, tabTop);
-  const right = fRight ? `L ${s},${s}` : nub("right", s, T, N, H, tabRight);
-  const bottom = fBottom ? `L 0,${s}` : nub("bottom", s, T, N, H, tabBottom);
-  const left = fLeft ? `L 0,0` : nub("left", s, T, N, H, tabLeft);
-
-  return `M 0,0 ${top} ${right} ${bottom} ${left} Z`;
 }
 
 // CREATE NUB(S) FOR PUZZLE PIECE
@@ -108,37 +69,20 @@ function nub(side, s, T, N, H, outward) {
 }
 
 export function buildPuzzlePieces() {
-  const puzzlePieces = []; // store all pieces in puzzle
-
-  for (let pr = 0; pr < PUZZLE_ROWS; pr++) {
-    puzzlePieces[pr] = [];
-    for (let pc = 0; pc < PUZZLE_COLS; pc++) {
-      // Determine edges for this piece
-      const top = pr === 0 ? null : !puzzlePieces[pr - 1][pc].bottom;
-      const left = pc === 0 ? null : !puzzlePieces[pr][pc - 1].right;
-      const right = pc === PUZZLE_COLS - 1 ? null : Math.random() < 0.5;
-      const bottom = pr === PUZZLE_ROWS - 1 ? null : Math.random() < 0.5;
-
-      puzzlePieces[pr][pc] = {
-        top,
-        right,
-        bottom,
-        left,
-        puzzleRow: pr,
-        puzzleCol: pc,
-      };
-    }
-  }
   const pieces = [];
+  const edgeMap = {}; // store edges of each piece
 
-  Object.values(SECTIONS).forEach((section) => {
+  const orderedSections = Object.values(SECTIONS).sort((a, b) => {
+    if (a.puzzleRow !== b.puzzleRow) return a.puzzleRow - b.puzzleRow;
+    return a.puzzleCol - b.puzzleCol;
+  });
+
+  orderedSections.forEach((section) => {
     const { puzzleCol, puzzleRow, pureFun } = section;
     const overrideMap = {};
     (section.pieces || []).forEach((p) => {
       overrideMap[`${p.localCol},${p.localRow}`] = p;
     });
-
-    const edgeMap = {}; // store edges of each piece
 
     for (let r = 0; r < SECTION_ROWS; r++) {
       for (let c = 0; c < SECTION_COLS; c++) {
@@ -147,31 +91,38 @@ export function buildPuzzlePieces() {
         const override = overrideMap[`${c},${r}`] || {};
 
         // Determine edges
-        const topEdge =
-          r === 0
-            ? edgeMap[`${pc},${pr - 1}`]?.bottom !== undefined
-              ? !edgeMap[`${pc},${pr - 1}`].bottom
-              : null
-            : !edgeMap[`${pc},${pr - 1}`].bottom;
+        const isTopBorder = pr === 0;
+        const isLeftBorder = pc === 0;
+        const isRightBorder = pc === PUZZLE_COLS - 1;
+        const isBottomBorder = pr === PUZZLE_ROWS - 1;
 
-        const leftEdge =
-          c === 0
-            ? edgeMap[`${pc - 1},${pr}`]?.right !== undefined
-              ? !edgeMap[`${pc - 1},${pr}`].right
-              : null
+        // TOP (depends on above)
+        const above = edgeMap[`${pc},${pr - 1}`];
+
+        const topEdge = isTopBorder
+          ? null
+          : above?.bottom == null
+            ? null
+            : !above.bottom;
+
+        // LEFT (depends on left)
+        const leftEdge = isLeftBorder
+          ? null
+          : edgeMap[`${pc - 1},${pr}`]?.right == null
+            ? null
             : !edgeMap[`${pc - 1},${pr}`].right;
 
-        const rightEdge =
-          c === SECTION_COLS - 1 || flatRight(pc) ? null : Math.random() < 0.5;
+        // RIGHT (only decided here)
+        const rightEdge = isRightBorder ? null : Math.random() < 0.5;
 
-        const bottomEdge =
-          r === SECTION_ROWS - 1 || flatBottom(pr) ? null : Math.random() < 0.5;
+        // BOTTOM (only decided here)
+        const bottomEdge = isBottomBorder ? null : Math.random() < 0.5;
 
         edgeMap[`${pc},${pr}`] = {
           top: topEdge,
+          left: leftEdge,
           right: rightEdge,
           bottom: bottomEdge,
-          left: leftEdge,
         };
 
         const homeX = pc * PIECE_SIZE;
@@ -291,25 +242,4 @@ function checkOverlap(x1, y1, x2, y2, size, maxOverlap = 0.75) {
   const dy = Math.max(0, size - Math.abs(y1 - y2));
   const overlapArea = dx * dy;
   return overlapArea > size * size * maxOverlap;
-}
-
-function getNonOverlappingOffset(
-  homeX,
-  homeY,
-  minX,
-  maxX,
-  minY,
-  maxY,
-  size,
-  placedPieces,
-) {
-  let x, y;
-  let attempts = 0;
-  do {
-    x = minX + Math.random() * (maxX - minX);
-    y = minY + Math.random() * (maxY - minY);
-    attempts++;
-    if (attempts > 50) break; // fallback in case we can’t find a spot
-  } while (placedPieces.some((p) => checkOverlap(x, y, p.x, p.y, size)));
-  return { x, y };
 }

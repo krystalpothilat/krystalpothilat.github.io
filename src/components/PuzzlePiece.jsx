@@ -120,7 +120,6 @@ export default function PuzzlePiece({
         width: S,
         height: S,
         overflow: "visible",
-        outline: "1px solid red",
         zIndex,
         cursor: isMovable ? "grab" : piece.linksTo ? "pointer" : "default",
         transform: isMovable

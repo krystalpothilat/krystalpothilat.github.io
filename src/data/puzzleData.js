@@ -12,15 +12,11 @@ export const SECTION_COLS = 12;
 export const SECTION_ROWS = 8;
 
 // Total puzzle size
-export const PUZZLE_COLS = 36;
-export const PUZZLE_ROWS = 24;
+export const PUZZLE_COLS = SECTION_COLS * 3;
+export const PUZZLE_ROWS = SECTION_ROWS * 2;
 
 export const IMAGE_TOTAL_W = PUZZLE_COLS * PIECE_SIZE;
 export const IMAGE_TOTAL_H = PUZZLE_ROWS * PIECE_SIZE;
-
-// Boundaries for flat edges
-export const SECTION_BOUNDARY_COLS = [9, 10, 19, 20];
-export const SECTION_BOUNDARY_ROWS = [12, 13];
 
 // SECTIONS — imported JSONs
 
