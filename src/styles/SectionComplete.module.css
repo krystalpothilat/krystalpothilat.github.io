@@ -9,12 +9,12 @@
   transform: translateX(-50%);
   background: rgba(80, 200, 120, 0.9);
   color: #0a0a0f;
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-weight: 800;
   font-size: 1.2rem;
   padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   z-index: 1000;
   opacity: 0;
   animation: slideInOut 2s forwards;

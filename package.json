@@ -11,12 +11,14 @@
     "deploy": "gh-pages -d dist",
     "clean": "rm -rf node_modules/.vite dist",
     "reinstall": "rm -rf node_modules package-lock.json && npm install",
-    "build:clean": "npm run clean && npm run build"
+    "build:clean": "npm run clean && npm run build",
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
+    "framer-motion": "^11.0.0",
+    "prettier": "^3.8.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "framer-motion": "^11.0.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

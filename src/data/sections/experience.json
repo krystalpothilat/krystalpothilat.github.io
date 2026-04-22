@@ -4,13 +4,50 @@
   "puzzleCol": 12,
   "puzzleRow": 0,
   "pieces": [
-    { "localCol": 2, "localRow": 1, "locked": true, "type": "section-header", "label": "Experience" },
-    { "localCol": 1, "localRow": 2, "locked": false, "type": "job", "label": "Software Engineer", "sublabel": "Google", "linksTo": "job_google" },
-    { "localCol": 4, "localRow": 3, "locked": false, "type": "job", "label": "SWE Intern", "sublabel": "Meta", "linksTo": "job_meta" },
-    { "localCol": 2, "localRow": 4, "locked": false, "type": "job", "label": "Research Asst.", "sublabel": "MIT CSAIL", "linksTo": "job_research" },
+    {
+      "localCol": 2,
+      "localRow": 1,
+      "locked": true,
+      "type": "section-header",
+      "label": "Experience"
+    },
+    {
+      "localCol": 1,
+      "localRow": 2,
+      "locked": false,
+      "type": "job",
+      "label": "Software Engineer",
+      "sublabel": "Google",
+      "linksTo": "job_google"
+    },
+    {
+      "localCol": 4,
+      "localRow": 3,
+      "locked": false,
+      "type": "job",
+      "label": "SWE Intern",
+      "sublabel": "Meta",
+      "linksTo": "job_meta"
+    },
+    {
+      "localCol": 2,
+      "localRow": 4,
+      "locked": false,
+      "type": "job",
+      "label": "Research Asst.",
+      "sublabel": "MIT CSAIL",
+      "linksTo": "job_research"
+    },
     { "localCol": 1, "localRow": 4, "locked": false },
     { "localCol": 4, "localRow": 2, "locked": false },
-    { "localCol": 1, "localRow": 5, "locked": true, "type": "nav", "label": "← Home", "linksTo": "home" }
+    {
+      "localCol": 1,
+      "localRow": 5,
+      "locked": true,
+      "type": "nav",
+      "label": "← Home",
+      "linksTo": "home"
+    }
   ],
   "details": {
     "job_google": {

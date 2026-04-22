@@ -12,22 +12,26 @@
   padding: 10px;
   text-align: center;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 20%, transparent 78%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.55) 20%,
+    transparent 78%
+  );
 }
 
 .labelText {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-weight: 800;
-  text-shadow: 0 1px 10px rgba(0,0,0,1);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 1);
   line-height: 1.2;
   letter-spacing: 0.03em;
 }
 
 .sublabelText {
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   font-size: 10px;
-  color: rgba(255,255,255,0.75);
-  text-shadow: 0 1px 6px rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 1);
   margin-top: 4px;
   letter-spacing: 0.06em;
 }
@@ -35,6 +39,6 @@
 .linkText {
   font-size: 9px;
   margin-top: 5px;
-  font-family: 'DM Mono', monospace;
+  font-family: "DM Mono", monospace;
   letter-spacing: 0.1em;
 }

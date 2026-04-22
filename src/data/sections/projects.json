@@ -4,12 +4,49 @@
   "puzzleCol": 12,
   "puzzleRow": 8,
   "pieces": [
-    { "localCol": 2, "localRow": 1, "locked": true, "type": "section-header", "label": "Projects" },
-    { "localCol": 1, "localRow": 2, "locked": false, "type": "project", "label": "Puzzle Portfolio", "sublabel": "React · Vite", "linksTo": "proj_puzzle" },
-    { "localCol": 4, "localRow": 3, "locked": false, "type": "project", "label": "Open Source CLI", "sublabel": "Rust · 2k ⭐", "linksTo": "proj_cli" },
-    { "localCol": 2, "localRow": 4, "locked": false, "type": "project", "label": "ML Classifier", "sublabel": "PyTorch", "linksTo": "proj_ml" },
+    {
+      "localCol": 2,
+      "localRow": 1,
+      "locked": true,
+      "type": "section-header",
+      "label": "Projects"
+    },
+    {
+      "localCol": 1,
+      "localRow": 2,
+      "locked": false,
+      "type": "project",
+      "label": "Puzzle Portfolio",
+      "sublabel": "React · Vite",
+      "linksTo": "proj_puzzle"
+    },
+    {
+      "localCol": 4,
+      "localRow": 3,
+      "locked": false,
+      "type": "project",
+      "label": "Open Source CLI",
+      "sublabel": "Rust · 2k ⭐",
+      "linksTo": "proj_cli"
+    },
+    {
+      "localCol": 2,
+      "localRow": 4,
+      "locked": false,
+      "type": "project",
+      "label": "ML Classifier",
+      "sublabel": "PyTorch",
+      "linksTo": "proj_ml"
+    },
     { "localCol": 4, "localRow": 2, "locked": false },
-    { "localCol": 1, "localRow": 5, "locked": true, "type": "nav", "label": "← Home", "linksTo": "home" }
+    {
+      "localCol": 1,
+      "localRow": 5,
+      "locked": true,
+      "type": "nav",
+      "label": "← Home",
+      "linksTo": "home"
+    }
   ],
   "details": {
     "proj_puzzle": {

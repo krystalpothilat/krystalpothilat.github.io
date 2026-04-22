@@ -7,7 +7,7 @@
   overflow: hidden;
 
   /* Background tile */
-  background-image: url('/wood.jpg'); /* fallback */
+  background-image: url("/wood.jpg"); /* fallback */
   background-size: 180px 120px;
   background-repeat: repeat;
   background-position: top left;
