@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
 import {
-  buildPuzzlePieces,
   snapToHome,
   clampToSection,
   getTotalCompletion,
-} from "../utils/puzzleUtils.js";
+} from "../puzzle/puzzleUtils.js";
 import { SECTIONS, PIECE_SIZE } from "../data/puzzleData.js";
+import { buildPuzzlePieces } from "../puzzle/puzzleGeneration.js";
 
 const STORAGE_KEY = `puzzle_portfolio_state_v4_ps${PIECE_SIZE}`;
 
@@ -124,10 +124,11 @@ export function usePuzzleEngine() {
       setPieces((prev) =>
         prev.map((p) => {
           if (p.id !== dragging.pieceId) return p;
-          return clampToSection(
-            { ...p, x: wp.x - dragging.offsetX, y: wp.y - dragging.offsetY },
-            SECTIONS,
-          );
+          return clampToSection({
+            ...p,
+            x: wp.x - dragging.offsetX,
+            y: wp.y - dragging.offsetY,
+          });
         }),
       );
     },

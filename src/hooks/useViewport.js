@@ -7,6 +7,7 @@ import {
   PUZZLE_COLS,
   PUZZLE_ROWS,
 } from "../data/puzzleData.js";
+import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export const VIEW_STATES = { SECTION: "section", ZOOMED_OUT: "zoomed_out" };
 
@@ -28,15 +29,26 @@ function puzzleScale() {
 }
 
 // Translate so the given section is centered
+// function sectionTranslate(sectionId, scale) {
+//   const section = SECTIONS[sectionId];
+//   if (!section) return { x: 0, y: 0 };
+//   const centerX =
+//     section.puzzleCol * PIECE_SIZE + (SECTION_COLS * PIECE_SIZE) / 2;
+//   const centerY =
+//     section.puzzleRow * PIECE_SIZE + (SECTION_ROWS * PIECE_SIZE) / 2;
+//   return {
+//     x: CW() / 2 - centerX * scale, // screen space: no division
+//     y: CH() / 2 - centerY * scale,
+//   };
+// }
 function sectionTranslate(sectionId, scale) {
-  const section = SECTIONS[sectionId];
-  if (!section) return { x: 0, y: 0 };
-  const centerX =
-    section.puzzleCol * PIECE_SIZE + (SECTION_COLS * PIECE_SIZE) / 2;
-  const centerY =
-    section.puzzleRow * PIECE_SIZE + (SECTION_ROWS * PIECE_SIZE) / 2;
+  const layout = getSectionLayout(); // authoritative shuffled layout
+  const slot = layout[sectionId]; // { col, row, ... }
+  if (!slot) return { x: 0, y: 0 };
+  const centerX = slot.col * PIECE_SIZE + (SECTION_COLS * PIECE_SIZE) / 2;
+  const centerY = slot.row * PIECE_SIZE + (SECTION_ROWS * PIECE_SIZE) / 2;
   return {
-    x: CW() / 2 - centerX * scale, // screen space: no division
+    x: CW() / 2 - centerX * scale,
     y: CH() / 2 - centerY * scale,
   };
 }
@@ -57,7 +69,8 @@ export function useViewport() {
   );
 
   const navigateTo = useCallback((sectionId) => {
-    if (!SECTIONS[sectionId]) return;
+    const layout = getSectionLayout();
+    if (!layout[sectionId] && !SECTIONS[sectionId]) return;
     const s = sectionScale();
     setCurrentSection(sectionId);
     setScale(s);

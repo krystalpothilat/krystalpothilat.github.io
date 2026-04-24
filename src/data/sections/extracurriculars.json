@@ -1,19 +1,13 @@
 {
   "id": "extracurriculars",
   "label": "Extracurriculars",
-  "puzzleCol": 0,
-  "puzzleRow": 8,
   "pieces": [
     {
-      "localCol": 2,
-      "localRow": 1,
       "locked": true,
       "type": "section-header",
       "label": "Extracurriculars"
     },
     {
-      "localCol": 1,
-      "localRow": 2,
       "locked": false,
       "type": "activity",
       "label": "Robotics Club",
@@ -21,19 +15,13 @@
       "linksTo": "extra_robotics"
     },
     {
-      "localCol": 4,
-      "localRow": 3,
       "locked": false,
       "type": "activity",
       "label": "Hackathon Org",
       "sublabel": "Lead Organizer",
       "linksTo": "extra_hackathon"
     },
-    { "localCol": 3, "localRow": 2, "locked": false },
-    { "localCol": 2, "localRow": 4, "locked": false },
     {
-      "localCol": 1,
-      "localRow": 5,
       "locked": true,
       "type": "nav",
       "label": "← Home",

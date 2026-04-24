@@ -11,6 +11,7 @@ import {
 } from "../data/puzzleData.js";
 
 const IMAGE_URL = import.meta.env.VITE_PUZZLE_IMAGE_URL || "/puzzle-image.jpg";
+import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export default function PuzzleBoard({
   pieces,
@@ -137,18 +138,22 @@ export default function PuzzleBoard({
       {viewport.isZoomedOut &&
         (() => {
           const s = viewport.scale;
-          const tx = viewport.translate.x * s;
-          const ty = viewport.translate.y * s;
-          return Object.values(SECTIONS).map((section) => {
-            const px = section.puzzleCol * PIECE_SIZE * s + tx;
-            const py = section.puzzleRow * PIECE_SIZE * s + ty;
+          const tx = viewport.translate.x;
+          const ty = viewport.translate.y;
+
+          const layout = getSectionLayout();
+
+          return Object.values(layout).map((slot) => {
+            const px = slot.col * PIECE_SIZE * s + tx;
+            const py = slot.row * PIECE_SIZE * s + ty;
             const w = SECTION_COLS * PIECE_SIZE * s;
             const h = SECTION_ROWS * PIECE_SIZE * s;
-            const done = completedSections.has(section.id);
+            const section = SECTIONS[slot.id];
+            const done = completedSections.has(slot.id);
             return (
               <div
-                key={section.id}
-                onClick={() => viewport.zoomInToSection(section.id)}
+                key={slot.id}
+                onClick={() => viewport.zoomInToSection(slot.id)}
                 style={{
                   position: "absolute",
                   left: px,
@@ -185,7 +190,7 @@ export default function PuzzleBoard({
                   }}
                 >
                   {done ? "✓ " : ""}
-                  {section.label}
+                  {slot.id}
                 </span>
               </div>
             );

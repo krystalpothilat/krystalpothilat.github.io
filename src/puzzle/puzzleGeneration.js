@@ -1,94 +1,131 @@
 import {
   SECTIONS,
   PIECE_SIZE,
+  NUM_SECTION_COLS,
+  NUM_SECTION_ROWS,
   SECTION_COLS,
   SECTION_ROWS,
   PUZZLE_COLS,
   PUZZLE_ROWS,
 } from "../data/puzzleData.js";
 
-// Flat edge rules:
-// - Puzzle border = always flat
-function flatRight(col) {
-  return col === PUZZLE_COLS - 1;
-}
-function flatLeft(col) {
-  return col === 0;
-}
-function flatBottom(row) {
-  return row === PUZZLE_ROWS - 1;
-}
-function flatTop(row) {
-  return row === 0;
+import { shuffle, nub } from "./puzzleUtils.js";
+import { getSectionLayout, getOverrides } from "./puzzleLayout.js";
+
+//generate Start/End Rows/Cols for each section
+function generateSectionSlots() {
+  const slots = [];
+
+  for (let r = 0; r < NUM_SECTION_ROWS; r++) {
+    for (let c = 0; c < NUM_SECTION_COLS; c++) {
+      const col = c * SECTION_COLS;
+      const row = r * SECTION_ROWS;
+
+      slots.push({
+        col,
+        row,
+        minCol: col,
+        maxCol: col + SECTION_COLS - 1,
+        minRow: row,
+        maxRow: row + SECTION_ROWS - 1,
+      });
+    }
+  }
+
+  return slots;
 }
 
-// CREATE NUB(S) FOR PUZZLE PIECE
-function nub(side, s, T, N, H, outward) {
-  const m = s / 2;
-  const d = outward ? 1 : -1;
-  switch (side) {
-    case "top": {
-      const ty = -T * d;
-      return [
-        `L ${m - N},0`,
-        `C ${m - N},${ty * 0.45} ${m - H},${ty * 0.95} ${m},${ty}`,
-        `C ${m + H},${ty * 0.95} ${m + N},${ty * 0.45} ${m + N},0`,
-        `L ${s},0`,
-      ].join(" ");
+export function generateSectionLayout() {
+  const layout = {};
+
+  const slots = generateSectionSlots();
+
+  const sections = shuffle(Object.values(SECTIONS).filter((s) => !s.pureFun));
+
+  const usedSlots = slots.slice(0, sections.length);
+  const remainingSlots = slots.slice(sections.length);
+
+  // 1. place real sections
+  sections.forEach((section, i) => {
+    const slot = usedSlots[i];
+
+    layout[section.id] = {
+      id: section.id,
+      col: slot.col,
+      row: slot.row,
+      minCol: slot.minCol,
+      maxCol: slot.maxCol,
+      minRow: slot.minRow,
+      maxRow: slot.maxRow,
+      pureFun: false,
+    };
+  });
+
+  // 2. fill remaining slots with puzzle zones
+  remainingSlots.forEach((slot, i) => {
+    const id = `puzzleZone_${i}`;
+
+    layout[id] = {
+      id: id,
+      col: slot.col,
+      row: slot.row,
+      minCol: slot.minCol,
+      maxCol: slot.maxCol,
+      minRow: slot.minRow,
+      maxRow: slot.maxRow,
+      pureFun: true,
+    };
+  });
+
+  return layout;
+}
+
+export function getSectionOverrides() {
+  const overrides = {};
+  const sections = Object.values(SECTIONS).filter((s) => !s.pureFun);
+
+  sections.forEach((section) => {
+    const pieces = section.pieces || [];
+    const overrideMap = {};
+
+    // Build all grid positions and shuffle them so pieces are randomly
+    // distributed across the full section — not just row 0.
+    const allPositions = [];
+    for (let r = 0; r < SECTION_ROWS; r++) {
+      for (let c = 0; c < SECTION_COLS; c++) {
+        allPositions.push({ r, c });
+      }
     }
-    case "right": {
-      const tx = T * d;
-      return [
-        `L ${s},${m - N}`,
-        `C ${s + tx * 0.45},${m - N} ${s + tx * 0.95},${m - H} ${s + tx},${m}`,
-        `C ${s + tx * 0.95},${m + H} ${s + tx * 0.45},${m + N} ${s},${m + N}`,
-        `L ${s},${s}`,
-      ].join(" ");
-    }
-    case "bottom": {
-      const ty = T * d;
-      return [
-        `L ${m + N},${s}`,
-        `C ${m + N},${s + ty * 0.45} ${m + H},${s + ty * 0.95} ${m},${s + ty}`,
-        `C ${m - H},${s + ty * 0.95} ${m - N},${s + ty * 0.45} ${m - N},${s}`,
-        `L 0,${s}`,
-      ].join(" ");
-    }
-    case "left": {
-      const tx = -T * d;
-      return [
-        `L 0,${m + N}`,
-        `C ${tx * 0.45},${m + N} ${tx * 0.95},${m + H} ${tx},${m}`,
-        `C ${tx * 0.95},${m - H} ${tx * 0.45},${m - N} 0,${m - N}`,
-        `L 0,0`,
-      ].join(" ");
-    }
-    default:
-      return "";
-  }
+    const positions = shuffle(allPositions).slice(0, pieces.length);
+
+    pieces.forEach((piece, i) => {
+      const { r, c } = positions[i];
+      overrideMap[`${r},${c}`] = { ...piece, r, c };
+    });
+
+    overrides[section.id] = overrideMap;
+  });
+
+  return overrides;
 }
 
 export function buildPuzzlePieces() {
   const pieces = [];
   const edgeMap = {}; // store edges of each piece
 
-  const orderedSections = Object.values(SECTIONS).sort((a, b) => {
-    if (a.puzzleRow !== b.puzzleRow) return a.puzzleRow - b.puzzleRow;
-    return a.puzzleCol - b.puzzleCol;
-  });
+  const layout = getSectionLayout();
+  const overrides = getOverrides();
 
-  orderedSections.forEach((section) => {
-    const { puzzleCol, puzzleRow, pureFun } = section;
-    const overrideMap = {};
-    (section.pieces || []).forEach((p) => {
-      overrideMap[`${p.localCol},${p.localRow}`] = p;
-    });
+  Object.values(layout).forEach((sectionSlot) => {
+    const { col: puzzleCol, row: puzzleRow, id, pureFun } = sectionSlot;
+
+    const overrideMap = overrides[id] || {};
 
     for (let r = 0; r < SECTION_ROWS; r++) {
       for (let c = 0; c < SECTION_COLS; c++) {
         const pc = puzzleCol + c;
         const pr = puzzleRow + r;
-        const override = overrideMap[`${c},${r}`] || {};
+        const override = overrideMap[`${r},${c}`] || {};
 
         // Determine edges
         const isTopBorder = pr === 0;
@@ -158,7 +195,7 @@ export function buildPuzzlePieces() {
           id: `piece_${pc}_${pr}`,
           puzzleCol: pc,
           puzzleRow: pr,
-          sectionId: section.id,
+          sectionId: id,
           homeX,
           homeY,
           x: positionOffsetX,
@@ -179,41 +216,6 @@ export function buildPuzzlePieces() {
   });
 
   return pieces;
-}
-
-export function clampToSection(piece, SECTIONS) {
-  const section = SECTIONS[piece.sectionId];
-  if (!section) return piece; // fallback if no section
-
-  const minX = section.puzzleCol * PIECE_SIZE;
-  const minY = section.puzzleRow * PIECE_SIZE;
-  const maxX = minX + SECTION_COLS * PIECE_SIZE - PIECE_SIZE;
-  const maxY = minY + SECTION_ROWS * PIECE_SIZE - PIECE_SIZE;
-
-  return {
-    ...piece,
-    x: Math.min(Math.max(piece.x, minX), maxX),
-    y: Math.min(Math.max(piece.y, minY), maxY),
-  };
-}
-
-export function getSnapThreshold() {
-  return PIECE_SIZE * 0.4;
-}
-
-export function snapToHome(piece) {
-  const dx = piece.x - piece.homeX;
-  const dy = piece.y - piece.homeY;
-  if (Math.sqrt(dx * dx + dy * dy) < getSnapThreshold()) {
-    return { ...piece, x: piece.homeX, y: piece.homeY, connected: true };
-  }
-  return piece;
-}
-
-export function getTotalCompletion(pieces) {
-  const free = pieces.filter((p) => !p.locked);
-  if (free.length === 0) return 1;
-  return free.filter((p) => p.connected).length / free.length;
 }
 
 function getPieceClipPathFromEdges(s, edges) {
