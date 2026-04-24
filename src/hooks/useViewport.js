@@ -13,90 +13,96 @@ export const VIEW_STATES = { SECTION: "section", ZOOMED_OUT: "zoomed_out" };
 
 const CW = () => (typeof window !== "undefined" ? window.innerWidth : 1200);
 const CH = () => (typeof window !== "undefined" ? window.innerHeight : 700);
+const TARGET_FILL = 0.85;
 
-// Scale so the section viewport fills ~88% of the screen
-function sectionScale() {
-  const sw = CW() / (SECTION_COLS * PIECE_SIZE);
-  const sh = CH() / (SECTION_ROWS * PIECE_SIZE);
-  return Math.min(sw, sh) * 0.9;
-}
+// The motion.div transform is:  screenPos = puzzlePos * scale + translate
+// So: translate = screenPos - puzzlePos * scale
+//
+// To fit a section (W x H puzzle-pixels) into the screen with padding:
+//   scale = min(screenW / sectionW, screenH / sectionH) * padding
+//
+// To center that section (whose top-left is at puzzleX, puzzleY):
+//   translate.x = screenCenterX - (puzzleX + sectionW/2) * scale
+//   translate.y = screenCenterY - (puzzleY + sectionH/2) * scale
 
-// Scale so the WHOLE puzzle fits on screen with padding
-function puzzleScale() {
-  const sw = CW() / (PUZZLE_COLS * PIECE_SIZE);
-  const sh = CH() / (PUZZLE_ROWS * PIECE_SIZE);
-  return Math.min(sw, sh) * 0.88;
-}
+const SECTION_PAD = 0.88;
+const PUZZLE_PAD = 0.88;
 
-// Translate so the given section is centered
-// function sectionTranslate(sectionId, scale) {
-//   const section = SECTIONS[sectionId];
-//   if (!section) return { x: 0, y: 0 };
-//   const centerX =
-//     section.puzzleCol * PIECE_SIZE + (SECTION_COLS * PIECE_SIZE) / 2;
-//   const centerY =
-//     section.puzzleRow * PIECE_SIZE + (SECTION_ROWS * PIECE_SIZE) / 2;
-//   return {
-//     x: CW() / 2 - centerX * scale, // screen space: no division
-//     y: CH() / 2 - centerY * scale,
-//   };
-// }
-function sectionTranslate(sectionId, scale) {
-  const layout = getSectionLayout(); // authoritative shuffled layout
-  const slot = layout[sectionId]; // { col, row, ... }
-  if (!slot) return { x: 0, y: 0 };
-  const centerX = slot.col * PIECE_SIZE + (SECTION_COLS * PIECE_SIZE) / 2;
-  const centerY = slot.row * PIECE_SIZE + (SECTION_ROWS * PIECE_SIZE) / 2;
+function computeSectionView(sectionId) {
+  const layout = getSectionLayout();
+  const slot = layout[sectionId];
+  if (!slot) return null;
+
+  const sectionW = SECTION_COLS * PIECE_SIZE;
+  const sectionH = SECTION_ROWS * PIECE_SIZE;
+
+  const scale = Math.max(CW() / sectionW, CH() / sectionH) * SECTION_PAD;
+
+  // top-left of this section in puzzle-space pixels
+  const puzzleLeft = slot.col * PIECE_SIZE;
+  const puzzleTop = slot.row * PIECE_SIZE;
+
+  // center of section in puzzle-space pixels
+  const puzzleCX = puzzleLeft + sectionW / 2;
+  const puzzleCY = puzzleTop + sectionH / 2;
+
   return {
-    x: CW() / 2 - centerX * scale,
-    y: CH() / 2 - centerY * scale,
+    scale,
+    translate: {
+      x: CW() / 2 - puzzleCX * scale,
+      y: CH() / 2 - puzzleCY * scale,
+    },
   };
 }
 
-function puzzleTranslate(scale) {
+function computePuzzleView() {
+  const puzzleW = PUZZLE_COLS * PIECE_SIZE;
+  const puzzleH = PUZZLE_ROWS * PIECE_SIZE;
+  const scale = Math.min(CW() / puzzleW, CH() / puzzleH) * PUZZLE_PAD;
   return {
-    x: CW() / 2 - ((PUZZLE_COLS * PIECE_SIZE) / 2) * scale,
-    y: CH() / 2 - ((PUZZLE_ROWS * PIECE_SIZE) / 2) * scale,
+    scale,
+    translate: {
+      x: CW() / 2 - (puzzleW / 2) * scale,
+      y: CH() / 2 - (puzzleH / 2) * scale,
+    },
   };
 }
 
 export function useViewport() {
   const [currentSection, setCurrentSection] = useState("home");
   const [viewState, setViewState] = useState(VIEW_STATES.SECTION);
-  const [scale, setScale] = useState(() => sectionScale());
-  const [translate, setTranslate] = useState(() =>
-    sectionTranslate("home", sectionScale()),
-  );
+
+  const initialView = computeSectionView("home") ?? computePuzzleView();
+  const [scale, setScale] = useState(initialView.scale);
+  const [translate, setTranslate] = useState(initialView.translate);
 
   const navigateTo = useCallback((sectionId) => {
-    const layout = getSectionLayout();
-    if (!layout[sectionId] && !SECTIONS[sectionId]) return;
-    const s = sectionScale();
+    const view = computeSectionView(sectionId);
+    if (!view) return;
     setCurrentSection(sectionId);
-    setScale(s);
-    setTranslate(sectionTranslate(sectionId, s));
+    setScale(view.scale);
+    setTranslate(view.translate);
     setViewState(VIEW_STATES.SECTION);
   }, []);
 
   const zoomOut = useCallback(() => {
-    const s = puzzleScale();
-    setScale(s);
-    setTranslate(puzzleTranslate(s));
+    const view = computePuzzleView();
+    setScale(view.scale);
+    setTranslate(view.translate);
     setViewState(VIEW_STATES.ZOOMED_OUT);
   }, []);
 
   const zoomInToSection = useCallback(
-    (sectionId) => {
-      navigateTo(sectionId);
-    },
+    (sectionId) => navigateTo(sectionId),
     [navigateTo],
   );
 
-  // Screen → puzzle coordinate conversion (for drag)
+  // screen = puzzle * scale + translate
+  // puzzle = (screen - translate) / scale
   const screenToPuzzle = useCallback(
     (screenX, screenY) => ({
-      x: screenX / scale - translate.x,
-      y: screenY / scale - translate.y,
+      x: (screenX - translate.x) / scale,
+      y: (screenY - translate.y) / scale,
     }),
     [scale, translate],
   );
