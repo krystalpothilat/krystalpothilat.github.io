@@ -10,10 +10,10 @@ import {
 import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export const VIEW_STATES = { SECTION: "section", ZOOMED_OUT: "zoomed_out" };
-
+const TARGET_FILL = 0.85;
+const TARGET_ASPECT = 3 / 2;
 const CW = () => (typeof window !== "undefined" ? window.innerWidth : 1200);
 const CH = () => (typeof window !== "undefined" ? window.innerHeight : 700);
-const TARGET_FILL = 0.85;
 
 // The motion.div transform is:  screenPos = puzzlePos * scale + translate
 // So: translate = screenPos - puzzlePos * scale
@@ -36,7 +36,9 @@ function computeSectionView(sectionId) {
   const sectionW = SECTION_COLS * PIECE_SIZE;
   const sectionH = SECTION_ROWS * PIECE_SIZE;
 
-  const scale = Math.max(CW() / sectionW, CH() / sectionH) * SECTION_PAD;
+  const { vw, vh } = getVirtualViewport();
+
+  const scale = Math.max(vw / sectionW, vh / sectionH) * SECTION_PAD;
 
   // top-left of this section in puzzle-space pixels
   const puzzleLeft = slot.col * PIECE_SIZE;
@@ -58,7 +60,9 @@ function computeSectionView(sectionId) {
 function computePuzzleView() {
   const puzzleW = PUZZLE_COLS * PIECE_SIZE;
   const puzzleH = PUZZLE_ROWS * PIECE_SIZE;
-  const scale = Math.min(CW() / puzzleW, CH() / puzzleH) * PUZZLE_PAD;
+  const { vw, vh } = getVirtualViewport();
+
+  const scale = Math.min(vw / puzzleW, vh / puzzleH) * PUZZLE_PAD;
   return {
     scale,
     translate: {
@@ -66,6 +70,23 @@ function computePuzzleView() {
       y: CH() / 2 - (puzzleH / 2) * scale,
     },
   };
+}
+
+function getVirtualViewport() {
+  let vw = CW();
+  let vh = CH();
+
+  const screenAspect = vw / vh;
+
+  if (screenAspect > TARGET_ASPECT) {
+    // too wide → clamp width
+    vw = vh * TARGET_ASPECT;
+  } else {
+    // too tall → clamp height
+    vh = vw / TARGET_ASPECT;
+  }
+
+  return { vw, vh };
 }
 
 export function useViewport() {

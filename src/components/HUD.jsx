@@ -62,7 +62,7 @@ export default function HUD({
               <div className={styles.menuDropdown}>
                 <MenuSection label="Navigate">
                   {Object.values(SECTIONS)
-                    .filter((s) => !s.pureFun)
+                    .filter((s) => !s.id.includes("puzzleZone"))
                     .map((s) => (
                       <MenuItem
                         key={s.id}

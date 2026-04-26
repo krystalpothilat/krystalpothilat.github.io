@@ -40,7 +40,7 @@ export function generateSectionLayout() {
 
   const slots = generateSectionSlots();
 
-  const sections = shuffle(Object.values(SECTIONS).filter((s) => !s.pureFun));
+  const sections = shuffle(Object.values(SECTIONS));
 
   const usedSlots = slots.slice(0, sections.length);
   const remainingSlots = slots.slice(sections.length);
@@ -57,7 +57,6 @@ export function generateSectionLayout() {
       maxCol: slot.maxCol,
       minRow: slot.minRow,
       maxRow: slot.maxRow,
-      pureFun: false,
     };
   });
 
@@ -73,37 +72,62 @@ export function generateSectionLayout() {
       maxCol: slot.maxCol,
       minRow: slot.minRow,
       maxRow: slot.maxRow,
-      pureFun: true,
     };
   });
 
   return layout;
 }
 
-export function getSectionOverrides() {
+export function getSectionOverrides(layout) {
   const overrides = {};
-  const sections = Object.values(SECTIONS).filter((s) => !s.pureFun);
+  Object.values(layout).forEach((sectionSlot) => {
+    const { id } = sectionSlot;
 
-  sections.forEach((section) => {
-    const pieces = section.pieces || [];
     const overrideMap = {};
 
     // Build all grid positions and shuffle them so pieces are randomly
     // distributed across the full section — not just row 0.
     const allPositions = [];
-    for (let r = 1; r < SECTION_ROWS - 1; r++) {
-      for (let c = 1; c < SECTION_COLS - 1; c++) {
+    for (let r = 0; r < SECTION_ROWS; r++) {
+      for (let c = 0; c < SECTION_COLS; c++) {
         allPositions.push({ r, c });
       }
     }
-    const positions = shuffle(allPositions).slice(0, pieces.length);
+    const positions = shuffle(allPositions);
+    let index = 0;
 
-    pieces.forEach((piece, i) => {
-      const { r, c } = positions[i];
-      overrideMap[`${r},${c}`] = { ...piece, r, c };
+    positions.forEach(({ r, c }) => {
+      overrideMap[`${r},${c}`] = {
+        r,
+        c,
+        locked: Math.random() > 0.2,
+      };
     });
 
-    overrides[section.id] = overrideMap;
+    const sectionId = layout[id]?.id;
+    const section = SECTIONS[sectionId];
+    if (!section) {
+      overrides[id] = overrideMap;
+      return;
+    }
+    const pieces = section?.pieces || [];
+
+    const interiorPositions = positions.filter(
+      ({ r, c }) =>
+        r > 0 && r < SECTION_ROWS - 1 && c > 0 && c < SECTION_COLS - 1,
+    );
+
+    const shuffledInterior = shuffle(interiorPositions);
+
+    pieces.forEach((piece, i) => {
+      const { r, c } = shuffledInterior[i];
+
+      overrideMap[`${r},${c}`] = {
+        ...overrideMap[`${r},${c}`],
+        ...piece,
+      };
+    });
+    overrides[id] = overrideMap;
   });
 
   return overrides;
@@ -114,10 +138,10 @@ export function buildPuzzlePieces() {
   const edgeMap = {}; // store edges of each piece
 
   const layout = getSectionLayout();
-  const overrides = getOverrides();
+  const overrides = getOverrides(layout);
 
   Object.values(layout).forEach((sectionSlot) => {
-    const { col: puzzleCol, row: puzzleRow, id, pureFun } = sectionSlot;
+    const { col: puzzleCol, row: puzzleRow, id } = sectionSlot;
 
     const overrideMap = overrides[id] || {};
 
@@ -164,11 +188,7 @@ export function buildPuzzlePieces() {
 
         const homeX = pc * PIECE_SIZE;
         const homeY = pr * PIECE_SIZE;
-        const isLocked = pureFun
-          ? true
-          : override.locked !== undefined
-            ? override.locked
-            : true;
+        const isLocked = override.locked ?? true;
 
         // positionOffset
         const margin = PIECE_SIZE * 0.6;
@@ -202,10 +222,10 @@ export function buildPuzzlePieces() {
           y: positionOffsetY,
           locked: isLocked,
           connected: isLocked,
-          type: pureFun ? "plain" : override.type || "plain",
-          label: pureFun ? null : override.label,
-          sublabel: pureFun ? null : override.sublabel,
-          linksTo: pureFun ? null : override.linksTo,
+          type: override.type || "plain",
+          label: override.label || null,
+          sublabel: override.sublabel || null,
+          linksTo: override.linksTo || null,
           clipPath: getPieceClipPathFromEdges(
             PIECE_SIZE,
             edgeMap[`${pc},${pr}`],

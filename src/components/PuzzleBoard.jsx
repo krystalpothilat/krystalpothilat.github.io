@@ -10,7 +10,8 @@ import {
   SECTIONS,
 } from "../data/puzzleData.js";
 
-const IMAGE_URL = import.meta.env.VITE_PUZZLE_IMAGE_URL || "/puzzle-image.jpg";
+import puzzleImg from "../imgs/puzzle-image.png";
+
 import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export default function PuzzleBoard({
@@ -70,9 +71,15 @@ export default function PuzzleBoard({
   const puzzleW = PUZZLE_COLS * PIECE_SIZE;
   const puzzleH = PUZZLE_ROWS * PIECE_SIZE;
 
+  const zoom = viewport.scale;
+
+  // how "zoomed in" we are (0 = zoomed out, 1 = zoomed in)
+  const zoomStrength = Math.min(1, Math.max(0, (zoom - 0.2) / 1.5));
+
   // Edge fade: fades to transparent on all 4 sides when zoomed into a section.
   // This hides neighbouring sections' pieces without hard bars or gaps.
-  const fade = "15%";
+  const baseFade = 30;
+  const fade = `${baseFade + zoomStrength * 20}%`;
   const mask = [
     `linear-gradient(to right,  transparent 0%, black ${fade}, black ${100 - parseFloat(fade)}%, transparent 100%)`,
     `linear-gradient(to bottom, transparent 0%, black ${fade}, black ${100 - parseFloat(fade)}%, transparent 100%)`,
@@ -94,11 +101,6 @@ export default function PuzzleBoard({
         style={{
           position: "absolute",
           inset: 0,
-          WebkitMaskImage: viewport.isZoomedOut ? "none" : mask,
-          WebkitMaskComposite: "destination-in",
-          maskImage: viewport.isZoomedOut ? "none" : mask,
-          maskComposite: "intersect",
-          overflow: "hidden",
         }}
       >
         <motion.div
@@ -128,7 +130,7 @@ export default function PuzzleBoard({
               onMouseDown={onMD}
               onTouchStart={onTS}
               onPieceClick={onPieceClick}
-              imageUrl={IMAGE_URL}
+              imageUrl={puzzleImg}
             />
           ))}
         </motion.div>
@@ -179,7 +181,7 @@ export default function PuzzleBoard({
                   style={{
                     fontFamily: "'Syne', sans-serif",
                     fontWeight: "800",
-                    fontSize: `${Math.max(10, w * 0.075)}px`,
+                    fontSize: Math.min(28, Math.max(12, w * 0.04)),
                     color: done
                       ? "rgba(80,200,120,0.9)"
                       : "rgba(255,255,255,0.5)",
@@ -196,6 +198,17 @@ export default function PuzzleBoard({
             );
           });
         })()}
+
+      {/* {!viewport.isZoomedOut && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            boxShadow: "inset 0 0 200px 200px rgba(0,0,0,0.75)",
+          }}
+        />
+      )} */}
     </div>
   );
 }

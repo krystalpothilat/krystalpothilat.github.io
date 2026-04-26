@@ -7,8 +7,7 @@ import { useViewport } from "./hooks/useViewport.js";
 import { SECTIONS } from "./data/puzzleData.js";
 import "./styles/App.module.css";
 
-// Use Vite env variable for background image
-const IMAGE_URL = import.meta.env.VITE_BACKGROUND_IMAGE_URL || "/wood.jpg";
+import puzzleImg from "./imgs/puzzle-image.jpg";
 
 export default function App() {
   const {
@@ -62,10 +61,7 @@ export default function App() {
   );
 
   return (
-    <div
-      className="app-container"
-      style={{ backgroundImage: `url(${IMAGE_URL})` }}
-    >
+    <div className="app-container">
       <PuzzleBoard
         pieces={pieces}
         dragging={dragging}

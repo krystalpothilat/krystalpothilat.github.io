@@ -40,7 +40,7 @@ jobs:
           # These come from GitHub repo Settings → Secrets and variables → Actions
           VITE_ENV: production
           VITE_BASE_PATH: /
-          VITE_PUZZLE_IMAGE_URL: /puzzle-image.jpg
+          VITE_PUZZLE_IMAGE_URL: /IMG_6748.jpg
           VITE_OWNER_NAME: ${{ secrets.VITE_OWNER_NAME }}
           VITE_OWNER_TITLE: ${{ secrets.VITE_OWNER_TITLE }}
           VITE_GITHUB_URL: ${{ secrets.VITE_GITHUB_URL }}

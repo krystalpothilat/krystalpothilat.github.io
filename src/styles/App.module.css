@@ -1,14 +1,11 @@
 /* src/styles/App.css */
-
 .app-container {
   position: relative;
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
-
-  /* Background tile */
-  background-image: url("/wood.jpg"); /* fallback */
-  background-size: 180px 120px;
+  background-image: url("../imgs/puzzle-image.jpg");
+  background-size: 100%;
   background-repeat: repeat;
-  background-position: top left;
+  background-position: center;
 }

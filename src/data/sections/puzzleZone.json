@@ -1,7 +1,12 @@
 {
   "id": "puzzleZone",
   "label": "Puzzle Zone",
-  "pureFun": true,
-  "pieces": [],
+  "pieces": [
+    {
+      "type": "nav",
+      "label": "← Home",
+      "linksTo": "home"
+    }
+  ],
   "details": {}
 }

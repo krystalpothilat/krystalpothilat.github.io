@@ -3,26 +3,22 @@
   "label": "Extracurriculars",
   "pieces": [
     {
-      "locked": true,
       "type": "section-header",
       "label": "Extracurriculars"
     },
     {
-      "locked": false,
       "type": "activity",
       "label": "Robotics Club",
       "sublabel": "President",
       "linksTo": "extra_robotics"
     },
     {
-      "locked": false,
       "type": "activity",
       "label": "Hackathon Org",
       "sublabel": "Lead Organizer",
       "linksTo": "extra_hackathon"
     },
     {
-      "locked": true,
       "type": "nav",
       "label": "← Home",
       "linksTo": "home"

@@ -3,33 +3,28 @@
   "label": "Experience",
   "pieces": [
     {
-      "locked": true,
       "type": "section-header",
       "label": "Experience"
     },
     {
-      "locked": false,
       "type": "job",
       "label": "Software Engineer",
       "sublabel": "Google",
       "linksTo": "job_google"
     },
     {
-      "locked": false,
       "type": "job",
       "label": "SWE Intern",
       "sublabel": "Meta",
       "linksTo": "job_meta"
     },
     {
-      "locked": false,
       "type": "job",
       "label": "Research Asst.",
       "sublabel": "MIT CSAIL",
       "linksTo": "job_research"
     },
     {
-      "locked": true,
       "type": "nav",
       "label": "← Home",
       "linksTo": "home"

@@ -17,21 +17,21 @@ const LABEL_COLORS = {
     text: "#fff8dc",
     bg: "rgba(0,0,0,0.35)",
   },
-  job: {
-    border: "rgba(100,180,255,0.85)",
-    text: "#e8f4ff",
-    bg: "rgba(20,60,160,0.45)",
-  },
-  activity: {
-    border: "rgba(100,255,160,0.85)",
-    text: "#e8fff2",
-    bg: "rgba(10,100,50,0.45)",
-  },
-  project: {
-    border: "rgba(220,150,255,0.85)",
-    text: "#f5e8ff",
-    bg: "rgba(100,20,160,0.45)",
-  },
+  //   job: {
+  //     border: "rgba(100,180,255,0.85)",
+  //     text: "#e8f4ff",
+  //     bg: "rgba(20,60,160,0.45)",
+  //   },
+  //   activity: {
+  //     border: "rgba(100,255,160,0.85)",
+  //     text: "#e8fff2",
+  //     bg: "rgba(10,100,50,0.45)",
+  //   },
+  //   project: {
+  //     border: "rgba(220,150,255,0.85)",
+  //     text: "#f5e8ff",
+  //     bg: "rgba(100,20,160,0.45)",
+  //   },
   plain: { border: null, text: null, bg: null },
 };
 

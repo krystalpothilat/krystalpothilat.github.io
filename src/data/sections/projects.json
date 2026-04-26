@@ -3,33 +3,28 @@
   "label": "Projects",
   "pieces": [
     {
-      "locked": true,
       "type": "section-header",
       "label": "Projects"
     },
     {
-      "locked": false,
       "type": "project",
       "label": "Puzzle Portfolio",
       "sublabel": "React · Vite",
       "linksTo": "proj_puzzle"
     },
     {
-      "locked": false,
       "type": "project",
       "label": "Open Source CLI",
       "sublabel": "Rust · 2k ⭐",
       "linksTo": "proj_cli"
     },
     {
-      "locked": false,
       "type": "project",
       "label": "ML Classifier",
       "sublabel": "PyTorch",
       "linksTo": "proj_ml"
     },
     {
-      "locked": true,
       "type": "nav",
       "label": "← Home",
       "linksTo": "home"

@@ -4,16 +4,15 @@ import home from "./sections/home.json";
 import experience from "./sections/experience.json";
 import projects from "./sections/projects.json";
 import extracurriculars from "./sections/extracurriculars.json";
-import puzzleZone from "./sections/puzzleZone.json";
 
-export const PIECE_SIZE = 150;
+export const PIECE_SIZE = 200;
 
 export const NUM_SECTION_COLS = 3;
 export const NUM_SECTION_ROWS = 2;
 
 // Section size in pieces
-export const SECTION_COLS = 12;
-export const SECTION_ROWS = 6;
+export const SECTION_COLS = 6;
+export const SECTION_ROWS = 5;
 
 // Total puzzle size (num rows + cols)
 export const PUZZLE_COLS = SECTION_COLS * NUM_SECTION_COLS;
@@ -29,5 +28,4 @@ export const SECTIONS = {
   experience,
   projects,
   extracurriculars,
-  puzzleZone,
 };

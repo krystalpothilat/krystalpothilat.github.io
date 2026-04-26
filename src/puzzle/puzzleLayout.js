@@ -13,9 +13,9 @@ export function getSectionLayout() {
   return cachedLayout;
 }
 
-export function getOverrides() {
+export function getOverrides(layout) {
   if (!cachedOverrides) {
-    cachedOverrides = getSectionOverrides();
+    cachedOverrides = getSectionOverrides(layout);
   }
   return cachedOverrides;
 }

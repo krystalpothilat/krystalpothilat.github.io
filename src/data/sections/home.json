@@ -3,31 +3,26 @@
   "label": "Home",
   "pieces": [
     {
-      "locked": true,
       "type": "title",
       "label": "Your Name",
       "sublabel": "Software Engineer"
     },
     {
-      "locked": false,
       "type": "nav",
       "label": "Experience",
       "linksTo": "experience"
     },
     {
-      "locked": false,
       "type": "nav",
       "label": "Projects",
       "linksTo": "projects"
     },
     {
-      "locked": false,
       "type": "nav",
       "label": "Extracurriculars",
       "linksTo": "extracurriculars"
     },
     {
-      "locked": false,
       "type": "nav",
       "label": "Puzzle Zone",
       "linksTo": "fun1"
