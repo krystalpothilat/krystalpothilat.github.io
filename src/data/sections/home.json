@@ -5,7 +5,8 @@
     {
       "type": "title",
       "label": "Your Name",
-      "sublabel": "Software Engineer"
+      "sublabel": "Software Engineer",
+      "detailsId": "about_me"
     },
     {
       "type": "nav",
@@ -27,5 +28,24 @@
       "label": "Puzzle Zone",
       "linksTo": "fun1"
     }
-  ]
+  ],
+  "details": {
+    "about_me": {
+      "type": "profile",
+      "title": "Your Name",
+      "company": "Software Engineer",
+      "period": "About Me",
+
+      "image": "/src/imgs/me.jpg",
+
+      "bio": "I build interactive web experiences, systems, and UI-heavy applications. I enjoy turning abstract ideas into playful, tactile interfaces.",
+
+      "highlights": [
+        "Full-stack developer (React, Node.js)",
+        "Focus on interactive UI systems",
+        "Enjoys puzzles, animations, and creative interfaces",
+        "Interested in product + engineering intersection"
+      ]
+    }
+  }
 }
