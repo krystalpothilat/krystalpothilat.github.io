@@ -10,19 +10,19 @@
       "type": "job",
       "label": "Software Engineer",
       "sublabel": "Google",
-      "linksTo": "job_google"
+      "detailsId": "job_google"
     },
     {
       "type": "job",
       "label": "SWE Intern",
       "sublabel": "Meta",
-      "linksTo": "job_meta"
+      "detailsId": "job_meta"
     },
     {
       "type": "job",
       "label": "Research Asst.",
       "sublabel": "MIT CSAIL",
-      "linksTo": "job_research"
+      "detailsId": "job_research"
     },
     {
       "type": "nav",

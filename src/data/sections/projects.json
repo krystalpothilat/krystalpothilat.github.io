@@ -10,19 +10,19 @@
       "type": "project",
       "label": "Puzzle Portfolio",
       "sublabel": "React · Vite",
-      "linksTo": "proj_puzzle"
+      "detailsId": "proj_puzzle"
     },
     {
       "type": "project",
       "label": "Open Source CLI",
       "sublabel": "Rust · 2k ⭐",
-      "linksTo": "proj_cli"
+      "detailsId": "proj_cli"
     },
     {
       "type": "project",
       "label": "ML Classifier",
       "sublabel": "PyTorch",
-      "linksTo": "proj_ml"
+      "detailsId": "proj_ml"
     },
     {
       "type": "nav",

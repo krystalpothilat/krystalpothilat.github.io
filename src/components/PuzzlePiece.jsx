@@ -69,11 +69,11 @@ export default function PuzzlePiece({
 
   const handleMouseDown = useCallback(
     (e) => {
-      if (!isMovable) return;
       e.preventDefault();
+
       onMouseDown(id, e.clientX, e.clientY);
     },
-    [isMovable, id, onMouseDown],
+    [id, onMouseDown],
   );
 
   const handleTouchStart = useCallback(
@@ -86,12 +86,16 @@ export default function PuzzlePiece({
 
   const handleClick = useCallback(
     (e) => {
-      if (piece.linksTo && onPieceClick) {
-        e.stopPropagation();
-        onPieceClick(piece);
-      }
+      e.stopPropagation();
+
+      // ignore if dragging happened
+      if (isDragging) return;
+
+      if (!onPieceClick) return;
+
+      onPieceClick(piece);
     },
-    [piece, onPieceClick],
+    [piece, onPieceClick, isDragging],
   );
 
   const zIndex = isDragging
@@ -121,7 +125,11 @@ export default function PuzzlePiece({
         height: S,
         overflow: "visible",
         zIndex,
-        cursor: isMovable ? "grab" : piece.linksTo ? "pointer" : "default",
+        cursor: isMovable
+          ? "grab"
+          : piece.linksTo || piece.detailsId
+            ? "pointer"
+            : "default",
         transform: isMovable
           ? `rotate(${isDragging ? 0 : rotation}deg) scale(${isDragging ? 1.05 : 1})`
           : "none",

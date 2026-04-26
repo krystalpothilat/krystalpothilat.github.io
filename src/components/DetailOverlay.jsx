@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { DETAILS } from "../data/puzzleData.js";
 import styles from "../styles/DetailOverlay.module.css";
 
-export default function DetailOverlay({ detailId, onClose }) {
-  const detail = DETAILS[detailId];
+export default function DetailOverlay({ detailsId, section, onClose }) {
+  const detail = section?.details?.[detailsId];
 
   useEffect(() => {
     const handler = (e) => {

@@ -6,6 +6,7 @@ import { usePuzzleEngine } from "./hooks/usePuzzleEngine.js";
 import { useViewport } from "./hooks/useViewport.js";
 import { SECTIONS } from "./data/puzzleData.js";
 import "./styles/App.module.css";
+import DetailOverlay from "./components/DetailOverlay.jsx";
 
 import puzzleImg from "./imgs/puzzle-image.jpg";
 
@@ -25,6 +26,7 @@ export default function App() {
 
   const viewport = useViewport();
   const [activeDetail, setActiveDetail] = useState(null);
+  const [activeSection, setActiveSection] = useState(null);
   const [achievement, setAchievement] = useState(null);
   const prevCompleted = useRef(new Set());
 
@@ -39,23 +41,32 @@ export default function App() {
     prevCompleted.current = new Set(completedSections);
   }, [completedSections]);
 
-  // Handle clicking a puzzle piece
   const handlePieceClick = useCallback(
     (piece) => {
-      // Block navigation if this piece JUST snapped — mouseup+click fire together
-      if (justSnapped === piece.id) return;
-      if (!piece.linksTo) return;
+      console.log("clicked piece:", piece);
+      console.log("detailsId:", piece.detailsId);
 
-      if (piece.linksTo === "__easter_egg__") {
-        unlockAll();
-        viewport.zoomOut();
-        return;
+      if (justSnapped === piece.id) return;
+
+      // 1. NAVIGATION FIRST (if it exists)
+      if (piece.linksTo) {
+        if (piece.linksTo === "__easter_egg__") {
+          unlockAll();
+          viewport.zoomOut();
+          return;
+        }
+
+        if (SECTIONS[piece.linksTo]) {
+          viewport.navigateTo(piece.linksTo);
+          return;
+        }
       }
-      if (SECTIONS[piece.linksTo]) {
-        viewport.navigateTo(piece.linksTo);
-        return;
+
+      // 2. ONLY IF NO NAVIGATION → OPEN OVERLAY
+      if (piece.detailsId) {
+        setActiveDetail(piece.detailsId);
+        setActiveSection(piece.sectionId || viewport.currentSection);
       }
-      setActiveDetail(piece.linksTo);
     },
     [viewport, unlockAll, justSnapped],
   );
@@ -82,6 +93,16 @@ export default function App() {
         onUnlockAll={unlockAll}
         onReset={resetPuzzle}
       />
+      {activeDetail && (
+        <DetailOverlay
+          detailsId={activeDetail}
+          section={SECTIONS[activeSection]}
+          onClose={() => {
+            setActiveDetail(null);
+            setActiveSection(null);
+          }}
+        />
+      )}
       {achievement && (
         <SectionComplete
           sectionLabel={achievement.label}

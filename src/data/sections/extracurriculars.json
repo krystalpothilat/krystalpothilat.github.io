@@ -10,13 +10,13 @@
       "type": "activity",
       "label": "Robotics Club",
       "sublabel": "President",
-      "linksTo": "extra_robotics"
+      "detailsId": "extra_robotics"
     },
     {
       "type": "activity",
       "label": "Hackathon Org",
       "sublabel": "Lead Organizer",
-      "linksTo": "extra_hackathon"
+      "detailsId": "extra_hackathon"
     },
     {
       "type": "nav",

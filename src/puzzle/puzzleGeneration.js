@@ -226,6 +226,7 @@ export function buildPuzzlePieces() {
           label: override.label || null,
           sublabel: override.sublabel || null,
           linksTo: override.linksTo || null,
+          detailsId: override.detailsId || null,
           clipPath: getPieceClipPathFromEdges(
             PIECE_SIZE,
             edgeMap[`${pc},${pr}`],
