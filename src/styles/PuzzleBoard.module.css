@@ -1,0 +1,40 @@
+.board {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  background-image: url("../imgs/wood2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.maskWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.puzzleCanvas {
+  position: absolute;
+  transform-origin: 0 0;
+}
+
+.sectionOverlay {
+  position: absolute;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 12px;
+}
+
+.sectionLabel {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(245, 237, 224, 0.8);
+  pointer-events: none;
+}

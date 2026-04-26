@@ -1,6 +1,9 @@
 import React, { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import PuzzlePiece from "./PuzzlePiece.jsx";
+
+import styles from "../styles/PuzzleBoard.module.css";
+
 import {
   PIECE_SIZE,
   PUZZLE_COLS,
@@ -10,7 +13,8 @@ import {
   SECTIONS,
 } from "../data/puzzleData.js";
 
-import puzzleImg from "../imgs/puzzle-image.png";
+import puzzleImg from "../imgs/puzzle-image.jpg";
+import wood2 from "../imgs/wood2.jpg";
 
 import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
@@ -88,21 +92,13 @@ export default function PuzzleBoard({
   return (
     <div
       ref={boardRef}
+      className={styles.board}
       style={{
-        position: "fixed",
-        inset: 0,
-        overflow: "hidden",
-        background: "#0a0a0f",
         cursor: dragging ? "grabbing" : "default",
       }}
     >
       {/* Mask wrapper --> fades edges when zoomed in to hide other sections */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-        }}
-      >
+      <div className={styles.maskWrapper}>
         <motion.div
           animate={{
             scale: viewport.scale,
@@ -115,9 +111,8 @@ export default function PuzzleBoard({
             damping: 30,
             mass: 0.9,
           }}
+          className={styles.puzzleCanvas}
           style={{
-            position: "absolute",
-            transformOrigin: "0 0",
             width: puzzleW,
             height: puzzleH,
           }}
@@ -156,39 +151,20 @@ export default function PuzzleBoard({
               <div
                 key={slot.id}
                 onClick={() => viewport.zoomInToSection(slot.id)}
+                className={styles.sectionOverlay}
                 style={{
-                  position: "absolute",
                   left: px,
                   top: py,
                   width: w,
                   height: h,
-                  border: `2px solid ${done ? "rgba(80,200,120,0.6)" : "rgba(255,255,255,0.15)"}`,
-                  borderRadius: 4,
-                  boxSizing: "border-box",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  padding: "10px 12px",
+                  border: `2px solid ${done ? "rgba(90,138,90,0.7)" : "rgba(74,55,40,0.3)"}`,
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "rgba(255,255,255,0.04)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "transparent")
-                }
               >
                 <span
+                  className={styles.sectionLabel}
                   style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: "800",
                     fontSize: Math.min(28, Math.max(12, w * 0.04)),
-                    color: done
-                      ? "rgba(80,200,120,0.9)"
-                      : "rgba(255,255,255,0.5)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    textShadow: "0 2px 8px rgba(0,0,0,0.9)",
-                    pointerEvents: "none",
+                    color: done ? "rgba(90,138,90,0.9)" : "rgba(74,55,40,0.6)",
                   }}
                 >
                   {done ? "✓ " : ""}
@@ -198,17 +174,6 @@ export default function PuzzleBoard({
             );
           });
         })()}
-
-      {/* {!viewport.isZoomedOut && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            boxShadow: "inset 0 0 200px 200px rgba(0,0,0,0.75)",
-          }}
-        />
-      )} */}
     </div>
   );
 }

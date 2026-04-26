@@ -1,8 +1,6 @@
-/*
-    HUD Styles
-    - static only
-*/
+/* HUD.module.css — Cozy bakery / sketchbook aesthetic */
 
+/* ─── Top Bar ──────────────────────────────────────────────────── */
 .topBar {
   position: fixed;
   top: 0;
@@ -13,94 +11,125 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  /* Warm fade instead of cold black */
+  background: linear-gradient(
+    180deg,
+    rgba(245, 232, 210, 0.85) 0%,
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 100;
 }
 
+/* ─── Section Name ─────────────────────────────────────────────── */
 .sectionName {
   pointer-events: auto;
-  font-family: "Syne", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: "Patrick Hand", cursive;
+  font-size: 15px;
+  font-weight: 400;
+  color: #6b4f38;
+  letter-spacing: 0.03em;
+  text-transform: none;
 }
 
+/* ─── Controls row ─────────────────────────────────────────────── */
 .controls {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   pointer-events: auto;
 }
 
+/* ─── Completion pill ──────────────────────────────────────────── */
 .completionPill {
-  font-family: "DM Mono", monospace;
-  font-size: 11px;
-  background: rgba(0, 0, 0, 0.4);
+  font-family: "Patrick Hand", cursive;
+  font-size: 13px;
+  color: #6b4f38;
+  background: rgba(245, 232, 210, 0.7);
+  border: 1.5px solid #c4a98a;
   border-radius: 20px;
-  padding: 4px 12px;
+  padding: 3px 12px;
   transition: all 0.4s;
 }
 
+/* ─── Shared button base ───────────────────────────────────────── */
 .zoomButton,
 .resetButton,
 .menuButton,
 .menuItem {
-  font-family: "DM Mono", monospace;
-  font-size: 11px;
-  font-weight: 500;
+  font-family: "Patrick Hand", cursive;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s;
-  letter-spacing: 0.05em;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .zoomButton,
 .resetButton,
 .menuButton {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 14px;
-  color: rgba(255, 255, 255, 0.6);
+  background: rgba(245, 232, 210, 0.65);
+  border: 1.5px solid #c4a98a;
+  padding: 5px 13px;
+  color: #6b4f38;
+  /* Hard offset = hand-drawn button */
+  box-shadow: 2px 2px 0px #c4a98a;
+}
+
+.zoomButton:hover,
+.menuButton:hover {
+  background: rgba(245, 232, 210, 0.95);
+  box-shadow: 1px 1px 0px #c4a98a;
+  transform: translate(1px, 1px);
 }
 
 .resetButton {
-  color: rgba(255, 110, 110, 0.8);
-  border-color: rgba(255, 110, 110, 0.25);
+  color: #b05040;
+  border-color: #d4a090;
+  box-shadow: 2px 2px 0px #d4a090;
 }
 
+.resetButton:hover {
+  background: rgba(245, 232, 210, 0.95);
+  box-shadow: 1px 1px 0px #d4a090;
+  transform: translate(1px, 1px);
+}
+
+/* ─── Menu container ───────────────────────────────────────────── */
 .menuContainer {
   position: relative;
 }
 
+/* ─── Menu dropdown ────────────────────────────────────────────── */
 .menuDropdown {
   position: absolute;
   top: 100%;
   right: 0;
   margin-top: 8px;
-  background: #111318;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
+  background: #f7f2ec;
+  border: 2px solid #4a3728;
+  border-radius: 6px;
   overflow: hidden;
   min-width: 180px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    4px 5px 0px #4a3728,
+    10px 12px 24px rgba(40, 28, 18, 0.15);
 }
 
+/* ─── Menu section ─────────────────────────────────────────────── */
 .menuSection {
   padding: 8px 0 4px;
 }
 
 .menuSectionLabel {
-  font-family: "DM Mono", monospace;
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.25);
-  letter-spacing: 0.12em;
+  font-family: "Patrick Hand", cursive;
+  font-size: 10px;
+  color: #b09880;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0 14px 6px;
 }
 
+/* ─── Menu items ───────────────────────────────────────────────── */
 .menuItem {
   display: flex;
   align-items: center;
@@ -109,53 +138,59 @@
   padding: 8px 14px;
   background: none;
   border: none;
-  font-family: "Syne", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-align: left;
-  color: rgba(255, 255, 255, 0.7);
+  color: #4a3728;
   transition:
     background 0.15s,
     color 0.15s;
 }
 
+.menuItem:hover {
+  background: rgba(196, 169, 138, 0.18);
+}
+
 .menuItem.danger {
-  color: rgba(255, 80, 80, 0.7);
+  color: #b05040;
 }
 
 .menuItem.done {
-  color: rgba(80, 200, 120, 0.8);
+  color: #5a8a5a;
 }
 
+/* ─── Bottom progress bar ──────────────────────────────────────── */
 .bottomBar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.06);
+  height: 4px;
+  background: rgba(196, 169, 138, 0.2);
   z-index: 100;
   pointer-events: none;
 }
 
 .bottomBarFill {
   height: 100%;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 3px 3px 0;
   transition:
     width 0.6s ease,
     background 0.4s;
 }
 
+/* ─── Tooltip ──────────────────────────────────────────────────── */
 .tooltip {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: "DM Mono", monospace;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.25);
+  font-family: "Patrick Hand", cursive;
+  font-size: 13px;
+  color: #a08878;
   pointer-events: none;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
   z-index: 100;
   white-space: nowrap;
 }

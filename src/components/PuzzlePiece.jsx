@@ -1,21 +1,23 @@
 import React, { useCallback, useMemo } from "react";
 import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
 
+import styles from "../styles/PuzzlePiece.module.css";
+
 const LABEL_COLORS = {
   nav: {
-    border: "rgba(255,255,255,0.75)",
-    text: "#ffffff",
-    bg: "rgba(255,255,255,0.08)",
+    border: "rgba(196,169,138,0.9)",
+    text: "#fdf6ea",
+    bg: "rgba(74,55,40,0.25)",
   },
   "section-header": {
-    border: "rgba(255,255,255,0.5)",
-    text: "#ffffff",
-    bg: "rgba(0,0,0,0.3)",
+    border: "rgba(196,169,138,0.7)",
+    text: "#fdf6ea",
+    bg: "rgba(74,55,40,0.3)",
   },
   title: {
-    border: "rgba(255,220,100,0.85)",
-    text: "#fff8dc",
-    bg: "rgba(0,0,0,0.35)",
+    border: "rgba(196,169,138,0.9)",
+    text: "#fdf6ea",
+    bg: "rgba(74,55,40,0.35)",
   },
   //   job: {
   //     border: "rgba(100,180,255,0.85)",
@@ -105,11 +107,11 @@ export default function PuzzlePiece({
       : piece.puzzleCol + piece.puzzleRow;
 
   const dropShadow = isDragging
-    ? "drop-shadow(0 12px 30px rgba(0,0,0,0.95))"
+    ? "drop-shadow(3px 5px 0px rgba(74,55,40,0.85)) drop-shadow(0 8px 20px rgba(74,55,40,0.35))"
     : isSnapped
-      ? `drop-shadow(0 0 10px ${colors.border?.replace(/[\d.]+\)$/, "0.4)") || "rgba(255,255,255,0.3)"})`
+      ? "drop-shadow(2px 3px 0px rgba(74,55,40,0.45))"
       : isMovable
-        ? "drop-shadow(0 5px 16px rgba(0,0,0,0.85))"
+        ? "drop-shadow(2px 4px 0px rgba(74,55,40,0.65)) drop-shadow(0 3px 8px rgba(74,55,40,0.25))"
         : "none";
 
   const left = locked || connected ? Math.round(x) : x;
@@ -163,10 +165,6 @@ export default function PuzzlePiece({
           <clipPath id={`clip_${id}`}>
             <path d={clipPath} />
           </clipPath>
-          <linearGradient id={`sheen_${id}`} x1="0%" y1="0%" x2="70%" y2="70%">
-            <stop offset="0%" stopColor="white" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
-          </linearGradient>
         </defs>
 
         <image
@@ -181,18 +179,21 @@ export default function PuzzlePiece({
         {type !== "plain" && colors.bg && (
           <path d={clipPath} fill={colors.bg} clipPath={`url(#clip_${id})`} />
         )}
-        <path
-          d={clipPath}
-          fill={`url(#sheen_${id})`}
-          clipPath={`url(#clip_${id})`}
-        />
+        {/* Warm ink outline — thicker on movable pieces like a cartoon outline */}
         <path
           d={clipPath}
           fill="none"
-          stroke={
-            isMovable ? "rgba(255,255,230,0.8)" : "rgba(255,255,255,0.18)"
-          }
-          strokeWidth={isMovable ? 2.5 : 1.2}
+          stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
+          strokeWidth={isMovable ? 3 : 1.5}
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        />
+        {/* Subtle inner highlight — warm cream, not cold white */}
+        <path
+          d={clipPath}
+          fill="none"
+          stroke="rgba(253,246,234,0.25)"
+          strokeWidth="1"
           strokeLinejoin="round"
           strokeLinecap="round"
         />
@@ -201,75 +202,32 @@ export default function PuzzlePiece({
             d={clipPath}
             fill="none"
             stroke={colors.border}
-            strokeWidth="1.8"
+            strokeWidth="1.5"
             strokeLinejoin="round"
             strokeLinecap="round"
-            opacity={isSnapped ? 1 : 0.55}
+            opacity={isSnapped ? 0.9 : 0.5}
           />
         )}
       </svg>
 
       {label && type !== "plain" && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "10px",
-            textAlign: "center",
-            pointerEvents: "none",
-            background:
-              "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 20%, transparent 78%)",
-          }}
-        >
+        <div className={styles.labelContainer}>
           <span
+            className={styles.labelText}
             style={{
-              fontFamily: "'Syne', sans-serif",
               fontSize:
                 type === "title"
-                  ? "16px"
+                  ? "20px"
                   : type === "section-header"
-                    ? "14px"
-                    : "13px",
-              fontWeight: 800,
-              color: colors.text || "#fff",
-              textShadow: "0 1px 10px rgba(0,0,0,1)",
-              lineHeight: 1.2,
-              letterSpacing: "0.03em",
+                    ? "20px"
+                    : "18px",
+              color: colors.text || "#fdf6ea",
             }}
           >
             {label}
           </span>
-          {sublabel && (
-            <span
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 10,
-                color: "rgba(255,255,255,0.75)",
-                textShadow: "0 1px 6px rgba(0,0,0,1)",
-                marginTop: 4,
-                letterSpacing: "0.06em",
-              }}
-            >
-              {sublabel}
-            </span>
-          )}
-          {piece.linksTo && (
-            <span
-              style={{
-                fontSize: 9,
-                marginTop: 5,
-                color: colors.border || "rgba(255,255,255,0.5)",
-                fontFamily: "'DM Mono', monospace",
-                letterSpacing: "0.1em",
-              }}
-            >
-              ▶ open
-            </span>
-          )}
+          {sublabel && <span className={styles.sublabelText}>{sublabel}</span>}
+          {/* {piece.linksTo && <span className={styles.linkText}>→ open</span>} */}
         </div>
       )}
     </div>

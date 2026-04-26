@@ -15,7 +15,7 @@ style.textContent = `
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #0a0a0f;
+    background: #f5ede0;
   }
 
   body {
@@ -54,9 +54,9 @@ style.textContent = `
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.15);
-    border-radius: 2px;
-  }
+  background: rgba(74, 55, 40, 0.2);  /* warm brown instead of white */
+  border-radius: 2px;
+}
 `;
 document.head.appendChild(style);
 

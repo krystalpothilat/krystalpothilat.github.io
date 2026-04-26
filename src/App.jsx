@@ -8,8 +8,6 @@ import { SECTIONS } from "./data/puzzleData.js";
 import "./styles/App.module.css";
 import DetailOverlay from "./components/DetailOverlay.jsx";
 
-import puzzleImg from "./imgs/puzzle-image.jpg";
-
 export default function App() {
   const {
     pieces,
