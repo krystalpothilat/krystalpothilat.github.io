@@ -8,13 +8,13 @@
     },
     {
       "type": "project",
-      "label": "Puzzle Portfolio",
+      "label": "Movie Bucketlist",
       "sublabel": "React · Vite",
-      "detailsId": "proj_puzzle"
+      "detailsId": "proj_movie_bucketlist"
     },
     {
       "type": "project",
-      "label": "Open Source CLI",
+      "label": "Notion Bingo Widget Creator",
       "sublabel": "Rust · 2k ⭐",
       "detailsId": "proj_cli"
     },
@@ -31,10 +31,9 @@
     }
   ],
   "details": {
-    "proj_puzzle": {
-      "title": "Puzzle Portfolio Engine",
+    "proj_movie_bucketlist": {
+      "title": "Movie Bucketlist",
       "company": "Personal Project",
-      "period": "2024",
       "bullets": [
         "Interactive jigsaw puzzle in React with drag-and-snap mechanics",
         "Custom SVG clip-path generation for authentic interlocking shapes"

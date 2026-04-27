@@ -29,29 +29,30 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         {/* Close button */}
-        <button
-          onClick={onClose}
-          className={styles.closeButton}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.color = "rgba(255,255,255,0.9)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.color = "rgba(255,255,255,0.4)")
-          }
-        >
+        <button onClick={onClose} className={styles.closeButton}>
           ✕
         </button>
 
-        {/* HEADER (shared) */}
-        <div style={{ marginBottom: "24px" }}>
-          <div className={styles.headerMeta}>
-            {detail.period}
-            {detail.location ? ` · ${detail.location}` : ""}
+        {/* HEADER */}
+        <div className={styles.headerRow}>
+          <div>
+            <h2 className={styles.headerTitle}>{detail.title}</h2>
+
+            <div className={styles.headerCompany}>{detail.company}</div>
+
+            <div className={styles.headerMeta}>
+              <span>{detail.period}</span>
+              <span>{detail.location}</span>
+            </div>
           </div>
 
-          <h2 className={styles.headerTitle}>{detail.title}</h2>
-
-          <div className={styles.headerCompany}>{detail.company}</div>
+          {detail.logo && (
+            <img
+              src={detail.logo}
+              alt="company logo"
+              className={styles.companyLogo}
+            />
+          )}
         </div>
 
         <div className={styles.divider} />
@@ -65,13 +66,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
               <img
                 src={detail.image}
                 alt="profile"
-                style={{
-                  width: 110,
-                  height: 110,
-                  borderRadius: "16px",
-                  objectFit: "cover",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                }}
+                className={styles.profileImage}
               />
             )}
 

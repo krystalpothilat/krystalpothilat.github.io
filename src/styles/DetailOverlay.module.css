@@ -44,10 +44,12 @@
     4px 5px 0px #4a3728,
     10px 12px 30px rgba(40, 28, 18, 0.18);
 
-  padding: 40px 44px 36px;
-  max-width: 520px;
-  width: 90vw;
-  max-height: 82vh;
+  width: 65vw;
+
+  height: 60vh;
+
+  /* more breathing room inside */
+  padding: 56px 64px 48px;
   overflow-y: auto;
   position: relative;
 }
@@ -71,19 +73,20 @@
   color: #4a3728;
 }
 
-/* ─── Header meta (period · location) ─────────────────────────── */
+/* ─── Header meta ─────────────────────────── */
 .headerMeta {
+  display: flex;
+  flex-direction: column;
   font-family: "Patrick Hand", cursive;
-  font-size: 13px;
+  font-size: 16px;
   color: #9e7e6a;
   letter-spacing: 0.04em;
-  margin-bottom: 5px;
 }
 
 /* ─── Title ────────────────────────────────────────────────────── */
 .headerTitle {
   font-family: "Patrick Hand", cursive;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 400;
   color: #2e1f14;
   margin: 0 0 3px 0;
@@ -94,7 +97,7 @@
 .headerCompany {
   font-family: "Nunito", sans-serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 18px;
   color: #7a6355;
 }
 
@@ -148,7 +151,7 @@
 
 .tag {
   font-family: "Patrick Hand", cursive;
-  font-size: 13px;
+  font-size: 15px;
   border-radius: 4px;
   padding: 3px 10px;
 }
@@ -159,7 +162,7 @@
   align-items: center;
   gap: 5px;
   font-family: "Patrick Hand", cursive;
-  font-size: 14px;
+  font-size: 16px;
   color: #9e7e6a;
   text-decoration: none;
   border-bottom: 1.5px dashed #c4a98a;
@@ -168,4 +171,29 @@
 }
 .link:hover {
   color: #2e1f14;
+}
+
+.profileImage {
+  width: 250px;
+  height: auto;
+
+  border-radius: 16px;
+  object-fit: cover;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  flex-shrink: 0;
+}
+
+.companyLogo {
+  height: 125px;
+  width: auto;
+  max-width: 300px;
+  object-fit: contain;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }

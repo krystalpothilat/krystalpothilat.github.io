@@ -8,15 +8,15 @@
     },
     {
       "type": "activity",
-      "label": "Robotics Club",
+      "label": "Women in Computing @ UCR",
       "sublabel": "President",
-      "detailsId": "extra_robotics"
+      "detailsId": "extra_president"
     },
     {
       "type": "activity",
-      "label": "Hackathon Org",
-      "sublabel": "Lead Organizer",
-      "detailsId": "extra_hackathon"
+      "label": "Women in Computing @ UCR",
+      "sublabel": "Secretary",
+      "detailsId": "extra_secretary"
     },
     {
       "type": "nav",
@@ -25,25 +25,25 @@
     }
   ],
   "details": {
-    "extra_robotics": {
-      "title": "Robotics Club",
-      "company": "MIT",
-      "period": "2020 – 2023",
+    "extra_president": {
+      "title": "President",
+      "company": "Women in Computing at UCR",
+      "period": "March 2022 - March 2023",
+      "logo": "/src/imgs/winc_logo.jpg",
       "bullets": [
         "Led team of 12 to build autonomous navigation robot",
         "Won 2nd place at regional FIRST robotics competition"
-      ],
-      "tags": ["ROS", "C++", "Python", "Leadership"]
+      ]
     },
-    "extra_hackathon": {
-      "title": "HackMIT Organizer",
-      "company": "HackMIT",
-      "period": "2021 – 2022",
+    "extra_secretary": {
+      "title": "Secretary",
+      "company": "Women in Computing at UCR",
+      "period": "March 2021 - March 2022",
+      "logo": "/src/imgs/winc_logo.jpg",
       "bullets": [
         "Coordinated 1,200-person hackathon logistics and sponsor relations",
         "Managed $80k budget and 40-person volunteer team"
-      ],
-      "tags": ["Event Planning", "Sponsorship", "Leadership"]
+      ]
     }
   }
 }

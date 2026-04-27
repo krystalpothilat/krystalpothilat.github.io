@@ -4,7 +4,7 @@
   "pieces": [
     {
       "type": "title",
-      "label": "Your Name",
+      "label": "Krystal Pothilat",
       "sublabel": "Software Engineer",
       "detailsId": "about_me"
     },
@@ -32,9 +32,8 @@
   "details": {
     "about_me": {
       "type": "profile",
-      "title": "Your Name",
+      "title": "Krystal Pothilat",
       "company": "Software Engineer",
-      "period": "About Me",
 
       "image": "/src/imgs/me.jpg",
 

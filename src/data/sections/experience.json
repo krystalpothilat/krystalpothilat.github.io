@@ -9,20 +9,20 @@
     {
       "type": "job",
       "label": "Software Engineer",
-      "sublabel": "Google",
-      "detailsId": "job_google"
+      "sublabel": "Amazon",
+      "detailsId": "job_amazon"
     },
     {
       "type": "job",
       "label": "SWE Intern",
-      "sublabel": "Meta",
-      "detailsId": "job_meta"
+      "sublabel": "General Atomics",
+      "detailsId": "job_ga_1"
     },
     {
       "type": "job",
-      "label": "Research Asst.",
-      "sublabel": "MIT CSAIL",
-      "detailsId": "job_research"
+      "label": "SWE Intern",
+      "sublabel": "General Atomics",
+      "detailsId": "job_ga_2"
     },
     {
       "type": "nav",
@@ -31,40 +31,42 @@
     }
   ],
   "details": {
-    "job_google": {
+    "job_amazon": {
       "title": "Software Engineer",
-      "company": "Google",
-      "period": "Jun 2023 – Present",
-      "location": "Mountain View, CA",
+      "company": "Amazon",
+      "period": "August 2025 – Present",
+      "location": "Los Angeles, CA",
+      "logo": "/src/imgs/amazon_leo_logo.jpg",
       "bullets": [
         "Built and shipped features impacting millions of users",
         "Led migration of legacy system, reducing latency by 40%",
         "Mentored 2 junior engineers; ran weekly design reviews"
       ],
-      "tags": ["Go", "Kubernetes", "BigQuery", "Spanner"],
-      "link": "https://google.com"
+      "tags": ["Rust", "Python", "AWS", "Typescript"]
     },
-    "job_meta": {
+    "job_ga_1": {
       "title": "Software Engineer Intern",
-      "company": "Meta",
-      "period": "May 2022 – Aug 2022",
-      "location": "Menlo Park, CA",
+      "company": "General Atomics",
+      "period": "June 2023 - August 2023",
+      "location": "San Diego, CA",
+      "logo": "/src/imgs/ga_logo.jpg",
       "bullets": [
         "Shipped end-to-end feature in React Native for Instagram Stories",
         "Wrote benchmarks catching 3 regressions pre-launch"
       ],
-      "tags": ["React Native", "Hack", "Python"]
+      "tags": ["C++", "Javascript", "XML", "TortoiseSVN"]
     },
-    "job_research": {
-      "title": "Undergraduate Research Assistant",
-      "company": "MIT CSAIL",
-      "period": "Sep 2021 – May 2022",
-      "location": "Cambridge, MA",
+    "job_ga_2": {
+      "title": "Software Engineer Intern",
+      "company": "General Atomics",
+      "period": "June 2022 – August 2022",
+      "location": "San Diego, CA",
+      "logo": "/src/imgs/ga_logo.jpg",
       "bullets": [
         "Co-authored paper on adversarial robustness in vision transformers",
         "Implemented novel data augmentation pipeline in PyTorch"
       ],
-      "tags": ["PyTorch", "Python", "LaTeX"]
+      "tags": ["C++", "Javascript", "XML", "TortoiseSVN"]
     }
   }
 }

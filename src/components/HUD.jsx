@@ -120,8 +120,8 @@ export default function HUD({
 
       <div className={styles.tooltip}>
         {isZoomedOut
-          ? "click a section to zoom in"
-          : "drag ● pieces to solve · click tiles to explore"}
+          ? "Click a section to zoom in"
+          : "Drag pieces to solve · Click tiles to explore"}
       </div>
     </>
   );
