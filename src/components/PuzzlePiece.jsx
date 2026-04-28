@@ -25,7 +25,7 @@ const LABEL_COLORS = {
   piece: {
     border: "rgba(120, 180, 255, 0.9)", // soft blue
     text: "#fdf6ea",
-    bg: "rgba(30, 60, 120, 0.25)",
+    // bg: "rgba(30, 60, 120, 0.25)",
   },
 
   plain: { border: null, text: null, bg: null },
@@ -102,12 +102,16 @@ export default function PuzzlePiece({
       ? 500 + piece.puzzleCol + piece.puzzleRow
       : piece.puzzleCol + piece.puzzleRow;
 
+  // Shadow hierarchy
+  // 1. Strong shadow only while dragging (lifted piece)
+  // 2. No shadow when snapped (flush with board)
+  // 3. Subtle shadow for movable idle pieces (light lift, not floating)
   const dropShadow = isDragging
     ? "drop-shadow(3px 5px 0px rgba(74,55,40,0.85)) drop-shadow(0 8px 20px rgba(74,55,40,0.35))"
     : isSnapped
-      ? "drop-shadow(2px 3px 0px rgba(74,55,40,0.45))"
+      ? "none"
       : isMovable
-        ? "drop-shadow(2px 4px 0px rgba(74,55,40,0.65)) drop-shadow(0 3px 8px rgba(74,55,40,0.25))"
+        ? "drop-shadow(0 1px 2px rgba(74,55,40,0.15))"
         : "none";
 
   const left = locked || connected ? Math.round(x) : x;
@@ -180,7 +184,7 @@ export default function PuzzlePiece({
           d={clipPath}
           fill="none"
           stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
-          strokeWidth={isMovable || isImportant ? 3 : 1.5}
+          strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
           strokeLinejoin="round"
           strokeLinecap="round"
         />
