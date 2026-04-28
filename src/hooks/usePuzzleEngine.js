@@ -152,10 +152,6 @@ export function usePuzzleEngine() {
     );
   }, [dragging]);
 
-  const unlockAll = useCallback(() => {
-    setPieces((prev) => prev.map((p) => ({ ...p, locked: false })));
-  }, []);
-
   const resetPuzzle = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
     setPieces(buildPuzzlePieces());
@@ -167,7 +163,6 @@ export function usePuzzleEngine() {
     startDrag,
     moveDrag,
     endDrag,
-    unlockAll,
     resetPuzzle,
     completedSections,
     totalCompletion: getTotalCompletion(pieces),

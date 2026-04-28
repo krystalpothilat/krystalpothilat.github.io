@@ -16,7 +16,6 @@ export default function App() {
     startDrag,
     moveDrag,
     endDrag,
-    unlockAll,
     resetPuzzle,
     completedSections,
     totalCompletion,
@@ -51,12 +50,6 @@ export default function App() {
 
       // 1. NAVIGATION FIRST (if it exists)
       if (piece.linksTo) {
-        if (piece.linksTo === "__easter_egg__") {
-          unlockAll();
-          viewport.zoomOut();
-          return;
-        }
-
         const layout = getSectionLayout();
         if (layout[piece.linksTo]) {
           viewport.navigateTo(piece.linksTo);
@@ -70,7 +63,7 @@ export default function App() {
         setActiveSection(piece.sectionId);
       }
     },
-    [viewport, unlockAll, justSnapped],
+    [viewport, justSnapped],
   );
 
   return (
@@ -92,7 +85,6 @@ export default function App() {
         onNavigate={viewport.navigateTo}
         totalCompletion={totalCompletion}
         completedSections={completedSections}
-        onUnlockAll={unlockAll}
         onReset={resetPuzzle}
       />
       {activeDetail && (

@@ -9,7 +9,6 @@ export default function HUD({
   onNavigate,
   totalCompletion,
   completedSections,
-  onUnlockAll,
   onReset,
 }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -82,13 +81,13 @@ export default function HUD({
                   }}
                 />
                 <MenuSection label="Puzzle">
-                  <MenuItem
+                  {/* <MenuItem
                     label="🔓 Unlock all pieces"
                     onClick={() => {
                       onUnlockAll();
                       setShowMenu(false);
                     }}
-                  />
+                  /> */}
                   <MenuItem
                     label="↺ Reset puzzle"
                     onClick={() => {
