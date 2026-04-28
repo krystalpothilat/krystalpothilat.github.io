@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "../styles/DetailOverlay.module.css";
 
+import githubLogo from "../imgs/github_logo.jpg";
+import linkedinLogo from "../imgs/linkedin_logo.jpg";
+import linkIcon from "../imgs/link.jpg";
+import fileIcon from "../imgs/file.jpg";
+import mailIcon from "../imgs/mail.jpg";
+
 export default function DetailOverlay({ detailsId, section, onClose }) {
   const detail = section?.details?.[detailsId];
   const isProfile = detail?.type === "profile";
@@ -44,6 +50,59 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
               <span>{detail.period}</span>
               <span>{detail.location}</span>
             </div>
+
+            <div className={styles.headerIcons}>
+              {detail.links?.github && (
+                <a
+                  href={detail.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={githubLogo} className={styles.icon} alt="GitHub" />
+                </a>
+              )}
+              {detail.links?.linkedin && (
+                <a
+                  href={detail.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={linkedinLogo}
+                    className={styles.icon}
+                    alt="LinkedIn"
+                  />
+                </a>
+              )}
+
+              {detail.links?.link && (
+                <a
+                  href={detail.links.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={linkIcon}
+                    className={styles.icon}
+                    alt="Project Link"
+                  />
+                </a>
+              )}
+              {detail.links?.email && (
+                <a href={`mailto:${detail.links.email}`}>
+                  <img src={mailIcon} className={styles.icon} alt="Email me!" />
+                </a>
+              )}
+              {detail.links?.resume && (
+                <a
+                  href={detail.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={fileIcon} className={styles.icon} alt="Resume" />
+                </a>
+              )}
+            </div>
           </div>
 
           {detail.logo && (
@@ -71,11 +130,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
             )}
 
             <div>
-              {detail.bio && (
-                <p style={{ color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>
-                  {detail.bio}
-                </p>
-              )}
+              {detail.bio && <p className={styles.bio}>{detail.bio}</p>}
 
               {detail.highlights && (
                 <ul className={styles.bulletList}>

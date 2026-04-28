@@ -27,12 +27,11 @@ export default function HUD({
           <div
             className={styles.completionPill}
             style={{
-              color:
-                pct === 100 ? "rgba(80,200,120,0.9)" : "rgba(255,255,255,0.4)",
+              color: pct === 100 ? "rgba(80,200,120,0.9)" : "#6b4f38",
               border: `1px solid ${pct === 100 ? "rgba(80,200,120,0.4)" : "rgba(255,255,255,0.1)"}`,
             }}
           >
-            {pct === 100 ? "🧩 Complete!" : `${pct}% solved`}
+            {pct === 100 ? "Puzzle Complete!" : `${pct}% solved`}
           </div>
 
           <button

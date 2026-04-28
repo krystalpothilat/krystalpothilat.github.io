@@ -43,10 +43,10 @@
 /* ─── Completion pill ──────────────────────────────────────────── */
 .completionPill {
   font-family: "Patrick Hand", cursive;
-  font-size: 13px;
+  font-size: 16px;
   color: #6b4f38;
   background: rgba(245, 232, 210, 0.7);
-  border: 1.5px solid #c4a98a;
+  border: 1.5px solid #6b4f38;
   border-radius: 20px;
   padding: 3px 12px;
   transition: all 0.4s;
@@ -188,9 +188,14 @@
   transform: translateX(-50%);
   font-family: "Patrick Hand", cursive;
   font-size: 18px;
-  color: #a08878;
+  background: rgba(245, 232, 210, 0.65);
+  border: 1.5px solid #c4a98a;
+  padding: 5px 13px;
+  color: #6b4f38;
   pointer-events: none;
   letter-spacing: 0.03em;
   z-index: 100;
   white-space: nowrap;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #c4a98a;
 }

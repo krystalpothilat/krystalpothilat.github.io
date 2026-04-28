@@ -34,10 +34,16 @@
       "type": "profile",
       "title": "Krystal Pothilat",
       "company": "Software Engineer",
+      "links": {
+        "github": "https://github.com/krystalpothilat",
+        "linkedin": "https://www.linkedin.com/in/krystalpothilat/",
+        "email": "krystalpothilat@gmail.com",
+        "resume": "resume"
+      },
 
       "image": "/src/imgs/me.jpg",
 
-      "bio": "I build interactive web experiences, systems, and UI-heavy applications. I enjoy turning abstract ideas into playful, tactile interfaces.",
+      "bio": "Currently working on Optical Inter Satellite Links at Amazon Leo",
 
       "highlights": [
         "Full-stack developer (React, Node.js)",

@@ -15,7 +15,7 @@
     {
       "type": "project",
       "label": "Notion Bingo Widget Creator",
-      "sublabel": "Rust · 2k ⭐",
+      "sublabel": "React",
       "detailsId": "proj_cli"
     },
     {
@@ -34,16 +34,24 @@
     "proj_movie_bucketlist": {
       "title": "Movie Bucketlist",
       "company": "Personal Project",
+      "links": {
+        "github": "https://github.com/krystalpothilat/movie-bucketlist",
+        "link": "https://movie-bucketlist.vercel.app/"
+      },
       "bullets": [
         "Interactive jigsaw puzzle in React with drag-and-snap mechanics",
         "Custom SVG clip-path generation for authentic interlocking shapes"
       ],
-      "tags": ["React", "Framer Motion", "SVG", "Vite"]
+      "tags": ["React", "Vite"]
     },
     "proj_cli": {
       "title": "Open Source CLI Tool",
       "company": "Open Source",
       "period": "2023",
+      "links": {
+        "github": "https://github.com/krystalpothilat/notion-bingo-widget",
+        "link": "https://notion-bingo-widget.vercel.app/"
+      },
       "bullets": [
         "Rust-based developer CLI with 2,000+ GitHub stars",
         "Plugin architecture allows community extensions"

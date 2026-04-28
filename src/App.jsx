@@ -63,7 +63,7 @@ export default function App() {
       // 2. ONLY IF NO NAVIGATION → OPEN OVERLAY
       if (piece.detailsId) {
         setActiveDetail(piece.detailsId);
-        setActiveSection(piece.sectionId || viewport.currentSection);
+        setActiveSection(piece.sectionId);
       }
     },
     [viewport, unlockAll, justSnapped],

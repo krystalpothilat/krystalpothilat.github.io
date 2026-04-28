@@ -7,13 +7,13 @@
       "label": "Extracurriculars"
     },
     {
-      "type": "activity",
+      "type": "extracurricular",
       "label": "Women in Computing @ UCR",
       "sublabel": "President",
       "detailsId": "extra_president"
     },
     {
-      "type": "activity",
+      "type": "extracurricular",
       "label": "Women in Computing @ UCR",
       "sublabel": "Secretary",
       "detailsId": "extra_secretary"

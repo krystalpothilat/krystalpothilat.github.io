@@ -3,37 +3,31 @@ import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
 
 import styles from "../styles/PuzzlePiece.module.css";
 
+function getGroup(type) {
+  if (type === "nav" || type === "title" || type === "section-header") {
+    return "nav";
+  }
+
+  if (type === "project" || type === "job" || type === "extracurricular") {
+    return "piece";
+  }
+
+  return "plain";
+}
+
 const LABEL_COLORS = {
   nav: {
-    border: "rgba(196,169,138,0.9)",
+    border: "rgba(255, 215, 0, 0.9)", // warm gold
     text: "#fdf6ea",
-    bg: "rgba(74,55,40,0.25)",
+    // bg: "rgba(74,55,40,0.25)",
   },
-  "section-header": {
-    border: "rgba(196,169,138,0.7)",
+
+  piece: {
+    border: "rgba(120, 180, 255, 0.9)", // soft blue
     text: "#fdf6ea",
-    bg: "rgba(74,55,40,0.3)",
+    bg: "rgba(30, 60, 120, 0.25)",
   },
-  title: {
-    border: "rgba(196,169,138,0.9)",
-    text: "#fdf6ea",
-    bg: "rgba(74,55,40,0.35)",
-  },
-  //   job: {
-  //     border: "rgba(100,180,255,0.85)",
-  //     text: "#e8f4ff",
-  //     bg: "rgba(20,60,160,0.45)",
-  //   },
-  //   activity: {
-  //     border: "rgba(100,255,160,0.85)",
-  //     text: "#e8fff2",
-  //     bg: "rgba(10,100,50,0.45)",
-  //   },
-  //   project: {
-  //     border: "rgba(220,150,255,0.85)",
-  //     text: "#f5e8ff",
-  //     bg: "rgba(100,20,160,0.45)",
-  //   },
+
   plain: { border: null, text: null, bg: null },
 };
 
@@ -58,9 +52,11 @@ export default function PuzzlePiece({
   const bgX = -piece.puzzleCol * S;
   const bgY = -piece.puzzleRow * S;
 
+  const isImportant = type !== "plain";
   const isMovable = !locked && !connected;
   const isSnapped = connected && !locked;
-  const colors = LABEL_COLORS[type] || LABEL_COLORS.plain;
+  const group = getGroup(type);
+  const colors = LABEL_COLORS[group] || LABEL_COLORS.plain;
   const rotation = useMemo(
     () => (isMovable ? getPieceRotation(id) : 0),
     [id, isMovable],
@@ -184,7 +180,7 @@ export default function PuzzlePiece({
           d={clipPath}
           fill="none"
           stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
-          strokeWidth={isMovable ? 3 : 1.5}
+          strokeWidth={isMovable || isImportant ? 3 : 1.5}
           strokeLinejoin="round"
           strokeLinecap="round"
         />

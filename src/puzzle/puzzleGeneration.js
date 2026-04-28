@@ -50,7 +50,8 @@ export function generateSectionLayout() {
     const slot = usedSlots[i];
 
     layout[section.id] = {
-      id: section.id,
+      layoutId: section.id,
+      sectionId: section.id,
       col: slot.col,
       row: slot.row,
       minCol: slot.minCol,
@@ -65,7 +66,8 @@ export function generateSectionLayout() {
     const id = `puzzleZone_${i}`;
 
     layout[id] = {
-      id: id,
+      layoutId: id,
+      sectionId: "puzzleZone",
       col: slot.col,
       row: slot.row,
       minCol: slot.minCol,
@@ -81,7 +83,7 @@ export function generateSectionLayout() {
 export function getSectionOverrides(layout) {
   const overrides = {};
   Object.values(layout).forEach((sectionSlot) => {
-    const { id } = sectionSlot;
+    const { layoutId, sectionId } = sectionSlot;
 
     const overrideMap = {};
 
@@ -104,12 +106,9 @@ export function getSectionOverrides(layout) {
       };
     });
 
-    const sectionId = layout[id]?.id;
-    const section = SECTIONS[sectionId];
-    if (!section) {
-      overrides[id] = overrideMap;
-      return;
-    }
+    const section =
+  Object.values(SECTIONS).find((s) => s.id === sectionId);
+
     const pieces = section?.pieces || [];
 
     const interiorPositions = positions.filter(
@@ -127,9 +126,9 @@ export function getSectionOverrides(layout) {
         ...piece,
       };
     });
-    overrides[id] = overrideMap;
+    overrides[layoutId] = overrideMap;
   });
-
+  console.log(overrides);
   return overrides;
 }
 
@@ -141,9 +140,14 @@ export function buildPuzzlePieces() {
   const overrides = getOverrides(layout);
 
   Object.values(layout).forEach((sectionSlot) => {
-    const { col: puzzleCol, row: puzzleRow, id } = sectionSlot;
+   const {
+  col: puzzleCol,
+  row: puzzleRow,
+  layoutId,
+  sectionId,
+} = sectionSlot;
 
-    const overrideMap = overrides[id] || {};
+    const overrideMap = overrides[layoutId] || {};
 
     for (let r = 0; r < SECTION_ROWS; r++) {
       for (let c = 0; c < SECTION_COLS; c++) {
@@ -215,7 +219,8 @@ export function buildPuzzlePieces() {
           id: `piece_${pc}_${pr}`,
           puzzleCol: pc,
           puzzleRow: pr,
-          sectionId: id,
+          layoutId,
+sectionId,
           homeX,
           homeY,
           x: positionOffsetX,

@@ -106,7 +106,7 @@ export function shuffle(arr) {
 
 export function clampToSection(piece) {
   const layout = getSectionLayout();
-  const section = layout[piece.sectionId];
+  const section = layout[piece.layoutId];
 
   if (!section) return piece;
 

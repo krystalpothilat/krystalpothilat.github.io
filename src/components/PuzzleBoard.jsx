@@ -145,12 +145,12 @@ export default function PuzzleBoard({
             const py = slot.row * PIECE_SIZE * s + ty;
             const w = SECTION_COLS * PIECE_SIZE * s;
             const h = SECTION_ROWS * PIECE_SIZE * s;
-            const section = SECTIONS[slot.id];
-            const done = completedSections.has(slot.id);
+            const section = SECTIONS[slot.sectionId];
+            const done = completedSections.has(slot.sectionId);
             return (
               <div
-                key={slot.id}
-                onClick={() => viewport.zoomInToSection(slot.id)}
+                key={slot.layoutId}
+                onClick={() => viewport.zoomInToSection(slot.layoutId)}
                 className={styles.sectionOverlay}
                 style={{
                   left: px,
@@ -168,7 +168,7 @@ export default function PuzzleBoard({
                   }}
                 >
                   {done ? "✓ " : ""}
-                  {slot.id}
+                  {slot.sectionId}
                 </span>
               </div>
             );
