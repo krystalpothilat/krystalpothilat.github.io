@@ -61,14 +61,14 @@ export default function HUD({
               <div className={styles.menuDropdown}>
                 <MenuSection label="Navigate">
                   {Object.values(SECTIONS)
-                    .filter((s) => !s.id.includes("puzzleZone"))
+                    .filter((s) => !s.sectionId.includes("puzzleZone"))
                     .map((s) => (
                       <MenuItem
-                        key={s.id}
+                        key={s.sectionId}
                         label={s.label}
-                        done={completedSections.has(s.id)}
+                        done={completedSections.has(s.sectionId)}
                         onClick={() => {
-                          onNavigate(s.id);
+                          onNavigate(s.sectionId);
                           setShowMenu(false);
                         }}
                       />

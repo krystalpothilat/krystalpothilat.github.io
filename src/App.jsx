@@ -5,6 +5,7 @@ import SectionComplete from "./components/SectionComplete.jsx";
 import { usePuzzleEngine } from "./hooks/usePuzzleEngine.js";
 import { useViewport } from "./hooks/useViewport.js";
 import { SECTIONS } from "./data/puzzleData.js";
+import { getSectionLayout } from "./puzzle/puzzleLayout.js";
 import "./styles/App.module.css";
 import DetailOverlay from "./components/DetailOverlay.jsx";
 
@@ -30,10 +31,12 @@ export default function App() {
 
   // Track newly completed sections to show achievement
   useEffect(() => {
-    completedSections.forEach((id) => {
-      if (!prevCompleted.current.has(id)) {
-        const s = SECTIONS[id];
-        if (s) setAchievement({ id, label: s.label });
+    completedSections.forEach((layoutId) => {
+      if (!prevCompleted.current.has(layoutId)) {
+        const layout = getSectionLayout();
+        const slot = layout[layoutId];
+        const s = slot ? SECTIONS[slot.sectionId] : null;
+        if (s) setAchievement({ id: layoutId, label: s.label });
       }
     });
     prevCompleted.current = new Set(completedSections);
@@ -54,7 +57,8 @@ export default function App() {
           return;
         }
 
-        if (SECTIONS[piece.linksTo]) {
+        const layout = getSectionLayout();
+        if (layout[piece.linksTo]) {
           viewport.navigateTo(piece.linksTo);
           return;
         }

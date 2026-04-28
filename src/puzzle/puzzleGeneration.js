@@ -1,5 +1,6 @@
 import {
   SECTIONS,
+  SECTION_TEMPLATES,
   PIECE_SIZE,
   NUM_SECTION_COLS,
   NUM_SECTION_ROWS,
@@ -49,9 +50,9 @@ export function generateSectionLayout() {
   sections.forEach((section, i) => {
     const slot = usedSlots[i];
 
-    layout[section.id] = {
-      layoutId: section.id,
-      sectionId: section.id,
+    layout[section.sectionId] = {
+      layoutId: section.sectionId,
+      sectionId: section.sectionId,
       col: slot.col,
       row: slot.row,
       minCol: slot.minCol,
@@ -107,7 +108,8 @@ export function getSectionOverrides(layout) {
     });
 
     const section =
-  Object.values(SECTIONS).find((s) => s.id === sectionId);
+      Object.values(SECTIONS).find((s) => s.sectionId === sectionId) ??
+      SECTION_TEMPLATES[sectionId];
 
     const pieces = section?.pieces || [];
 
@@ -120,7 +122,6 @@ export function getSectionOverrides(layout) {
 
     pieces.forEach((piece, i) => {
       const { r, c } = shuffledInterior[i];
-
       overrideMap[`${r},${c}`] = {
         ...overrideMap[`${r},${c}`],
         ...piece,
@@ -128,7 +129,7 @@ export function getSectionOverrides(layout) {
     });
     overrides[layoutId] = overrideMap;
   });
-  console.log(overrides);
+  //   console.log(overrides);
   return overrides;
 }
 
@@ -140,12 +141,7 @@ export function buildPuzzlePieces() {
   const overrides = getOverrides(layout);
 
   Object.values(layout).forEach((sectionSlot) => {
-   const {
-  col: puzzleCol,
-  row: puzzleRow,
-  layoutId,
-  sectionId,
-} = sectionSlot;
+    const { col: puzzleCol, row: puzzleRow, layoutId, sectionId } = sectionSlot;
 
     const overrideMap = overrides[layoutId] || {};
 
@@ -220,7 +216,7 @@ export function buildPuzzlePieces() {
           puzzleCol: pc,
           puzzleRow: pr,
           layoutId,
-sectionId,
+          sectionId,
           homeX,
           homeY,
           x: positionOffsetX,

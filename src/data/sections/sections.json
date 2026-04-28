@@ -1,18 +1,18 @@
 {
   "home": {
-    "id": "home",
+    "sectionId": "home",
     "label": "Home"
   },
   "experience": {
-    "id": "experience",
+    "sectionId": "experience",
     "label": "Experience"
   },
   "projects": {
-    "id": "projects",
+    "sectionId": "projects",
     "label": "Projects"
   },
   "extracurriculars": {
-    "id": "extracurriculars",
+    "sectionId": "extracurriculars",
     "label": "Extracurriculars"
   }
 }

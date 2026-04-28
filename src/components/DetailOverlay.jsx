@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/DetailOverlay.module.css";
 
 import githubLogo from "../imgs/github_logo.jpg";
@@ -10,6 +10,14 @@ import mailIcon from "../imgs/mail.jpg";
 export default function DetailOverlay({ detailsId, section, onClose }) {
   const detail = section?.details?.[detailsId];
   const isProfile = detail?.type === "profile";
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 2000); // or 300ms–500ms is more typical UX
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -32,10 +40,16 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
   ];
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`${styles.overlay} ${isClosing ? styles.fadeOut : ""}`}
+      onClick={handleClose}
+    >
+      <div
+        className={`${styles.container} ${isClosing ? styles.zoomOut : ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Close button */}
-        <button onClick={onClose} className={styles.closeButton}>
+        <button onClick={handleClose} className={styles.closeButton}>
           ✕
         </button>
 

@@ -4,6 +4,7 @@ import home from "./sections/home.json";
 import experience from "./sections/experience.json";
 import projects from "./sections/projects.json";
 import extracurriculars from "./sections/extracurriculars.json";
+import puzzleZone from "./sections/puzzleZone.json";
 
 export const PIECE_SIZE = 200;
 
@@ -28,4 +29,8 @@ export const SECTIONS = {
   experience,
   projects,
   extracurriculars,
+};
+
+export const SECTION_TEMPLATES = {
+  puzzleZone,
 };

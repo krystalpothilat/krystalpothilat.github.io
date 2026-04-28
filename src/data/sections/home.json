@@ -1,5 +1,5 @@
 {
-  "id": "home",
+  "sectionId": "home",
   "label": "Home",
   "pieces": [
     {
@@ -26,7 +26,12 @@
     {
       "type": "nav",
       "label": "Puzzle Zone",
-      "linksTo": "fun1"
+      "linksTo": "puzzleZone_0"
+    },
+    {
+      "type": "nav",
+      "label": "Puzzle Zone",
+      "linksTo": "puzzleZone_1"
     }
   ],
   "details": {
