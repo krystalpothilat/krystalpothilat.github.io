@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
 
 import styles from "../styles/PuzzlePiece.module.css";
@@ -55,6 +55,7 @@ export default function PuzzlePiece({
   const isImportant = type !== "plain";
   const isMovable = !locked && !connected;
   const isSnapped = connected && !locked;
+  const [snapLocked, setSnapLocked] = useState(false);
   const group = getGroup(type);
   const colors = LABEL_COLORS[group] || LABEL_COLORS.plain;
   const rotation = useMemo(
@@ -64,6 +65,18 @@ export default function PuzzlePiece({
 
   const IMG_W = PUZZLE_COLS * S;
   const IMG_H = PUZZLE_ROWS * S;
+
+  useEffect(() => {
+    if (isSnapped) {
+      const t = setTimeout(() => {
+        setSnapLocked(true);
+      }, 250); // match your snap animation duration
+
+      return () => clearTimeout(t);
+    } else {
+      setSnapLocked(false);
+    }
+  }, [isSnapped]);
 
   const handleMouseDown = useCallback(
     (e) => {
@@ -95,12 +108,19 @@ export default function PuzzlePiece({
     },
     [piece, onPieceClick, isDragging],
   );
+  // const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
+
+  const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
 
   const zIndex = isDragging
     ? 9999
-    : isMovable
-      ? 500 + piece.puzzleCol + piece.puzzleRow
-      : piece.puzzleCol + piece.puzzleRow;
+    : snapLocked && isImportant
+      ? 11
+      : snapLocked
+        ? 10
+        : isMovable
+          ? 500 + baseIndex
+          : 10;
 
   // Shadow hierarchy
   // 1. Strong shadow only while dragging (lifted piece)
@@ -113,6 +133,10 @@ export default function PuzzlePiece({
       : isMovable
         ? "drop-shadow(0 1px 2px rgba(74,55,40,0.15))"
         : "none";
+
+  const glow = isImportant
+    ? "drop-shadow(0 0 6px rgba(255, 215, 0, 0.8))"
+    : "none";
 
   const left = locked || connected ? Math.round(x) : x;
   const top = locked || connected ? Math.round(y) : y;

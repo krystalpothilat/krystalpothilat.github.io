@@ -53,3 +53,11 @@
 
   color: rgba(253, 246, 234, 0.7);
 }
+
+/* Smooth border transitions for puzzle pieces */
+path {
+  transition:
+    stroke 0.35s ease,
+    stroke-width 0.35s ease,
+    opacity 0.35s ease;
+}
