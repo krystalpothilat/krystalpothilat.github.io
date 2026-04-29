@@ -37,12 +37,13 @@
       "period": "August 2025 – Present",
       "location": "Los Angeles, CA",
       "logo": "/src/imgs/amazon_leo_logo.jpg",
+      "description": "Working on Optical Inter Satellite Links at Amazon Leo",
       "bullets": [
-        "Built and shipped features impacting millions of users",
-        "Led migration of legacy system, reducing latency by 40%",
-        "Mentored 2 junior engineers; ran weekly design reviews"
+        "Developed real-time embedded software in Rust for distributed control systems on bare-metal FreeRTOS, focused on scalable logging and telemetry infrastructure for hardware monitoring and runtime system behavior",
+        "Built hardware-in-the-loop (HIL) automation frameworks in Python to validate firmware behavior against physical test environments",
+        "Developed internal CI/CD and deployment infrastructure using AWS services (S3, Lambda, CloudFormation) and TypeScript to automate build, test, and release workflows"
       ],
-      "tags": ["Rust", "Python", "AWS", "Typescript"]
+      "tags": ["Rust", "Python", "AWS"]
     },
     "job_ga_1": {
       "title": "Software Engineer Intern",
@@ -51,8 +52,9 @@
       "location": "San Diego, CA",
       "logo": "/src/imgs/ga_logo.jpg",
       "bullets": [
-        "Shipped end-to-end feature in React Native for Instagram Stories",
-        "Wrote benchmarks catching 3 regressions pre-launch"
+        "Expanded payload functionality on the P3E system by implementing new features that enhanced configuration flexbility and system capability for automated pre-flight operations",
+        "Extended messaging architecture across embedded subsytems to support new payload behaviors",
+        "Updated user interfaces to integrate new payload options, streamlining operator interaction during pre-flight setup"
       ],
       "tags": ["C++", "Javascript", "XML", "TortoiseSVN"]
     },
@@ -63,8 +65,8 @@
       "location": "San Diego, CA",
       "logo": "/src/imgs/ga_logo.jpg",
       "bullets": [
-        "Co-authored paper on adversarial robustness in vision transformers",
-        "Implemented novel data augmentation pipeline in PyTorch"
+        "Enhanced the user interface for the Heads-Up Display for multiple ground control systems",
+        "Worked with Linux-based virtual machine envirionments to simulate system behavior and verify feature reliabiltiy"
       ],
       "tags": ["C++", "Javascript", "XML", "TortoiseSVN"]
     }

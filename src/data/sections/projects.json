@@ -14,15 +14,14 @@
     },
     {
       "type": "project",
-      "label": "Notion Bingo Widget Creator",
+      "label": "Bingo Widget Creator",
       "sublabel": "React",
-      "detailsId": "proj_cli"
+      "detailsId": "proj_bingo_widget"
     },
     {
       "type": "project",
       "label": "ML Classifier",
-      "sublabel": "PyTorch",
-      "detailsId": "proj_ml"
+      "sublabel": "PyTorch"
     },
     {
       "type": "nav",
@@ -38,35 +37,28 @@
         "github": "https://github.com/krystalpothilat/movie-bucketlist",
         "link": "https://movie-bucketlist.vercel.app/"
       },
+      "description": "A full-stack web app for saving and organizing a personal movie bucketlist, with interactive selection tools and persistent storage for future reference",
       "bullets": [
-        "Interactive jigsaw puzzle in React with drag-and-snap mechanics",
-        "Custom SVG clip-path generation for authentic interlocking shapes"
+        "Built REST APIs using Node.js, Express.js, and MongoDB to enable communication between a React front-end and backend services",
+        "Integrated the OMDb API to fetch and display detailed movie metadata when adding films to the collection",
+        "Implemented an interactive wheel-based selector for randomly choosing movies and saving selections for future viewing"
       ],
-      "tags": ["React", "Vite"]
+      "tags": ["React", "Node.js", "MongoDB"]
     },
-    "proj_cli": {
-      "title": "Open Source CLI Tool",
-      "company": "Open Source",
-      "period": "2023",
+    "proj_bingo_widget": {
+      "title": "Bingo Widget Creator",
+      "company": "Personal Project",
       "links": {
         "github": "https://github.com/krystalpothilat/notion-bingo-widget",
         "link": "https://notion-bingo-widget.vercel.app/"
       },
+      "description": "A full-stack web app for creating customizable Bingo card widgets, designed for embeddable use within platforms like Notion, with user authentication and persistent data storage",
       "bullets": [
-        "Rust-based developer CLI with 2,000+ GitHub stars",
-        "Plugin architecture allows community extensions"
+        "Built a ReactJS interface for creating and customizing Bingo cards, supporting dynamic layout generation and user-defined content and styling",
+        "Designed a backend system using Express.js, Node.js, and MongoDB to manage persistent storage, user data, and card configurations",
+        "Implemented Google OAuth authentication via Google Cloud to manage secure user sessions and streamline account access flow"
       ],
-      "tags": ["Rust", "CLI", "Open Source"]
-    },
-    "proj_ml": {
-      "title": "ML Image Classifier",
-      "company": "Research",
-      "period": "2022",
-      "bullets": [
-        "Novel architecture achieving SOTA on benchmark dataset",
-        "Published at workshop; 50+ citations"
-      ],
-      "tags": ["PyTorch", "Python", "Research"]
+      "tags": ["React", "Node.js", "MongoDB"]
     }
   }
 }

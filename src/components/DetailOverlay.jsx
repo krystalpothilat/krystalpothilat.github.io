@@ -161,6 +161,11 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
         ) : (
           /* NORMAL WORK MODE */
           <>
+          {detail.description && (
+              <div className={styles.bulletItem}>
+                {detail.description}
+              </div>
+            )}
             <ul className={styles.bulletList}>
               {detail.bullets?.map((b, i) => (
                 <li key={i} className={styles.bulletItem}>
@@ -188,16 +193,6 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
               </div>
             )}
 
-            {detail.link && (
-              <a
-                href={detail.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                ↗ Visit link
-              </a>
-            )}
           </>
         )}
       </div>

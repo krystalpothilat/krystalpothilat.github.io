@@ -30,9 +30,11 @@
       "company": "Women in Computing at UCR",
       "period": "March 2022 - March 2023",
       "logo": "/src/imgs/winc_logo.jpg",
+      "description": "President of the leading student organization focused on empowering and advocating for women in computer science through community building, mentorship, and professional development initiatives",
       "bullets": [
-        "Led team of 12 to build autonomous navigation robot",
-        "Won 2nd place at regional FIRST robotics competition"
+        "Led and supported a team of 6 officers in planning and organizing events, initiatives, and outreach efforts",
+        "Organized and coordinated 10+ in-person events each quarter, fostering a strong and welcoming community for members",
+        "Supported fundraising efforts to help expand organization opportunities and events"
       ]
     },
     "extra_secretary": {
@@ -40,9 +42,10 @@
       "company": "Women in Computing at UCR",
       "period": "March 2021 - March 2022",
       "logo": "/src/imgs/winc_logo.jpg",
+      "description": "Secretary of the leading student organization focused on empowering and advocating for women in computer science through community building, mentorship, and professional development initiatives",
       "bullets": [
-        "Coordinated 1,200-person hackathon logistics and sponsor relations",
-        "Managed $80k budget and 40-person volunteer team"
+        "Coordinated communication between officers, members, and partner organizations for events and collaborations",
+        "Supported event planning and execution by handling scheduling, coordination, and administrative tasks"
       ]
     }
   }
