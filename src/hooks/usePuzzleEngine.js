@@ -53,7 +53,7 @@ export function usePuzzleEngine() {
         m[s.id] = s;
       });
       return base.map((p) => {
-        // Only restore position for free pieces — never override locked/connected
+        // Only restore position for free pieces - never override locked/connected
         if (m[p.id] && !p.locked && !p.connected) {
           return {
             ...p,
@@ -119,7 +119,7 @@ export function usePuzzleEngine() {
     prevCompletedRef.current = new Set(completedSections);
   }, [completedSections]);
 
-  // Clear justSnapped after one event loop tick — enough for the click to read it
+  // Clear justSnapped after one event loop tick - enough for the click to read it
   useEffect(() => {
     if (justSnapped) {
       const t = setTimeout(() => setJustSnapped(null), 300);

@@ -1,10 +1,10 @@
-/* DetailOverlay.module.css — Cozy bakery / sketchbook, not medieval */
+/* DetailOverlay.module.css - Cozy bakery / sketchbook, not medieval */
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Patrick+Hand&display=swap");
 
 /*
-  Nunito      → rounded, friendly, modern — body text
-  Patrick Hand → casual handwritten but clean, not calligraphy-y — titles/labels
+  Nunito      → rounded, friendly, modern - body text
+  Patrick Hand → casual handwritten but clean, not calligraphy-y - titles/labels
 */
 
 @keyframes fadeIn {
@@ -38,7 +38,7 @@
 
 /* ─── Card ─────────────────────────────────────────────────────── */
 .container {
-  /* Cooler off-white — more linen than butter */
+  /* Cooler off-white - more linen than butter */
   background: #f7f2ec;
 
   border: 2px solid #4a3728;

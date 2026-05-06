@@ -89,7 +89,7 @@ export function getSectionOverrides(layout) {
     const overrideMap = {};
 
     // Build all grid positions and shuffle them so pieces are randomly
-    // distributed across the full section — not just row 0.
+    // distributed across the full section - not just row 0.
     const allPositions = [];
     for (let r = 0; r < SECTION_ROWS; r++) {
       for (let c = 0; c < SECTION_COLS; c++) {

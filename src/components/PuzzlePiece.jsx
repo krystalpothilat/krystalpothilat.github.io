@@ -18,17 +18,23 @@ function getGroup(type) {
 const LABEL_COLORS = {
   nav: {
     border: "rgba(255, 215, 0, 0.9)", // warm gold
-    text: "#fdf6ea",
+    // text: "#fdf6ea",
     // bg: "rgba(74,55,40,0.25)",
   },
 
   piece: {
     border: "rgba(120, 180, 255, 0.9)", // soft blue
-    text: "#fdf6ea",
+    // text: "#fdf6ea",
     // bg: "rgba(30, 60, 120, 0.25)",
   },
 
   plain: { border: null, text: null, bg: null },
+};
+
+const LABEL_GLOW = {
+  nav: "rgba(255, 215, 0, 0.9)", // gold
+  piece: "rgba(120, 180, 255, 0.85)", // blue
+  plain: "rgba(0,0,0,0)", // none
 };
 
 function getPieceRotation(id) {
@@ -59,6 +65,7 @@ export default function PuzzlePiece({
   const [snapLocked, setSnapLocked] = useState(false);
   const group = getGroup(type);
   const colors = LABEL_COLORS[group] || LABEL_COLORS.plain;
+  const glowColor = LABEL_GLOW[group] || "rgba(255, 255, 255, 0.6)";
   const rotation = useMemo(
     () => (isMovable ? getPieceRotation(id) : 0),
     [id, isMovable],
@@ -204,7 +211,7 @@ export default function PuzzlePiece({
         {type !== "plain" && colors.bg && (
           <path d={clipPath} fill={colors.bg} clipPath={`url(#clip_${id})`} />
         )}
-        {/* Warm ink outline — thicker on movable pieces like a cartoon outline */}
+        {/* Warm ink outline - thicker on movable pieces like a cartoon outline */}
         <path
           d={clipPath}
           fill="none"
@@ -213,7 +220,7 @@ export default function PuzzlePiece({
           strokeLinejoin="round"
           strokeLinecap="round"
         />
-        {/* Subtle inner highlight — warm cream, not cold white */}
+        {/* Subtle inner highlight - warm cream, not cold white */}
         <path
           d={clipPath}
           fill="none"
@@ -242,16 +249,35 @@ export default function PuzzlePiece({
             style={{
               fontSize:
                 type === "title"
-                  ? "20px"
+                  ? "30px"
                   : type === "section-header"
-                    ? "20px"
-                    : "18px",
-              color: colors.text || "#fdf6ea",
+                    ? "30px"
+                    : "28px",
+
+              textShadow: `
+      0 0 8px ${glowColor},
+      0 0 18px ${glowColor},
+      0 0 32px ${glowColor},
+      0 0 48px ${glowColor}
+    `,
             }}
           >
             {label}
           </span>
-          {sublabel && <span className={styles.sublabelText}>{sublabel}</span>}
+          {sublabel && (
+            <span
+              className={styles.sublabelText}
+              style={{
+                textShadow: `
+        0 0 6px ${glowColor},
+        0 0 14px ${glowColor},
+        0 0 24px ${glowColor}
+      `,
+              }}
+            >
+              {sublabel}
+            </span>
+          )}
         </div>
       )}
     </div>

@@ -12,47 +12,34 @@
 
   pointer-events: none;
 
-  /* background: radial-gradient(
-    ellipse at center,
-    rgba(74, 55, 40, 0.45) 20%,
-    transparent 75%
-  ); */
+  box-shadow:
+    0 2px 10px rgba(201, 37, 37, 0.18),
+    0 0 0 1px rgba(74, 64, 40, 0.08);
 }
 
 .labelText {
+  color: #3a2a1d;
   font-family: "Patrick Hand", cursive;
   font-weight: 400;
 
   line-height: 1.2;
   letter-spacing: 0.01em;
 
-  text-shadow: 0 1px 8px rgba(40, 28, 18, 0.95);
+  z-index: 1;
 }
 
-/* sublabel matches JSX exactly */
 .sublabelText {
   font-family: "Nunito", sans-serif;
   font-style: italic;
-  font-size: 12px;
+  font-size: 14px;
 
-  color: rgba(253, 246, 234, 0.8);
-
-  text-shadow: 0 1px 6px rgba(40, 28, 18, 0.95);
+  color: #3a2a1d;
 
   margin-top: 4px;
   letter-spacing: 0.02em;
 }
 
-/* link text matches JSX exactly */
-.linkText {
-  font-size: 10px;
-  margin-top: 5px;
-
-  font-family: "Patrick Hand", cursive;
-  letter-spacing: 0.05em;
-
-  color: rgba(253, 246, 234, 0.7);
-}
+/* link text match
 
 /* Smooth border transitions for puzzle pieces */
 path {

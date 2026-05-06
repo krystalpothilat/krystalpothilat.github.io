@@ -1,4 +1,4 @@
-// PUZZLE CONFIG — size, boundaries
+// PUZZLE CONFIG - size, boundaries
 
 import home from "./sections/home.json";
 import experience from "./sections/experience.json";
@@ -22,7 +22,7 @@ export const PUZZLE_ROWS = SECTION_ROWS * NUM_SECTION_ROWS;
 export const IMAGE_TOTAL_W = PUZZLE_COLS * PIECE_SIZE;
 export const IMAGE_TOTAL_H = PUZZLE_ROWS * PIECE_SIZE;
 
-// SECTIONS — imported JSONs
+// SECTIONS - imported JSONs
 
 export const SECTIONS = {
   home,

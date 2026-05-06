@@ -52,7 +52,7 @@ export default function HUD({
           <button
             onClick={onReset}
             className={`${styles.resetButton}`}
-            title="Reset — positionOffset all pieces back"
+            title="Reset - positionOffset all pieces back"
           >
             ↺ Reset
           </button>
