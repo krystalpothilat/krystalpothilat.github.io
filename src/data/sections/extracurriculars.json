@@ -10,12 +10,14 @@
       "type": "extracurricular",
       "label": "Women in Computing @ UCR",
       "sublabel": "President",
+      "status": "ready",
       "detailsId": "extra_president"
     },
     {
       "type": "extracurricular",
       "label": "Women in Computing @ UCR",
       "sublabel": "Secretary",
+      "status": "ready",
       "detailsId": "extra_secretary"
     },
     {

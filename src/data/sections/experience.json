@@ -10,18 +10,21 @@
       "type": "job",
       "label": "Software Engineer",
       "sublabel": "Amazon",
+      "status": "ready",
       "detailsId": "job_amazon"
     },
     {
       "type": "job",
       "label": "SWE Intern",
       "sublabel": "General Atomics",
+      "status": "ready",
       "detailsId": "job_ga_1"
     },
     {
       "type": "job",
       "label": "SWE Intern",
       "sublabel": "General Atomics",
+      "status": "ready",
       "detailsId": "job_ga_2"
     },
     {
