@@ -20,6 +20,7 @@ import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export default function PuzzleBoard({
   pieces,
+  showLabels,
   dragging,
   startDrag,
   moveDrag,
@@ -121,6 +122,7 @@ export default function PuzzleBoard({
             <PuzzlePiece
               key={piece.id}
               piece={piece}
+              showLabels={showLabels}
               isDragging={dragging?.pieceId === piece.id}
               onMouseDown={onMD}
               onTouchStart={onTS}

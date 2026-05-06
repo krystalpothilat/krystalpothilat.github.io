@@ -38,6 +38,7 @@ function getPieceRotation(id) {
 
 export default function PuzzlePiece({
   piece,
+  showLabels,
   isDragging,
   onMouseDown,
   onTouchStart,
@@ -234,7 +235,7 @@ export default function PuzzlePiece({
         )}
       </svg>
 
-      {label && type !== "plain" && (
+      {showLabels && label && type !== "plain" && (
         <div className={styles.labelContainer}>
           <span
             className={styles.labelText}

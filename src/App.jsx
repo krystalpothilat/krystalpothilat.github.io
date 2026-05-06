@@ -26,6 +26,7 @@ export default function App() {
   const viewport = useViewport();
   const [overlay, setOverlay] = useState(null);
   const [achievement, setAchievement] = useState(null);
+  const [showLabels, setShowLabels] = useState(true);
 
   const prevCompleted = useRef(new Set());
 
@@ -92,6 +93,7 @@ export default function App() {
     <div className="app-container">
       <PuzzleBoard
         pieces={pieces}
+        showLabels={showLabels}
         dragging={dragging}
         startDrag={startDrag}
         moveDrag={moveDrag}
@@ -108,6 +110,8 @@ export default function App() {
         totalCompletion={totalCompletion}
         completedSections={completedSections}
         onReset={resetPuzzle}
+        showLabels={showLabels}
+        setShowLabels={setShowLabels}
       />
       <OverlayManager overlay={overlay} setOverlay={setOverlay} />
       {achievement && (

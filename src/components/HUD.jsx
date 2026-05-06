@@ -10,6 +10,8 @@ export default function HUD({
   totalCompletion,
   completedSections,
   onReset,
+  showLabels,
+  setShowLabels,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const section = SECTIONS[currentSection];
@@ -40,7 +42,13 @@ export default function HUD({
           >
             {isZoomedOut ? "⊙ Zoom In" : "⊕ Full Puzzle"}
           </button>
-
+          <button
+            onClick={() => setShowLabels((prev) => !prev)}
+            className={styles.resetButton}
+            title="Toggle Labels"
+          >
+            {showLabels ? "Hide Labels" : "Show Labels"}
+          </button>
           <button
             onClick={onReset}
             className={`${styles.resetButton}`}
