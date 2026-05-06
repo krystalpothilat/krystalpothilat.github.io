@@ -10,18 +10,21 @@
       "type": "project",
       "label": "Movie Bucketlist",
       "sublabel": "React · Vite",
+      "status": "ready",
       "detailsId": "proj_movie_bucketlist"
     },
     {
       "type": "project",
       "label": "Bingo Widget Creator",
       "sublabel": "React",
+      "status": "ready",
       "detailsId": "proj_bingo_widget"
     },
     {
       "type": "project",
       "label": "ML Classifier",
-      "sublabel": "PyTorch"
+      "sublabel": "PyTorch",
+      "status": "coming_soon"
     },
     {
       "type": "nav",

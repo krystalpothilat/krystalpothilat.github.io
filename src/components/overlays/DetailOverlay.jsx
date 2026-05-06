@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/DetailOverlay.module.css";
+import styles from "../../styles/DetailOverlay.module.css";
 
-import githubLogo from "../imgs/github_logo.jpg";
-import linkedinLogo from "../imgs/linkedin_logo.jpg";
-import linkIcon from "../imgs/link.jpg";
-import fileIcon from "../imgs/file.jpg";
-import mailIcon from "../imgs/mail.jpg";
+import githubLogo from "../../imgs/github_logo.jpg";
+import linkedinLogo from "../../imgs/linkedin_logo.jpg";
+import linkIcon from "../../imgs/link.jpg";
+import fileIcon from "../../imgs/file.jpg";
+import mailIcon from "../../imgs/mail.jpg";
 
 export default function DetailOverlay({ detailsId, section, onClose }) {
   const detail = section?.details?.[detailsId];

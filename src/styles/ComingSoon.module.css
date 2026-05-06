@@ -1,0 +1,111 @@
+/* DetailOverlay.module.css — Cozy bakery / sketchbook, not medieval */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Patrick+Hand&display=swap");
+
+/*
+  Nunito      → rounded, friendly, modern — body text
+  Patrick Hand → casual handwritten but clean, not calligraphy-y — titles/labels
+*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── Overlay backdrop ─────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 28, 18, 0.5);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.25s ease;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.fadeOut {
+  opacity: 0;
+}
+
+/* ─── Card ─────────────────────────────────────────────────────── */
+.container {
+  /* Cooler off-white — more linen than butter */
+  background: #f7f2ec;
+
+  border: 2px solid #4a3728;
+  border-radius: 6px;
+
+  /* Hard offset shadow = hand-drawn card feel */
+  box-shadow:
+    4px 5px 0px #4a3728,
+    10px 12px 30px rgba(40, 28, 18, 0.18);
+
+  width: 30vw;
+
+  height: 20vh;
+
+  /* more breathing room inside */
+  padding: 56px 64px 48px;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(1);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.zoomOut {
+  transform: scale(0.98);
+  opacity: 0;
+}
+
+/* ─── Close button ─────────────────────────────────────────────── */
+.closeButton {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #a08878;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 2px;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.closeButton:hover {
+  color: #4a3728;
+}
+
+/* ─── Content ────────────────────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  gap: 10px;
+}
+
+/* ─── Title ────────────────────────────────────────────────────── */
+.headerTitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 50px;
+  font-weight: 400;
+  color: #2e1f14;
+  margin: 0 0 3px 0;
+  line-height: 1.15;
+}

@@ -102,7 +102,7 @@ export function usePuzzleEngine() {
     });
 
     console.log("completed sections computed:", nextCompleted);
-    
+
     setCompletedSections(nextCompleted);
   }, [pieces]);
 

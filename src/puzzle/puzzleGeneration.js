@@ -226,6 +226,7 @@ export function buildPuzzlePieces() {
           type: override.type || "plain",
           label: override.label || null,
           sublabel: override.sublabel || null,
+          status: override.status || null,
           linksTo: override.linksTo || null,
           detailsId: override.detailsId || null,
           clipPath: getPieceClipPathFromEdges(

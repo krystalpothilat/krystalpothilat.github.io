@@ -7,7 +7,8 @@ import { useViewport } from "./hooks/useViewport.js";
 import { SECTIONS } from "./data/puzzleData.js";
 import { getSectionLayout } from "./puzzle/puzzleLayout.js";
 import "./styles/App.module.css";
-import DetailOverlay from "./components/DetailOverlay.jsx";
+import DetailOverlay from "./components/overlays/DetailOverlay.jsx";
+import OverlayManager from "./components/OverlayManager.jsx";
 
 export default function App() {
   const {
@@ -23,8 +24,7 @@ export default function App() {
   } = usePuzzleEngine();
 
   const viewport = useViewport();
-  const [activeDetail, setActiveDetail] = useState(null);
-  const [activeSection, setActiveSection] = useState(null);
+  const [overlay, setOverlay] = useState(null);
   const [achievement, setAchievement] = useState(null);
 
   const prevCompleted = useRef(new Set());
@@ -55,11 +55,8 @@ export default function App() {
   const handlePieceClick = useCallback(
     (piece) => {
       console.log("clicked piece:", piece);
-      console.log("detailsId:", piece.detailsId);
 
-      if (justSnapped === piece.id) return;
-
-      // 1. NAVIGATION FIRST (if it exists)
+      // NAVIGATION FIRST
       if (piece.linksTo) {
         const layout = getSectionLayout();
         if (layout[piece.linksTo]) {
@@ -68,13 +65,27 @@ export default function App() {
         }
       }
 
-      // 2. ONLY IF NO NAVIGATION → OPEN OVERLAY
-      if (piece.detailsId) {
-        setActiveDetail(piece.detailsId);
-        setActiveSection(piece.sectionId);
+      // COMING SOON
+      if (piece.status === "coming_soon") {
+        setOverlay({
+          type: "COMING_SOON",
+          data: piece,
+        });
+        return;
+      }
+
+      // READY → DETAIL
+      if (piece.status === "ready" && piece.detailsId) {
+        setOverlay({
+          type: "DETAIL",
+          data: {
+            detailsId: piece.detailsId,
+            section: SECTIONS[piece.sectionId],
+          },
+        });
       }
     },
-    [viewport, justSnapped],
+    [viewport],
   );
 
   return (
@@ -98,16 +109,7 @@ export default function App() {
         completedSections={completedSections}
         onReset={resetPuzzle}
       />
-      {activeDetail && (
-        <DetailOverlay
-          detailsId={activeDetail}
-          section={SECTIONS[activeSection]}
-          onClose={() => {
-            setActiveDetail(null);
-            setActiveSection(null);
-          }}
-        />
-      )}
+      <OverlayManager overlay={overlay} setOverlay={setOverlay} />
       {achievement && (
         <SectionComplete
           sectionLabel={achievement.label}
