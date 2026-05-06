@@ -251,7 +251,6 @@ export default function PuzzlePiece({
             {label}
           </span>
           {sublabel && <span className={styles.sublabelText}>{sublabel}</span>}
-          {/* {piece.linksTo && <span className={styles.linkText}>→ open</span>} */}
         </div>
       )}
     </div>

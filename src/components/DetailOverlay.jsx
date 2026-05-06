@@ -161,10 +161,8 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
         ) : (
           /* NORMAL WORK MODE */
           <>
-          {detail.description && (
-              <div className={styles.bulletItem}>
-                {detail.description}
-              </div>
+            {detail.description && (
+              <div className={styles.bulletItem}>{detail.description}</div>
             )}
             <ul className={styles.bulletList}>
               {detail.bullets?.map((b, i) => (
@@ -192,7 +190,6 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                 ))}
               </div>
             )}
-
           </>
         )}
       </div>

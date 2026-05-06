@@ -1,20 +1,22 @@
-/*
-    SectionComplete Styles
-    - static only
-*/
 .container {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(80, 200, 120, 0.9);
-  color: #0a0a0f;
-  font-family: "Syne", sans-serif;
-  font-weight: 800;
+
+  background: #f7f2ec;
+  color: #2e1f14;
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
   font-size: 1.2rem;
-  padding: 12px 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  padding: 10px 24px;
+
+  border: 2px solid #4a3728;
+  border-radius: 6px;
+  box-shadow:
+    4px 5px 0px #4a3728,
+    10px 12px 24px rgba(40, 28, 18, 0.15);
+
   z-index: 1000;
   opacity: 0;
   animation: slideInOut 2s forwards;

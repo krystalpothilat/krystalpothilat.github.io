@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import {
   snapToHome,
   clampToSection,
@@ -71,25 +71,53 @@ export function usePuzzleEngine() {
   const [dragging, setDragging] = useState(null);
   // justSnapped: set to pieceId when a snap occurs, cleared after the click event fires
   const [justSnapped, setJustSnapped] = useState(null);
-  const [completedSections, setCompletedSections] = useState(new Set());
+  const [completedSections, setCompletedSections] = useState(() => new Set());
+  const prevCompletedRef = useRef(new Set());
 
   useEffect(() => {
     savePieces(pieces);
-    const newCompleted = new Set();
+
+    const nextCompleted = new Set();
     const m = new Map();
+
     pieces.forEach((p) => {
       if (p.sectionId === "__gap__") return;
-      if (!m.has(p.sectionId)) m.set(p.sectionId, { total: 0, done: 0 });
+
+      if (!m.has(p.layoutId)) {
+        // ← layoutId
+        m.set(p.layoutId, { total: 0, done: 0 });
+      }
+
       if (!p.locked) {
-        m.get(p.sectionId).total++;
-        if (p.connected) m.get(p.sectionId).done++;
+        const data = m.get(p.layoutId); // ← layoutId
+        data.total += 1;
+        if (p.connected) data.done += 1;
       }
     });
+
     m.forEach((v, id) => {
-      if (v.total > 0 && v.done === v.total) newCompleted.add(id);
+      if (v.total > 0 && v.done === v.total) {
+        nextCompleted.add(id);
+      }
     });
-    setCompletedSections(newCompleted);
+
+    console.log("completed sections computed:", nextCompleted);
+    
+    setCompletedSections(nextCompleted);
   }, [pieces]);
+
+  useEffect(() => {
+    const prev = prevCompletedRef.current;
+
+    completedSections.forEach((id) => {
+      if (!prev.has(id)) {
+        // newly completed section
+        console.log("NEW SECTION COMPLETED:", id);
+      }
+    });
+
+    prevCompletedRef.current = new Set(completedSections);
+  }, [completedSections]);
 
   // Clear justSnapped after one event loop tick — enough for the click to read it
   useEffect(() => {

@@ -26,18 +26,29 @@ export default function App() {
   const [activeDetail, setActiveDetail] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
   const [achievement, setAchievement] = useState(null);
+
   const prevCompleted = useRef(new Set());
 
   // Track newly completed sections to show achievement
   useEffect(() => {
-    completedSections.forEach((layoutId) => {
-      if (!prevCompleted.current.has(layoutId)) {
-        const layout = getSectionLayout();
+    const layout = getSectionLayout();
+
+    for (const layoutId of completedSections) {
+      const wasCompleted = prevCompleted.current.has(layoutId);
+
+      if (!wasCompleted) {
         const slot = layout[layoutId];
-        const s = slot ? SECTIONS[slot.sectionId] : null;
-        if (s) setAchievement({ id: layoutId, label: s.label });
+        const section = slot ? SECTIONS[slot.layoutId] : null;
+
+        if (section) {
+          setAchievement({
+            id: layoutId,
+            label: section.label,
+          });
+        }
       }
-    });
+    }
+
     prevCompleted.current = new Set(completedSections);
   }, [completedSections]);
 
