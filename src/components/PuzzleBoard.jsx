@@ -11,6 +11,7 @@ import {
   SECTION_COLS,
   SECTION_ROWS,
   SECTIONS,
+  SECTION_TEMPLATES,
 } from "../data/puzzleData.js";
 
 import puzzleImg from "../imgs/puzzle-image.jpg";
@@ -143,11 +144,18 @@ export default function PuzzleBoard({
           const layout = getSectionLayout();
 
           return Object.values(layout).map((slot) => {
+            const section =
+              Object.values(SECTIONS).find(
+                (s) => s.sectionId === slot.sectionId,
+              ) ?? SECTION_TEMPLATES[slot.sectionId];
+
+            const label = section?.label ?? slot.sectionId;
+
             const px = slot.col * PIECE_SIZE * s + tx;
             const py = slot.row * PIECE_SIZE * s + ty;
             const w = SECTION_COLS * PIECE_SIZE * s;
             const h = SECTION_ROWS * PIECE_SIZE * s;
-            const section = SECTIONS[slot.sectionId];
+            // const section = SECTIONS[slot.sectionId];
             const done = completedSections.has(slot.sectionId);
             return (
               <div
@@ -170,7 +178,7 @@ export default function PuzzleBoard({
                   }}
                 >
                   {done ? "✓ " : ""}
-                  {slot.sectionId}
+                  {label}
                 </span>
               </div>
             );
