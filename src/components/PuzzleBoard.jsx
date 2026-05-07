@@ -173,7 +173,7 @@ export default function PuzzleBoard({
                 <span
                   className={styles.sectionLabel}
                   style={{
-                    fontSize: Math.min(28, Math.max(12, w * 0.04)),
+                    fontSize: 20,
                     color: done ? "rgba(90,138,90,0.9)" : "rgba(74,55,40,0.6)",
                   }}
                 >
