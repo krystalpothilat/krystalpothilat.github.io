@@ -10,31 +10,13 @@ import {
   PUZZLE_ROWS,
 } from "../data/puzzleData.js";
 
-import { shuffle, nub } from "./puzzleUtils.js";
+import {
+  shuffle,
+  nub,
+  getPieceClipPathFromEdges,
+  generateSectionSlots,
+} from "./puzzleUtils.js";
 import { getSectionLayout, getOverrides } from "./puzzleLayout.js";
-
-//generate Start/End Rows/Cols for each section
-function generateSectionSlots() {
-  const slots = [];
-
-  for (let r = 0; r < NUM_SECTION_ROWS; r++) {
-    for (let c = 0; c < NUM_SECTION_COLS; c++) {
-      const col = c * SECTION_COLS;
-      const row = r * SECTION_ROWS;
-
-      slots.push({
-        col,
-        row,
-        minCol: col,
-        maxCol: col + SECTION_COLS - 1,
-        minRow: row,
-        maxRow: row + SECTION_ROWS - 1,
-      });
-    }
-  }
-
-  return slots;
-}
 
 export function generateSectionLayout() {
   const layout = {};
@@ -239,32 +221,4 @@ export function buildPuzzlePieces() {
   });
 
   return pieces;
-}
-
-function getPieceClipPathFromEdges(s, edges) {
-  const T = s * 0.22;
-  const N = s * 0.13;
-  const H = s * 0.2;
-
-  const top =
-    edges.top === null ? `L ${s},0` : nub("top", s, T, N, H, edges.top);
-  const right =
-    edges.right === null
-      ? `L ${s},${s}`
-      : nub("right", s, T, N, H, edges.right);
-  const bottom =
-    edges.bottom === null
-      ? `L 0,${s}`
-      : nub("bottom", s, T, N, H, edges.bottom);
-  const left =
-    edges.left === null ? `L 0,0` : nub("left", s, T, N, H, edges.left);
-
-  return `M 0,0 ${top} ${right} ${bottom} ${left} Z`;
-}
-
-function checkOverlap(x1, y1, x2, y2, size, maxOverlap = 0.75) {
-  const dx = Math.max(0, size - Math.abs(x1 - x2));
-  const dy = Math.max(0, size - Math.abs(y1 - y2));
-  const overlapArea = dx * dy;
-  return overlapArea > size * size * maxOverlap;
 }

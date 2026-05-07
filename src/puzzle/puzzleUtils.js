@@ -73,7 +73,7 @@ export function nub(side, s, T, N, H, outward) {
 }
 
 //generate Start/End Rows/Cols for each section
-function generateSectionSlots() {
+export function generateSectionSlots() {
   const slots = [];
 
   for (let r = 0; r < NUM_SECTION_ROWS; r++) {
@@ -141,7 +141,7 @@ export function getTotalCompletion(pieces) {
   return free.filter((p) => p.connected).length / free.length;
 }
 
-function getPieceClipPathFromEdges(s, edges) {
+export function getPieceClipPathFromEdges(s, edges) {
   const T = s * 0.22;
   const N = s * 0.13;
   const H = s * 0.2;
@@ -160,11 +160,4 @@ function getPieceClipPathFromEdges(s, edges) {
     edges.left === null ? `L 0,0` : nub("left", s, T, N, H, edges.left);
 
   return `M 0,0 ${top} ${right} ${bottom} ${left} Z`;
-}
-
-function checkOverlap(x1, y1, x2, y2, size, maxOverlap = 0.75) {
-  const dx = Math.max(0, size - Math.abs(x1 - x2));
-  const dy = Math.max(0, size - Math.abs(y1 - y2));
-  const overlapArea = dx * dy;
-  return overlapArea > size * size * maxOverlap;
 }
