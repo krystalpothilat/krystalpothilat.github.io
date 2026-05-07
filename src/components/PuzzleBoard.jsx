@@ -135,7 +135,7 @@ export default function PuzzleBoard({
       </div>
 
       {/* Section overlays for zoom-out view (outside the mask so they're always visible) */}
-      {viewport.isZoomedOut &&
+      {viewport.isZoomedOut && showLabels &&
         (() => {
           const s = viewport.scale;
           const tx = viewport.translate.x;
