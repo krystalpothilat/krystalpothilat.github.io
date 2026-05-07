@@ -6,9 +6,7 @@ export default function ComingSoon({ data, onClose }) {
 
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 250); // keep this short (UI feedback, not long exit)
+    setTimeout(onClose, 300);
   };
 
   useEffect(() => {

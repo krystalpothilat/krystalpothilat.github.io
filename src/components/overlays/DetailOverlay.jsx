@@ -14,9 +14,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
 
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 2000); // or 300ms–500ms is more typical UX
+    setTimeout(onClose, 300);
   };
 
   useEffect(() => {

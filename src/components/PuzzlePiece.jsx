@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, {
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
 
 import styles from "../styles/PuzzlePiece.module.css";
@@ -74,49 +80,8 @@ export default function PuzzlePiece({
   const IMG_W = PUZZLE_COLS * S;
   const IMG_H = PUZZLE_ROWS * S;
 
-  useEffect(() => {
-    if (isSnapped) {
-      const t = setTimeout(() => {
-        setSnapLocked(true);
-      }, 250); // match your snap animation duration
-
-      return () => clearTimeout(t);
-    } else {
-      setSnapLocked(false);
-    }
-  }, [isSnapped]);
-
-  const handleMouseDown = useCallback(
-    (e) => {
-      e.preventDefault();
-
-      onMouseDown(id, e.clientX, e.clientY);
-    },
-    [id, onMouseDown],
-  );
-
-  const handleTouchStart = useCallback(
-    (e) => {
-      if (!isMovable) return;
-      onTouchStart(id, e.touches[0].clientX, e.touches[0].clientY);
-    },
-    [isMovable, id, onTouchStart],
-  );
-
-  const handleClick = useCallback(
-    (e) => {
-      e.stopPropagation();
-
-      // ignore if dragging happened
-      if (isDragging) return;
-
-      if (!onPieceClick) return;
-
-      onPieceClick(piece);
-    },
-    [piece, onPieceClick, isDragging],
-  );
-  // const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
+  const startPosRef = useRef({ x: 0, y: 0 });
+  const movedRef = useRef(false);
 
   const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
 
@@ -149,6 +114,67 @@ export default function PuzzlePiece({
   const left = locked || connected ? Math.round(x) : x;
   const top = locked || connected ? Math.round(y) : y;
 
+  const handleMouseDown = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      movedRef.current = false;
+      startPosRef.current = { x: e.clientX, y: e.clientY };
+
+      const onMove = (ev) => {
+        const dx = ev.clientX - startPosRef.current.x;
+        const dy = ev.clientY - startPosRef.current.y;
+
+        if (Math.hypot(dx, dy) > 5) {
+          movedRef.current = true;
+        }
+      };
+
+      const onUp = () => {
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup", onUp);
+      };
+
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup", onUp);
+
+      onMouseDown(id, e.clientX, e.clientY);
+    },
+    [id, onMouseDown],
+  );
+
+  const handleTouchStart = useCallback(
+    (e) => {
+      if (!isMovable) return;
+      onTouchStart(id, e.touches[0].clientX, e.touches[0].clientY);
+    },
+    [isMovable, id, onTouchStart],
+  );
+
+  const handleClick = useCallback(
+    (e) => {
+      e.stopPropagation();
+
+      if (isDragging || movedRef.current) return;
+
+      if (!onPieceClick) return;
+
+      onPieceClick(piece);
+    },
+    [piece, onPieceClick, isDragging],
+  );
+
+  useEffect(() => {
+    if (isSnapped) {
+      const t = setTimeout(() => {
+        setSnapLocked(true);
+      }, 250); // match your snap animation duration
+
+      return () => clearTimeout(t);
+    } else {
+      setSnapLocked(false);
+    }
+  }, [isSnapped]);
   return (
     <div
       style={{
