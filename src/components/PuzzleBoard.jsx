@@ -156,7 +156,7 @@ export default function PuzzleBoard({
             const w = SECTION_COLS * PIECE_SIZE * s;
             const h = SECTION_ROWS * PIECE_SIZE * s;
             // const section = SECTIONS[slot.sectionId];
-            const done = completedSections.has(slot.sectionId);
+            const done = completedSections.has(slot.layoutId);
             return (
               <div
                 key={slot.layoutId}
