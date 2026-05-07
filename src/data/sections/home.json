@@ -47,8 +47,7 @@
         "resume": "resume"
       },
 
-      "image": "/src/imgs/me.jpg",
-
+      "image": "me",
       "bio": "Currently working on Optical Inter Satellite Links at Amazon Leo",
 
       "highlights": [

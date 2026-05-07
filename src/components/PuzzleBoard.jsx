@@ -1,9 +1,9 @@
 import React, { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import PuzzlePiece from "./PuzzlePiece.jsx";
-
+import { getSectionLayout } from "../puzzle/puzzleLayout.js";
+import { imgs } from "../assets";
 import styles from "../styles/PuzzleBoard.module.css";
-
 import {
   PIECE_SIZE,
   PUZZLE_COLS,
@@ -13,11 +13,6 @@ import {
   SECTIONS,
   SECTION_TEMPLATES,
 } from "../data/puzzleData.js";
-
-import puzzleImg from "../imgs/puzzle-image.jpg";
-import wood2 from "../imgs/wood2.jpg";
-
-import { getSectionLayout } from "../puzzle/puzzleLayout.js";
 
 export default function PuzzleBoard({
   pieces,
@@ -97,6 +92,7 @@ export default function PuzzleBoard({
       className={styles.board}
       style={{
         cursor: dragging ? "grabbing" : "default",
+        backgroundImage: `url(${imgs.wood2})`,
       }}
     >
       {/* Mask wrapper --> fades edges when zoomed in to hide other sections */}
@@ -128,7 +124,7 @@ export default function PuzzleBoard({
               onMouseDown={onMD}
               onTouchStart={onTS}
               onPieceClick={onPieceClick}
-              imageUrl={puzzleImg}
+              imageUrl={imgs.puzzleImage}
             />
           ))}
         </motion.div>

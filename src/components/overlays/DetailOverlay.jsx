@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/DetailOverlay.module.css";
-
-import githubLogo from "../../imgs/github_logo.jpg";
-import linkedinLogo from "../../imgs/linkedin_logo.jpg";
-import linkIcon from "../../imgs/link.jpg";
-import fileIcon from "../../imgs/file.jpg";
-import mailIcon from "../../imgs/mail.jpg";
+import { logos, icons, imgs } from "../../assets";
 
 export default function DetailOverlay({ detailsId, section, onClose }) {
   const detail = section?.details?.[detailsId];
@@ -70,7 +65,11 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={githubLogo} className={styles.icon} alt="GitHub" />
+                  <img
+                    src={logos.githubLogo}
+                    className={styles.icon}
+                    alt="GitHub"
+                  />
                 </a>
               )}
               {detail.links?.linkedin && (
@@ -80,7 +79,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={linkedinLogo}
+                    src={logos.linkedinLogo}
                     className={styles.icon}
                     alt="LinkedIn"
                   />
@@ -94,7 +93,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={linkIcon}
+                    src={icons.linkIcon}
                     className={styles.icon}
                     alt="Project Link"
                   />
@@ -102,7 +101,11 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
               )}
               {detail.links?.email && (
                 <a href={`mailto:${detail.links.email}`}>
-                  <img src={mailIcon} className={styles.icon} alt="Email me!" />
+                  <img
+                    src={icons.mailIcon}
+                    className={styles.icon}
+                    alt="Email me!"
+                  />
                 </a>
               )}
               {detail.links?.resume && (
@@ -111,7 +114,11 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={fileIcon} className={styles.icon} alt="Resume" />
+                  <img
+                    src={icon.fileIcon}
+                    className={styles.icon}
+                    alt="Resume"
+                  />
                 </a>
               )}
             </div>
@@ -119,7 +126,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
 
           {detail.logo && (
             <img
-              src={detail.logo}
+              src={logos[detail.logo]}
               alt="company logo"
               className={styles.companyLogo}
             />
@@ -135,7 +142,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
           >
             {detail.image && (
               <img
-                src={detail.image}
+                src={imgs[detail.image]}
                 alt="profile"
                 className={styles.profileImage}
               />

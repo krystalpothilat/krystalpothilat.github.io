@@ -39,7 +39,7 @@
       "company": "Amazon",
       "period": "August 2025 – Present",
       "location": "Los Angeles, CA",
-      "logo": "/src/imgs/amazon_leo_logo.jpg",
+      "logo": "amazonLeoLogo",
       "description": "Working on Optical Inter Satellite Links at Amazon Leo",
       "bullets": [
         "Developed real-time embedded software in Rust for distributed control systems on bare-metal FreeRTOS, focused on scalable logging and telemetry infrastructure for hardware monitoring and runtime system behavior",
@@ -53,7 +53,7 @@
       "company": "General Atomics",
       "period": "June 2023 - August 2023",
       "location": "San Diego, CA",
-      "logo": "/src/imgs/ga_logo.jpg",
+      "logo": "gaLogo",
       "bullets": [
         "Expanded payload functionality on the P3E system by implementing new features that enhanced configuration flexbility and system capability for automated pre-flight operations",
         "Extended messaging architecture across embedded subsytems to support new payload behaviors",
@@ -66,7 +66,7 @@
       "company": "General Atomics",
       "period": "June 2022 – August 2022",
       "location": "San Diego, CA",
-      "logo": "/src/imgs/ga_logo.jpg",
+      "logo": "gaLogo",
       "bullets": [
         "Enhanced the user interface for the Heads-Up Display for multiple ground control systems",
         "Worked with Linux-based virtual machine envirionments to simulate system behavior and verify feature reliabiltiy"

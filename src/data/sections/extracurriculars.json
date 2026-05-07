@@ -31,7 +31,7 @@
       "title": "President",
       "company": "Women in Computing at UCR",
       "period": "March 2022 - March 2023",
-      "logo": "/src/imgs/winc_logo.jpg",
+      "logo": "wincLogo",
       "description": "President of the leading student organization focused on empowering and advocating for women in computer science through community building, mentorship, and professional development initiatives",
       "bullets": [
         "Led and supported a team of 6 officers in planning and organizing events, initiatives, and outreach efforts",
@@ -43,7 +43,7 @@
       "title": "Secretary",
       "company": "Women in Computing at UCR",
       "period": "March 2021 - March 2022",
-      "logo": "/src/imgs/winc_logo.jpg",
+      "logo": "wincLogo",
       "description": "Secretary of the leading student organization focused on empowering and advocating for women in computer science through community building, mentorship, and professional development initiatives",
       "bullets": [
         "Coordinated communication between officers, members, and partner organizations for events and collaborations",
