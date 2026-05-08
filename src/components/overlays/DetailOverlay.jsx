@@ -115,7 +115,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={icon.fileIcon}
+                    src={icons.fileIcon}
                     className={styles.icon}
                     alt="Resume"
                   />
