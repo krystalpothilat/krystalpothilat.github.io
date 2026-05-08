@@ -246,28 +246,41 @@ export default function PuzzlePiece({
             Floating + important pieces always get all 4.
             Connected normal pieces: top+left by default, bottom+right only
             when the neighbor on that side is absent or at puzzle border. */}
-        {["top", "right", "bottom", "left"].map((side) =>
-          ownedSides[side] ? (
-            <path
-              key={side}
-              d={getPieceSideStrokePath(
-                S,
-                piece.edges ?? {
-                  top: null,
-                  right: null,
-                  bottom: null,
-                  left: null,
-                },
-                side,
+        {["top", "right", "bottom", "left"].map((side) => {
+          if (!ownedSides[side]) return null;
+          const d = getPieceSideStrokePath(
+            S,
+            piece.edges ?? { top: null, right: null, bottom: null, left: null },
+            side,
+          );
+          return (
+            <g key={side}>
+              {/* Base ink stroke */}
+              <path
+                d={d}
+                fill="none"
+                stroke={
+                  isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"
+                }
+                strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+              {/* Glow pulse — only for important pieces */}
+              {isImportant && (
+                <path
+                  d={d}
+                  fill="none"
+                  stroke={glowColor}
+                  strokeWidth={5}
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  className={styles.glowPulse}
+                />
               )}
-              fill="none"
-              stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
-              strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          ) : null,
-        )}
+            </g>
+          );
+        })}
         {/* Subtle inner highlight - warm cream, not cold white */}
         {/* <path
           d={clipPath}
@@ -291,7 +304,7 @@ export default function PuzzlePiece({
       </svg>
 
       {showLabels && label && type !== "plain" && (
-        <div className={styles.labelContainer}>
+        <div className={styles.labelContainer} style={{ zIndex: 100000 }}>
           <span
             className={styles.labelText}
             style={{

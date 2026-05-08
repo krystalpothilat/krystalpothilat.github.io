@@ -11,10 +11,6 @@
   text-align: center;
 
   pointer-events: none;
-
-  box-shadow:
-    0 2px 10px rgba(201, 37, 37, 0.18),
-    0 0 0 1px rgba(74, 64, 40, 0.08);
 }
 
 .labelText {
@@ -47,4 +43,25 @@ path {
     stroke 0.35s ease,
     stroke-width 0.35s ease,
     opacity 0.35s ease;
+}
+
+/* Pulsing glow border for important pieces */
+.glowPulse {
+  animation: glowPulse 2.4s ease-in-out infinite;
+  /* stroke color set inline per piece group */
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.15;
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 0.85;
+    filter: blur(0.5px);
+  }
+  100% {
+    opacity: 0.15;
+    filter: blur(2px);
+  }
 }
