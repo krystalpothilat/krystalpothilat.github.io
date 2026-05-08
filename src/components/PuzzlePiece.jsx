@@ -6,7 +6,10 @@ import React, {
   useRef,
 } from "react";
 import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
-import { getPieceSideStrokePath } from "../puzzle/puzzleUtils.js";
+import {
+  getPieceSideStrokePath,
+  isImportantType,
+} from "../puzzle/puzzleUtils.js";
 
 import styles from "../styles/PuzzlePiece.module.css";
 
@@ -24,13 +27,13 @@ function getGroup(type) {
 
 const LABEL_COLORS = {
   nav: {
-    border: "rgba(255, 215, 0, 0.9)", // warm gold
+    border: "rgba(255, 0, 0, 0.9)", // warm gold
     // text: "#fdf6ea",
     // bg: "rgba(74,55,40,0.25)",
   },
 
   piece: {
-    border: "rgba(120, 180, 255, 0.9)", // soft blue
+    border: "rgba(255, 120, 120, 0.9)", // soft blue
     // text: "#fdf6ea",
     // bg: "rgba(30, 60, 120, 0.25)",
   },
@@ -57,6 +60,7 @@ export default function PuzzlePiece({
   onTouchStart,
   onPieceClick,
   imageUrl,
+  ownedSides = { top: true, right: true, bottom: true, left: true },
 }) {
   const S = PIECE_SIZE;
   const PAD = Math.round(S * 0.25);
@@ -66,7 +70,7 @@ export default function PuzzlePiece({
   const bgX = -piece.puzzleCol * S;
   const bgY = -piece.puzzleRow * S;
 
-  const isImportant = type !== "plain";
+  const isImportant = isImportantType(type);
   const isMovable = !locked && !connected;
   const isSnapped = connected && !locked;
   const [snapLocked, setSnapLocked] = useState(false);
@@ -88,13 +92,13 @@ export default function PuzzlePiece({
 
   const zIndex = isDragging
     ? 9999
-    : snapLocked && isImportant
-      ? 11
-      : snapLocked
-        ? 10
-        : isMovable
-          ? 500 + baseIndex
-          : 10;
+    : isMovable
+      ? 500 + baseIndex
+      : isImportant
+        ? 100 + baseIndex // important locked: always above regular locked (max baseIndex < 500)
+        : snapLocked
+          ? 10
+          : 1; // regular locked: lowest, so important neighbors paint over them
 
   // Shadow hierarchy
   // 1. Strong shadow only while dragging (lifted piece)
@@ -238,29 +242,32 @@ export default function PuzzlePiece({
         {type !== "plain" && colors.bg && (
           <path d={clipPath} fill={colors.bg} clipPath={`url(#clip_${id})`} />
         )}
-        {/* Phase 1: draw all 4 sides as individual strokes.
-            Overlap on shared edges is expected at this stage — 
-            Phase 2 will suppress sides based on neighbor state. */}
-        {["top", "right", "bottom", "left"].map((side) => (
-          <path
-            key={side}
-            d={getPieceSideStrokePath(
-              S,
-              piece.edges ?? {
-                top: null,
-                right: null,
-                bottom: null,
-                left: null,
-              },
-              side,
-            )}
-            fill="none"
-            stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
-            strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          />
-        ))}
+        {/* Render only the sides this piece owns based on neighbor state.
+            Floating + important pieces always get all 4.
+            Connected normal pieces: top+left by default, bottom+right only
+            when the neighbor on that side is absent or at puzzle border. */}
+        {["top", "right", "bottom", "left"].map((side) =>
+          ownedSides[side] ? (
+            <path
+              key={side}
+              d={getPieceSideStrokePath(
+                S,
+                piece.edges ?? {
+                  top: null,
+                  right: null,
+                  bottom: null,
+                  left: null,
+                },
+                side,
+              )}
+              fill="none"
+              stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
+              strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          ) : null,
+        )}
         {/* Subtle inner highlight - warm cream, not cold white */}
         {/* <path
           d={clipPath}

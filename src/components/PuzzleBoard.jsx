@@ -1,7 +1,8 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useRef, useCallback, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import PuzzlePiece from "./PuzzlePiece.jsx";
 import { getSectionLayout } from "../puzzle/puzzleLayout.js";
+import { computeOwnedSides } from "../puzzle/puzzleUtils.js";
 import { imgs } from "../assets";
 import styles from "../styles/PuzzleBoard.module.css";
 import {
@@ -26,6 +27,11 @@ export default function PuzzleBoard({
   completedSections,
 }) {
   const boardRef = useRef(null);
+
+  const ownedSidesMap = useMemo(
+    () => computeOwnedSides(pieces, PUZZLE_COLS, PUZZLE_ROWS),
+    [pieces],
+  );
   const screenToPuzzle = useCallback(
     (x, y) => viewport.screenToPuzzle(x, y),
     [viewport],
@@ -115,18 +121,46 @@ export default function PuzzleBoard({
             height: puzzleH,
           }}
         >
-          {pieces.map((piece) => (
-            <PuzzlePiece
-              key={piece.id}
-              piece={piece}
-              showLabels={showLabels}
-              isDragging={dragging?.pieceId === piece.id}
-              onMouseDown={onMD}
-              onTouchStart={onTS}
-              onPieceClick={onPieceClick}
-              imageUrl={imgs.puzzleImage}
-            />
-          ))}
+          {pieces.map((piece) => {
+            const ownedSides = ownedSidesMap.get(piece.id) ?? {
+              top: true,
+              right: true,
+              bottom: true,
+              left: true,
+            };
+
+            // DEBUG
+            if (
+              piece.type !== "plain" &&
+              (!ownedSides.bottom || !ownedSides.right)
+            ) {
+              console.log(
+                "MISSING SIDE",
+                piece.id,
+                piece.type,
+                piece.locked,
+                piece.connected,
+                ownedSides,
+              );
+            }
+            if (piece.type !== "plain" && !piece.edges) {
+              console.log("NO EDGES", piece.id, piece.type);
+            }
+
+            return (
+              <PuzzlePiece
+                key={piece.id}
+                piece={piece}
+                showLabels={showLabels}
+                isDragging={dragging?.pieceId === piece.id}
+                onMouseDown={onMD}
+                onTouchStart={onTS}
+                onPieceClick={onPieceClick}
+                imageUrl={imgs.puzzleImage}
+                ownedSides={ownedSides}
+              />
+            );
+          })}
         </motion.div>
       </div>
 

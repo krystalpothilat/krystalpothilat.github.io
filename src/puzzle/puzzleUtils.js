@@ -141,6 +141,107 @@ export function getTotalCompletion(pieces) {
   return free.filter((p) => p.connected).length / free.length;
 }
 
+export function isImportantType(type) {
+  return (
+    type === "nav" ||
+    type === "title" ||
+    type === "section-header" ||
+    type === "project" ||
+    type === "job" ||
+    type === "extracurricular"
+  );
+}
+
+function isConnected(piece) {
+  return piece != null && (piece.locked || piece.connected);
+}
+
+// Computes which border sides each piece is responsible for drawing.
+// Returns a Map of pieceId → { top, right, bottom, left } booleans.
+//
+// Default ownership for a locked/connected normal piece:
+//   top   → always draw (unless top-neighbor is important)
+//   left  → always draw (unless left-neighbor is important)
+//   bottom→ only draw if bottom-neighbor is floating/absent OR at puzzle border
+//   right → only draw if right-neighbor is floating/absent OR at puzzle border
+//
+// Overrides:
+//   floating/movable piece  → draws all 4 always
+//   important piece         → draws all 4 always
+//   normal piece next to an important neighbor → suppress that shared side
+//     (the important piece owns it with its glow border)
+export function computeOwnedSides(pieces, puzzleCols, puzzleRows) {
+  const grid = new Map();
+  pieces.forEach((p) => grid.set(`${p.puzzleCol},${p.puzzleRow}`, p));
+
+  const result = new Map();
+
+  pieces.forEach((piece) => {
+    const { puzzleCol: pc, puzzleRow: pr, type } = piece;
+
+    // --- State 1: Floating/movable — always draws all 4 sides ---
+    const isMovable = !piece.locked && !piece.connected;
+    if (isMovable) {
+      result.set(piece.id, {
+        top: true,
+        right: true,
+        bottom: true,
+        left: true,
+      });
+      return;
+    }
+
+    // --- State 2: Locked important — always draws all 4 sides ---
+    const isImportant = isImportantType(type);
+    if (isImportant) {
+      result.set(piece.id, {
+        top: true,
+        right: true,
+        bottom: true,
+        left: true,
+      });
+      return;
+    }
+
+    // --- States 3/4/5: Locked regular piece ---
+    // Look up all 4 neighbors
+    const above = grid.get(`${pc},${pr - 1}`);
+    const below = grid.get(`${pc},${pr + 1}`);
+    const leftN = grid.get(`${pc - 1},${pr}`);
+    const rightN = grid.get(`${pc + 1},${pr}`);
+
+    const isTopBorder = pr === 0;
+    const isLeftBorder = pc === 0;
+    const isBottomBorder = pr === puzzleRows - 1;
+    const isRightBorder = pc === puzzleCols - 1;
+
+    // Helper: should this piece draw the side toward `neighbor`?
+    // - Always draw if neighbor is important (suppress would hide the glow — important owns it, we defer)
+    //   Wait, actually we SUPPRESS when neighbor is important (they draw it with glow)
+    // - Always draw if no neighbor exists in the grid at all (edge piece with no puzzle neighbor)
+    // - Draw if neighbor is floating/movable (they're gone, we fill the gap)
+    // - State 3: puzzle border → always draw
+    // - State 4: neighbor missing/floating → draw
+    // - State 5: neighbor locked regular → top+left convention (don't draw bottom/right)
+    const neighborDrawn = (neighbor, isThisBorder, isDefaultDraw) => {
+      if (isThisBorder) return true; // State 3: puzzle border
+      if (neighbor == null) return true; // no neighbor in grid at all
+      if (isImportantType(neighbor.type)) return false; // important neighbor owns this edge
+      if (!isConnected(neighbor)) return true; // State 4: neighbor is floating
+      return isDefaultDraw; // State 5: top+left convention
+    };
+
+    result.set(piece.id, {
+      top: neighborDrawn(above, isTopBorder, true), // top: default draw = true
+      left: neighborDrawn(leftN, isLeftBorder, true), // left: default draw = true
+      bottom: neighborDrawn(below, isBottomBorder, false), // bottom: default draw = false
+      right: neighborDrawn(rightN, isRightBorder, false), // right: default draw = false
+    });
+  });
+
+  return result;
+}
+
 export function getPieceClipPathFromEdges(s, edges) {
   const T = s * 0.22;
   const N = s * 0.13;
