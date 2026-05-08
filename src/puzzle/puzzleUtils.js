@@ -161,3 +161,37 @@ export function getPieceClipPathFromEdges(s, edges) {
 
   return `M 0,0 ${top} ${right} ${bottom} ${left} Z`;
 }
+
+// Returns an open (non-closed) SVG path for a single side of a piece.
+// We M to the corner that starts that side, then append the full nub segment
+// (which already contains the leading flat L, the curve, and the trailing flat L).
+export function getPieceSideStrokePath(s, edges, side) {
+  const T = s * 0.22;
+  const N = s * 0.13;
+  const H = s * 0.2;
+
+  switch (side) {
+    case "top":
+      return edges.top === null
+        ? `M 0,0 L ${s},0`
+        : `M 0,0 ` + nub("top", s, T, N, H, edges.top);
+
+    case "right":
+      return edges.right === null
+        ? `M ${s},0 L ${s},${s}`
+        : `M ${s},0 ` + nub("right", s, T, N, H, edges.right);
+
+    case "bottom":
+      return edges.bottom === null
+        ? `M ${s},${s} L 0,${s}`
+        : `M ${s},${s} ` + nub("bottom", s, T, N, H, edges.bottom);
+
+    case "left":
+      return edges.left === null
+        ? `M 0,${s} L 0,0`
+        : `M 0,${s} ` + nub("left", s, T, N, H, edges.left);
+
+    default:
+      return "";
+  }
+}

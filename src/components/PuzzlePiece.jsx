@@ -6,6 +6,7 @@ import React, {
   useRef,
 } from "react";
 import { PIECE_SIZE, PUZZLE_COLS, PUZZLE_ROWS } from "../data/puzzleData.js";
+import { getPieceSideStrokePath } from "../puzzle/puzzleUtils.js";
 
 import styles from "../styles/PuzzlePiece.module.css";
 
@@ -237,25 +238,39 @@ export default function PuzzlePiece({
         {type !== "plain" && colors.bg && (
           <path d={clipPath} fill={colors.bg} clipPath={`url(#clip_${id})`} />
         )}
-        {/* Warm ink outline - thicker on movable pieces like a cartoon outline */}
-        <path
-          d={clipPath}
-          fill="none"
-          stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
-          strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+        {/* Phase 1: draw all 4 sides as individual strokes.
+            Overlap on shared edges is expected at this stage — 
+            Phase 2 will suppress sides based on neighbor state. */}
+        {["top", "right", "bottom", "left"].map((side) => (
+          <path
+            key={side}
+            d={getPieceSideStrokePath(
+              S,
+              piece.edges ?? {
+                top: null,
+                right: null,
+                bottom: null,
+                left: null,
+              },
+              side,
+            )}
+            fill="none"
+            stroke={isMovable ? "rgba(74,55,40,0.85)" : "rgba(74,55,40,0.35)"}
+            strokeWidth={isImportant ? 3 : isMovable ? 3 : 1.5}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        ))}
         {/* Subtle inner highlight - warm cream, not cold white */}
-        <path
+        {/* <path
           d={clipPath}
           fill="none"
           stroke="rgba(253,246,234,0.25)"
           strokeWidth="1"
           strokeLinejoin="round"
           strokeLinecap="round"
-        />
-        {type !== "plain" && colors.border && (
+        /> */}
+        {/* {type !== "plain" && colors.border && (
           <path
             d={clipPath}
             fill="none"
@@ -265,7 +280,7 @@ export default function PuzzlePiece({
             strokeLinecap="round"
             opacity={isSnapped ? 0.9 : 0.5}
           />
-        )}
+        )} */}
       </svg>
 
       {showLabels && label && type !== "plain" && (

@@ -215,6 +215,7 @@ export function buildPuzzlePieces() {
             PIECE_SIZE,
             edgeMap[`${pc},${pr}`],
           ),
+          edges: { ...edgeMap[`${pc},${pr}`] },
         });
       }
     }
