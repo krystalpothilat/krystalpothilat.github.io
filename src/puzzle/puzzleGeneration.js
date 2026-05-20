@@ -24,13 +24,11 @@ export function generateSectionLayout() {
   const slots = generateSectionSlots();
 
   const sections = shuffle(Object.values(SECTIONS));
-
-  const usedSlots = slots.slice(0, sections.length);
-  const remainingSlots = slots.slice(sections.length);
+  const availableSlots = shuffle([...slots]);
 
   // 1. place real sections
   sections.forEach((section, i) => {
-    const slot = usedSlots[i];
+    const slot = availableSlots.pop();
 
     layout[section.sectionId] = {
       layoutId: section.sectionId,
@@ -45,7 +43,7 @@ export function generateSectionLayout() {
   });
 
   // 2. fill remaining slots with puzzle zones
-  remainingSlots.forEach((slot, i) => {
+  availableSlots.forEach((slot, i) => {
     const id = `puzzleZone_${i}`;
 
     layout[id] = {
