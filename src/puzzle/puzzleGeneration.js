@@ -120,7 +120,7 @@ export function buildPuzzlePieces() {
   const layout = getSectionLayout();
   const overrides = getOverrides(layout);
 
-  Object.values(layout).forEach((sectionSlot) => {
+Object.values(layout).sort((a, b) => a.row - b.row || a.col - b.col).forEach((sectionSlot) => {
     const { col: puzzleCol, row: puzzleRow, layoutId, sectionId } = sectionSlot;
 
     const overrideMap = overrides[layoutId] || {};

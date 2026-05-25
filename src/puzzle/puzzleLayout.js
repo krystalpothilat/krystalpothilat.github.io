@@ -9,6 +9,7 @@ let cachedOverrides = null;
 export function getSectionLayout() {
   if (!cachedLayout) {
     cachedLayout = generateSectionLayout();
+    cachedOverrides = null; // bust overrides whenever layout regenerates
   }
   return cachedLayout;
 }
