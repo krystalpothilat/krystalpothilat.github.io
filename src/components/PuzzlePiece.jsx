@@ -89,16 +89,19 @@ export default function PuzzlePiece({
   const movedRef = useRef(false);
 
   const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
+const isAnimatingSnap = connected && !locked && !snapLocked;
 
-  const zIndex = isDragging
-    ? 9999
+const zIndex = isDragging
+  ? 9999
+  : isAnimatingSnap
+    ? 800 // keep above everything during snap
     : isMovable
       ? 500 + baseIndex
       : isImportant
-        ? 100 + baseIndex // important locked: always above regular locked (max baseIndex < 500)
+        ? 100 + baseIndex
         : snapLocked
           ? 10
-          : 1; // regular locked: lowest, so important neighbors paint over them
+          : 1;
 
   // Shadow hierarchy
   // 1. Strong shadow only while dragging (lifted piece)
