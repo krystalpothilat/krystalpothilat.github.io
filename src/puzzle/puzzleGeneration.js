@@ -120,104 +120,111 @@ export function buildPuzzlePieces() {
   const layout = getSectionLayout();
   const overrides = getOverrides(layout);
 
-Object.values(layout).sort((a, b) => a.row - b.row || a.col - b.col).forEach((sectionSlot) => {
-    const { col: puzzleCol, row: puzzleRow, layoutId, sectionId } = sectionSlot;
+  Object.values(layout)
+    .sort((a, b) => a.row - b.row || a.col - b.col)
+    .forEach((sectionSlot) => {
+      const {
+        col: puzzleCol,
+        row: puzzleRow,
+        layoutId,
+        sectionId,
+      } = sectionSlot;
 
-    const overrideMap = overrides[layoutId] || {};
+      const overrideMap = overrides[layoutId] || {};
 
-    for (let r = 0; r < SECTION_ROWS; r++) {
-      for (let c = 0; c < SECTION_COLS; c++) {
-        const pc = puzzleCol + c;
-        const pr = puzzleRow + r;
-        const override = overrideMap[`${r},${c}`] || {};
+      for (let r = 0; r < SECTION_ROWS; r++) {
+        for (let c = 0; c < SECTION_COLS; c++) {
+          const pc = puzzleCol + c;
+          const pr = puzzleRow + r;
+          const override = overrideMap[`${r},${c}`] || {};
 
-        // Determine edges
-        const isTopBorder = pr === 0;
-        const isLeftBorder = pc === 0;
-        const isRightBorder = pc === PUZZLE_COLS - 1;
-        const isBottomBorder = pr === PUZZLE_ROWS - 1;
+          // Determine edges
+          const isTopBorder = pr === 0;
+          const isLeftBorder = pc === 0;
+          const isRightBorder = pc === PUZZLE_COLS - 1;
+          const isBottomBorder = pr === PUZZLE_ROWS - 1;
 
-        // TOP (depends on above)
-        const above = edgeMap[`${pc},${pr - 1}`];
+          // TOP (depends on above)
+          const above = edgeMap[`${pc},${pr - 1}`];
 
-        const topEdge = isTopBorder
-          ? null
-          : above?.bottom == null
+          const topEdge = isTopBorder
             ? null
-            : !above.bottom;
+            : above?.bottom == null
+              ? null
+              : !above.bottom;
 
-        // LEFT (depends on left)
-        const leftEdge = isLeftBorder
-          ? null
-          : edgeMap[`${pc - 1},${pr}`]?.right == null
+          // LEFT (depends on left)
+          const leftEdge = isLeftBorder
             ? null
-            : !edgeMap[`${pc - 1},${pr}`].right;
+            : edgeMap[`${pc - 1},${pr}`]?.right == null
+              ? null
+              : !edgeMap[`${pc - 1},${pr}`].right;
 
-        // RIGHT (only decided here)
-        const rightEdge = isRightBorder ? null : Math.random() < 0.5;
+          // RIGHT (only decided here)
+          const rightEdge = isRightBorder ? null : Math.random() < 0.5;
 
-        // BOTTOM (only decided here)
-        const bottomEdge = isBottomBorder ? null : Math.random() < 0.5;
+          // BOTTOM (only decided here)
+          const bottomEdge = isBottomBorder ? null : Math.random() < 0.5;
 
-        edgeMap[`${pc},${pr}`] = {
-          top: topEdge,
-          left: leftEdge,
-          right: rightEdge,
-          bottom: bottomEdge,
-        };
+          edgeMap[`${pc},${pr}`] = {
+            top: topEdge,
+            left: leftEdge,
+            right: rightEdge,
+            bottom: bottomEdge,
+          };
 
-        const homeX = pc * PIECE_SIZE;
-        const homeY = pr * PIECE_SIZE;
-        const isLocked = override.locked ?? true;
+          const homeX = pc * PIECE_SIZE;
+          const homeY = pr * PIECE_SIZE;
+          const isLocked = override.locked ?? true;
 
-        // positionOffset
-        const margin = PIECE_SIZE * 0.6;
-        const minX = puzzleCol * PIECE_SIZE + margin;
-        const maxX = (puzzleCol + SECTION_COLS - 1) * PIECE_SIZE - margin;
-        const minY = puzzleRow * PIECE_SIZE + margin;
-        const maxY = (puzzleRow + SECTION_ROWS - 1) * PIECE_SIZE - margin;
+          // positionOffset
+          const margin = PIECE_SIZE * 0.6;
+          const minX = puzzleCol * PIECE_SIZE + margin;
+          const maxX = (puzzleCol + SECTION_COLS - 1) * PIECE_SIZE - margin;
+          const minY = puzzleRow * PIECE_SIZE + margin;
+          const maxY = (puzzleRow + SECTION_ROWS - 1) * PIECE_SIZE - margin;
 
-        const maxOffset = PIECE_SIZE * 4;
-        const positionOffsetX = isLocked
-          ? homeX
-          : Math.min(
-              maxX,
-              Math.max(minX, homeX + (Math.random() - 0.5) * maxOffset),
-            );
-        const positionOffsetY = isLocked
-          ? homeY
-          : Math.min(
-              maxY,
-              Math.max(minY, homeY + (Math.random() - 0.5) * maxOffset),
-            );
+          const maxOffset = PIECE_SIZE * 4;
+          const positionOffsetX = isLocked
+            ? homeX
+            : Math.min(
+                maxX,
+                Math.max(minX, homeX + (Math.random() - 0.5) * maxOffset),
+              );
+          const positionOffsetY = isLocked
+            ? homeY
+            : Math.min(
+                maxY,
+                Math.max(minY, homeY + (Math.random() - 0.5) * maxOffset),
+              );
 
-        pieces.push({
-          id: `piece_${pc}_${pr}`,
-          puzzleCol: pc,
-          puzzleRow: pr,
-          layoutId,
-          sectionId,
-          homeX,
-          homeY,
-          x: positionOffsetX,
-          y: positionOffsetY,
-          locked: isLocked,
-          connected: isLocked,
-          type: override.type || "plain",
-          label: override.label || null,
-          sublabel: override.sublabel || null,
-          status: override.status || null,
-          linksTo: override.linksTo || null,
-          detailsId: override.detailsId || null,
-          clipPath: getPieceClipPathFromEdges(
-            PIECE_SIZE,
-            edgeMap[`${pc},${pr}`],
-          ),
-          edges: { ...edgeMap[`${pc},${pr}`] },
-        });
+          pieces.push({
+            id: `piece_${pc}_${pr}`,
+            puzzleCol: pc,
+            puzzleRow: pr,
+            layoutId,
+            sectionId,
+            homeX,
+            homeY,
+            x: positionOffsetX,
+            y: positionOffsetY,
+            locked: isLocked,
+            connected: isLocked,
+            type: override.type || "plain",
+            label: override.label || null,
+            sublabel: override.sublabel || null,
+            status: override.status || null,
+            linksTo: override.linksTo || null,
+            detailsId: override.detailsId || null,
+            clipPath: getPieceClipPathFromEdges(
+              PIECE_SIZE,
+              edgeMap[`${pc},${pr}`],
+            ),
+            edges: { ...edgeMap[`${pc},${pr}`] },
+          });
+        }
       }
-    }
-  });
+    });
 
   return pieces;
 }

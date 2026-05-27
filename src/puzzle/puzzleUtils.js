@@ -148,7 +148,8 @@ export function isImportantType(type) {
     type === "section-header" ||
     type === "project" ||
     type === "job" ||
-    type === "extracurricular"
+    type === "extracurricular" ||
+    type === "me"
   );
 }
 
