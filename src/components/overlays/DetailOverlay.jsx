@@ -150,7 +150,7 @@ export default function DetailOverlay({ detailsId, section, onClose }) {
 
             <div>
               {detail.bio && <p className={styles.bio}>{detail.bio}</p>}
-
+              <p> </p>
               {detail.highlights && (
                 <ul className={styles.bulletList}>
                   {detail.highlights.map((h, i) => (

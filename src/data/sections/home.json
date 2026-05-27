@@ -3,7 +3,7 @@
   "label": "Home",
   "pieces": [
     {
-      "type": "title",
+      "type": "me",
       "label": "Krystal Pothilat",
       "sublabel": "Software Engineer",
       "status": "ready",
@@ -51,10 +51,10 @@
       "bio": "Currently working on Optical Inter Satellite Links at Amazon Leo",
 
       "highlights": [
-        "Full-stack developer (React, Node.js)",
-        "Focus on interactive UI systems",
-        "Enjoys puzzles, animations, and creative interfaces",
-        "Interested in product + engineering intersection"
+        "B.S. in Computer Science from UC Riverside",
+        "Embedded software engineer with full-stack project experience",
+        "Interested in building products that are practical, polished, and useful",
+        "Puzzle enthusiast and crafts enjoyer"
       ]
     }
   }

@@ -14,12 +14,16 @@ import {
 import styles from "../styles/PuzzlePiece.module.css";
 
 function getGroup(type) {
-  if (type === "nav" || type === "title" || type === "section-header") {
+  if (type === "nav" || type === "section-header") {
     return "nav";
   }
 
   if (type === "project" || type === "job" || type === "extracurricular") {
     return "piece";
+  }
+
+  if (type === "me") {
+    return "me";
   }
 
   return "plain";
@@ -28,14 +32,14 @@ function getGroup(type) {
 const LABEL_COLORS = {
   nav: {
     border: "rgba(255, 0, 0, 0.9)", // warm gold
-    // text: "#fdf6ea",
-    // bg: "rgba(74,55,40,0.25)",
   },
 
   piece: {
     border: "rgba(255, 120, 120, 0.9)", // soft blue
-    // text: "#fdf6ea",
-    // bg: "rgba(30, 60, 120, 0.25)",
+  },
+
+  me: {
+    border: "rgba(188, 56, 245, 0.9)", // soft blue
   },
 
   plain: { border: null, text: null, bg: null },
@@ -45,6 +49,7 @@ const LABEL_GLOW = {
   nav: "rgba(255, 215, 0, 0.9)", // gold
   piece: "rgba(120, 180, 255, 0.85)", // blue
   plain: "rgba(0,0,0,0)", // none
+  me: "rgba(188, 56, 245, 0.9)", // purple
 };
 
 function getPieceRotation(id) {
@@ -89,19 +94,19 @@ export default function PuzzlePiece({
   const movedRef = useRef(false);
 
   const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
-const isAnimatingSnap = connected && !locked && !snapLocked;
+  const isAnimatingSnap = connected && !locked && !snapLocked;
 
-const zIndex = isDragging
-  ? 9999
-  : isAnimatingSnap
-    ? 800 // keep above everything during snap
-    : isMovable
-      ? 500 + baseIndex
-      : isImportant
-        ? 100 + baseIndex
-        : snapLocked
-          ? 10
-          : 1;
+  const zIndex = isDragging
+    ? 9999
+    : isAnimatingSnap
+      ? 800 // keep above everything during snap
+      : isMovable
+        ? 500 + baseIndex
+        : isImportant
+          ? 100 + baseIndex
+          : snapLocked
+            ? 10
+            : 1;
 
   // Shadow hierarchy
   // 1. Strong shadow only while dragging (lifted piece)
@@ -284,26 +289,6 @@ const zIndex = isDragging
             </g>
           );
         })}
-        {/* Subtle inner highlight - warm cream, not cold white */}
-        {/* <path
-          d={clipPath}
-          fill="none"
-          stroke="rgba(253,246,234,0.25)"
-          strokeWidth="1"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        /> */}
-        {/* {type !== "plain" && colors.border && (
-          <path
-            d={clipPath}
-            fill="none"
-            stroke={colors.border}
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            opacity={isSnapped ? 0.9 : 0.5}
-          />
-        )} */}
       </svg>
 
       {showLabels && label && type !== "plain" && (
