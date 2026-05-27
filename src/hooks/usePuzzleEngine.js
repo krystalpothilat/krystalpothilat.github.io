@@ -5,7 +5,11 @@ import {
   getTotalCompletion,
 } from "../puzzle/puzzleUtils.js";
 import { SECTIONS, PIECE_SIZE } from "../data/puzzleData.js";
-import { buildPuzzlePieces } from "../puzzle/puzzleGeneration.js";
+import {
+  buildPuzzlePieces,
+  shufflePiecePositions,
+  homePiecePositions,
+} from "../puzzle/puzzleGeneration.js";
 
 const STORAGE_KEY = `puzzle_portfolio_state_v4_ps${PIECE_SIZE}`;
 
@@ -68,7 +72,9 @@ export function usePuzzleEngine() {
     return base;
   });
 
+  const [mode, setMode] = useState("interactive"); // "interactive" | "noninteractive"
   const [dragging, setDragging] = useState(null);
+
   // justSnapped: set to pieceId when a snap occurs, cleared after the click event fires
   const [justSnapped, setJustSnapped] = useState(null);
   const [completedSections, setCompletedSections] = useState(() => new Set());
@@ -101,8 +107,6 @@ export function usePuzzleEngine() {
       }
     });
 
-    console.log("completed sections computed:", nextCompleted);
-
     setCompletedSections(nextCompleted);
   }, [pieces]);
 
@@ -129,6 +133,7 @@ export function usePuzzleEngine() {
 
   const startDrag = useCallback(
     (pieceId, clientX, clientY, screenToPuzzle) => {
+      if (mode === "noninteractive") return;
       const piece = pieces.find((p) => p.id === pieceId);
       if (!piece || piece.locked || piece.connected) return;
       const wp = screenToPuzzle
@@ -140,7 +145,7 @@ export function usePuzzleEngine() {
         offsetY: wp.y - piece.y,
       });
     },
-    [pieces],
+    [pieces, mode],
   );
 
   const moveDrag = useCallback(
@@ -185,6 +190,26 @@ export function usePuzzleEngine() {
     setPieces(buildPuzzlePieces());
   }, []);
 
+  const switchToNonInteractive = useCallback(() => {
+    setMode("noninteractive");
+    setDragging(null);
+    setPieces((prev) => homePiecePositions(prev));
+  }, []);
+
+  // buildPuzzlePieces() re-uses the cached layout so sections don't re-shuffle.
+  // shufflePiecePositions then scatters only the non-locked pieces.
+  const switchToInteractive = useCallback(() => {
+    setMode("interactive");
+    // Step 1: move pieces to their new scattered positions, keeping connected:true so transition fires
+    setPieces((prev) => shufflePiecePositions(prev));
+    // Step 2: after animation, mark free pieces as disconnected so they're draggable
+    setTimeout(() => {
+      setPieces((prev) =>
+        prev.map((p) => (p.locked ? p : { ...p, connected: false })),
+      );
+    }, 500);
+  }, []);
+
   return {
     pieces,
     dragging,
@@ -195,5 +220,8 @@ export function usePuzzleEngine() {
     completedSections,
     totalCompletion: getTotalCompletion(pieces),
     justSnapped,
+    mode,
+    switchToNonInteractive,
+    switchToInteractive,
   };
 }

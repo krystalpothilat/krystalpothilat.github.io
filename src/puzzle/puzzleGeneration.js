@@ -228,3 +228,51 @@ export function buildPuzzlePieces() {
 
   return pieces;
 }
+
+// Scatter free pieces within their section bounds.
+// Operates on already-built pieces so section placement stays unchanged.
+export function shufflePiecePositions(pieces) {
+  const layout = getSectionLayout();
+
+  return pieces.map((piece) => {
+    if (piece.locked) return piece; // locked pieces always stay home
+
+    const slot = layout[piece.layoutId];
+    if (!slot) return piece;
+
+    const { homeX, homeY } = piece;
+    const margin = PIECE_SIZE * 0.6;
+    const minX = slot.col * PIECE_SIZE + margin;
+    const maxX = (slot.col + SECTION_COLS - 1) * PIECE_SIZE - margin;
+    const minY = slot.row * PIECE_SIZE + margin;
+    const maxY = (slot.row + SECTION_ROWS - 1) * PIECE_SIZE - margin;
+    const maxOffset = PIECE_SIZE * 4;
+
+    return {
+      ...piece,
+      x: Math.min(
+        maxX,
+        Math.max(minX, piece.x + (Math.random() - 0.5) * maxOffset),
+      ),
+      y: Math.min(
+        maxY,
+        Math.max(minY, piece.y + (Math.random() - 0.5) * maxOffset),
+      ),
+      // keep connected:true so PuzzlePiece's isSnapped transition animates the move
+    };
+  });
+}
+
+// Send every piece to homeX/homeY and mark all as locked.
+// Call this when switching to non-interactive mode.
+export function homePiecePositions(pieces) {
+  return pieces.map((piece) => {
+    if (piece.locked) return piece; // already home, don't touch
+    return {
+      ...piece,
+      x: piece.homeX,
+      y: piece.homeY,
+      connected: true, // triggers the existing snap transition in PuzzlePiece
+    };
+  });
+}

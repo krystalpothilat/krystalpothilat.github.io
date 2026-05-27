@@ -21,6 +21,9 @@ export default function App() {
     completedSections,
     totalCompletion,
     justSnapped,
+    mode,
+    switchToInteractive,
+    switchToNonInteractive,
   } = usePuzzleEngine();
 
   const viewport = useViewport();
@@ -101,6 +104,9 @@ export default function App() {
         viewport={viewport}
         onPieceClick={handlePieceClick}
         completedSections={completedSections}
+        mode={mode}
+        onSwitchtoInteractive={switchToInteractive}
+        onSwitchtoNonInteractive={switchToNonInteractive}
       />
       <HUD
         currentSection={viewport.currentSection}
@@ -112,6 +118,9 @@ export default function App() {
         onReset={resetPuzzle}
         showLabels={showLabels}
         setShowLabels={setShowLabels}
+        mode={mode}
+        onSwitchToInteractive={switchToInteractive}
+        onSwitchToNonInteractive={switchToNonInteractive}
       />
       <OverlayManager overlay={overlay} setOverlay={setOverlay} />
       {achievement && (

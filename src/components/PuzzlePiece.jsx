@@ -54,6 +54,7 @@ export default function PuzzlePiece({
   onPieceClick,
   imageUrl,
   ownedSides = { top: true, right: true, bottom: true, left: true },
+  mode = "interactive",
 }) {
   const S = PIECE_SIZE;
   const PAD = Math.round(S * 0.25);
@@ -127,7 +128,7 @@ export default function PuzzlePiece({
 
   const handleMouseDown = useCallback(
     (e) => {
-      if (isInactive) return;
+      if (isInactive || mode === "noninteractive") return;
       e.preventDefault();
 
       movedRef.current = false;
@@ -152,15 +153,15 @@ export default function PuzzlePiece({
 
       onMouseDown(id, e.clientX, e.clientY);
     },
-    [id, onMouseDown],
+    [id, onMouseDown, mode],
   );
 
   const handleTouchStart = useCallback(
     (e) => {
-      if (!isMovable || isInactive) return;
+      if (!isMovable || isInactive || mode === "noninteractive") return;
       onTouchStart(id, e.touches[0].clientX, e.touches[0].clientY);
     },
-    [isMovable, id, onTouchStart],
+    [isMovable, id, onTouchStart, mode],
   );
 
   const handleClick = useCallback(
@@ -200,11 +201,16 @@ export default function PuzzlePiece({
         overflow: "visible",
         zIndex,
         opacity: isZoomedOut ? 1 : isInactive ? 0.75 : 1,
-        cursor: isMovable
-          ? "grab"
-          : piece.linksTo || piece.detailsId
-            ? "pointer"
-            : "default",
+        cursor:
+          mode === "noninteractive"
+            ? piece.linksTo || piece.detailsId
+              ? "pointer"
+              : "default"
+            : isMovable
+              ? "grab"
+              : piece.linksTo || piece.detailsId
+                ? "pointer"
+                : "default",
         transform: isMovable
           ? `rotate(${isDragging ? 0 : rotation}deg) scale(${isDragging ? 1.05 : 1})`
           : "none",
@@ -212,7 +218,7 @@ export default function PuzzlePiece({
         transition: isDragging
           ? "transform 0.08s ease"
           : isSnapped
-            ? "left 0.35s cubic-bezier(0.34,1.56,0.64,1), top 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s ease"
+            ? "left 0.5s cubic-bezier(0.34,1.56,0.64,1), top 0.5s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s ease"
             : "filter 0.8s ease",
         filter: isZoomedOut
           ? "none"

@@ -12,6 +12,9 @@ export default function HUD({
   onReset,
   showLabels,
   setShowLabels,
+  mode,
+  onSwitchToInteractive,
+  onSwitchToNonInteractive,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const section = SECTIONS[currentSection];
@@ -48,6 +51,17 @@ export default function HUD({
             title="Toggle Labels"
           >
             {showLabels ? "Hide Labels" : "Show Labels"}
+          </button>
+          <button
+            onClick={
+              mode === "interactive"
+                ? onSwitchToNonInteractive
+                : onSwitchToInteractive
+            }
+            className={styles.resetButton}
+            title="Toggle interactive mode"
+          >
+            {mode === "interactive" ? "⊘ View Mode" : "✎ Play Mode"}
           </button>
           <button
             onClick={onReset}
@@ -127,7 +141,9 @@ export default function HUD({
       <div className={styles.tooltip}>
         {isZoomedOut
           ? "Click a section to zoom in"
-          : "Drag pieces to solve · Click tiles to explore"}
+          : mode === "noninteractive"
+            ? "Click tiles to explore"
+            : "Drag pieces to solve · Click tiles to explore"}
       </div>
     </>
   );
