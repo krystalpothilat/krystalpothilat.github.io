@@ -168,7 +168,7 @@ export default function PuzzlePiece({
     (e) => {
       e.stopPropagation();
 
-      if (isDragging || movedRef.current) return;
+      if (isDragging || movedRef.current || !showLabels) return;
 
       setFocusedPieceId?.(id);
 
@@ -176,7 +176,7 @@ export default function PuzzlePiece({
 
       onPieceClick(piece);
     },
-    [piece, onPieceClick, isDragging, id, setFocusedPieceId],
+    [piece, onPieceClick, isDragging, id, setFocusedPieceId, showLabels],
   );
 
   useEffect(() => {
@@ -284,7 +284,7 @@ export default function PuzzlePiece({
                 strokeLinecap="round"
               />
               {/* Glow pulse — only for important pieces */}
-              {isImportant && (
+              {showLabels && isImportant && (
                 <path
                   d={d}
                   fill="none"
@@ -306,11 +306,11 @@ export default function PuzzlePiece({
             className={styles.labelText}
             style={{
               fontSize:
-                type === "title"
-                  ? "30px"
+                type === "title" || type === "me"
+                  ? "40px"
                   : type === "section-header"
-                    ? "30px"
-                    : "28px",
+                    ? "40px"
+                    : "35px",
 
               textShadow: `
       0 0 8px ${glowColor},
