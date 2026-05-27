@@ -4,6 +4,8 @@ import {
   PIECE_SIZE,
   SECTION_COLS,
   SECTION_ROWS,
+  NUM_SECTION_COLS,
+  NUM_SECTION_ROWS,
   PUZZLE_COLS,
   PUZZLE_ROWS,
 } from "../data/puzzleData.js";
@@ -25,8 +27,8 @@ const CH = () => (typeof window !== "undefined" ? window.innerHeight : 700);
 //   translate.x = screenCenterX - (puzzleX + sectionW/2) * scale
 //   translate.y = screenCenterY - (puzzleY + sectionH/2) * scale
 
-const SECTION_PAD = 0.88;
-const PUZZLE_PAD = 0.88;
+const SECTION_PAD = 0.82;
+const PUZZLE_PAD = 0.94;
 
 function computeSectionView(sectionId) {
   const layout = getSectionLayout();
@@ -38,7 +40,7 @@ function computeSectionView(sectionId) {
 
   const { vw, vh } = getVirtualViewport();
 
-  const scale = Math.max(vw / sectionW, vh / sectionH) * SECTION_PAD;
+  const scale = Math.min(vw / sectionW, vh / sectionH) * SECTION_PAD;
 
   // top-left of this section in puzzle-space pixels
   const puzzleLeft = slot.col * PIECE_SIZE;
@@ -48,11 +50,20 @@ function computeSectionView(sectionId) {
   const puzzleCX = puzzleLeft + sectionW / 2;
   const puzzleCY = puzzleTop + sectionH / 2;
 
+  const shiftY = 35;
+  const shiftX = 20;
+  const isTopRow = slot.row === 0;
+  const isBottomRow = slot.row === (NUM_SECTION_ROWS - 1) * SECTION_ROWS;
+  const isLeftCol = slot.col === 0;
+  const isRightCol = slot.col === (NUM_SECTION_COLS - 1) * SECTION_COLS;
+  const yShift = isTopRow ? shiftY : isBottomRow ? -shiftY : 0;
+  const xShift = isLeftCol ? shiftX : isRightCol ? -shiftX : 0;
+
   return {
     scale,
     translate: {
-      x: CW() / 2 - puzzleCX * scale,
-      y: CH() / 2 - puzzleCY * scale,
+      x: CW() / 2 - puzzleCX * scale + xShift,
+      y: CH() / 2 - puzzleCY * scale + yShift,
     },
   };
 }

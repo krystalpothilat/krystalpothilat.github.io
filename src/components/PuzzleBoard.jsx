@@ -1,4 +1,10 @@
-import React, { useRef, useCallback, useEffect, useMemo } from "react";
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { motion } from "framer-motion";
 import PuzzlePiece from "./PuzzlePiece.jsx";
 import { getSectionLayout } from "../puzzle/puzzleLayout.js";
@@ -27,6 +33,7 @@ export default function PuzzleBoard({
   completedSections,
 }) {
   const boardRef = useRef(null);
+  const [focusedPieceId, setFocusedPieceId] = useState(null);
 
   const ownedSidesMap = useMemo(
     () => computeOwnedSides(pieces, PUZZLE_COLS, PUZZLE_ROWS),
@@ -98,7 +105,7 @@ export default function PuzzleBoard({
       className={styles.board}
       style={{
         cursor: dragging ? "grabbing" : "default",
-        backgroundImage: `url(${imgs.wood2})`,
+        backgroundImage: `url(${imgs.wood})`,
       }}
     >
       {/* Mask wrapper --> fades edges when zoomed in to hide other sections */}
@@ -151,6 +158,10 @@ export default function PuzzleBoard({
               <PuzzlePiece
                 key={piece.id}
                 piece={piece}
+                currentSection={viewport.currentSection}
+                setFocusedPieceId={setFocusedPieceId}
+                focusedPieceId={focusedPieceId}
+                isZoomedOut={viewport.isZoomedOut}
                 showLabels={showLabels}
                 isDragging={dragging?.pieceId === piece.id}
                 onMouseDown={onMD}

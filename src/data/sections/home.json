@@ -33,6 +33,21 @@
       "type": "nav",
       "label": "Puzzle Zone",
       "linksTo": "puzzleZone_1"
+    },
+    {
+      "type": "nav",
+      "label": "Puzzle Zone",
+      "linksTo": "puzzleZone_2"
+    },
+    {
+      "type": "nav",
+      "label": "Puzzle Zone",
+      "linksTo": "puzzleZone_3"
+    },
+    {
+      "type": "nav",
+      "label": "Puzzle Zone",
+      "linksTo": "puzzleZone_4"
     }
   ],
   "details": {

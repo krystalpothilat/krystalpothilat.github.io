@@ -29,22 +29,6 @@ function getGroup(type) {
   return "plain";
 }
 
-const LABEL_COLORS = {
-  nav: {
-    border: "rgba(255, 0, 0, 0.9)", // warm gold
-  },
-
-  piece: {
-    border: "rgba(255, 120, 120, 0.9)", // soft blue
-  },
-
-  me: {
-    border: "rgba(188, 56, 245, 0.9)", // soft blue
-  },
-
-  plain: { border: null, text: null, bg: null },
-};
-
 const LABEL_GLOW = {
   nav: "rgba(255, 215, 0, 0.9)", // gold
   piece: "rgba(120, 180, 255, 0.85)", // blue
@@ -59,6 +43,10 @@ function getPieceRotation(id) {
 
 export default function PuzzlePiece({
   piece,
+  currentSection,
+  setFocusedPieceId,
+  focusedPieceId,
+  isZoomedOut,
   showLabels,
   isDragging,
   onMouseDown,
@@ -75,12 +63,14 @@ export default function PuzzlePiece({
   const bgX = -piece.puzzleCol * S;
   const bgY = -piece.puzzleRow * S;
 
+  const isInActiveSection = piece.layoutId === currentSection;
+  const isInactive = !isInActiveSection;
+
   const isImportant = isImportantType(type);
   const isMovable = !locked && !connected;
   const isSnapped = connected && !locked;
   const [snapLocked, setSnapLocked] = useState(false);
   const group = getGroup(type);
-  const colors = LABEL_COLORS[group] || LABEL_COLORS.plain;
   const glowColor = LABEL_GLOW[group] || "rgba(255, 255, 255, 0.6)";
   const rotation = useMemo(
     () => (isMovable ? getPieceRotation(id) : 0),
@@ -96,17 +86,25 @@ export default function PuzzlePiece({
   const baseIndex = piece.puzzleRow * PUZZLE_COLS + piece.puzzleCol;
   const isAnimatingSnap = connected && !locked && !snapLocked;
 
+  const isFocused = focusedPieceId === id;
+  const isMe = type === "me";
+  const isLockedMe = isMe && locked;
+
   const zIndex = isDragging
     ? 9999
-    : isAnimatingSnap
-      ? 800 // keep above everything during snap
-      : isMovable
-        ? 500 + baseIndex
-        : isImportant
-          ? 100 + baseIndex
-          : snapLocked
-            ? 10
-            : 1;
+    : isLockedMe
+      ? 9500
+      : isFocused
+        ? 9000
+        : isAnimatingSnap
+          ? 800
+          : isMovable
+            ? 500 + baseIndex
+            : isImportant
+              ? 100 + baseIndex
+              : snapLocked
+                ? 10
+                : 1;
 
   // Shadow hierarchy
   // 1. Strong shadow only while dragging (lifted piece)
@@ -129,6 +127,7 @@ export default function PuzzlePiece({
 
   const handleMouseDown = useCallback(
     (e) => {
+      if (isInactive) return;
       e.preventDefault();
 
       movedRef.current = false;
@@ -158,7 +157,7 @@ export default function PuzzlePiece({
 
   const handleTouchStart = useCallback(
     (e) => {
-      if (!isMovable) return;
+      if (!isMovable || isInactive) return;
       onTouchStart(id, e.touches[0].clientX, e.touches[0].clientY);
     },
     [isMovable, id, onTouchStart],
@@ -170,11 +169,13 @@ export default function PuzzlePiece({
 
       if (isDragging || movedRef.current) return;
 
+      setFocusedPieceId?.(id);
+
       if (!onPieceClick) return;
 
       onPieceClick(piece);
     },
-    [piece, onPieceClick, isDragging],
+    [piece, onPieceClick, isDragging, id, setFocusedPieceId],
   );
 
   useEffect(() => {
@@ -198,6 +199,7 @@ export default function PuzzlePiece({
         height: S,
         overflow: "visible",
         zIndex,
+        opacity: isZoomedOut ? 1 : isInactive ? 0.75 : 1,
         cursor: isMovable
           ? "grab"
           : piece.linksTo || piece.detailsId
@@ -211,8 +213,12 @@ export default function PuzzlePiece({
           ? "transform 0.08s ease"
           : isSnapped
             ? "left 0.35s cubic-bezier(0.34,1.56,0.64,1), top 0.35s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s ease"
-            : "none",
-        filter: dropShadow,
+            : "filter 0.8s ease",
+        filter: isZoomedOut
+          ? "none"
+          : isInactive
+            ? "grayscale(1) brightness(0.92) contrast(0.95)"
+            : dropShadow,
         userSelect: "none",
         WebkitUserSelect: "none",
       }}
@@ -247,9 +253,6 @@ export default function PuzzlePiece({
           clipPath={`url(#clip_${id})`}
           preserveAspectRatio="none"
         />
-        {type !== "plain" && colors.bg && (
-          <path d={clipPath} fill={colors.bg} clipPath={`url(#clip_${id})`} />
-        )}
         {/* Render only the sides this piece owns based on neighbor state.
             Floating + important pieces always get all 4.
             Connected normal pieces: top+left by default, bottom+right only

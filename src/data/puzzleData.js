@@ -9,11 +9,11 @@ import puzzleZone from "./sections/puzzleZone.json";
 export const PIECE_SIZE = 200;
 
 export const NUM_SECTION_COLS = 3;
-export const NUM_SECTION_ROWS = 2;
+export const NUM_SECTION_ROWS = 3;
 
 // Section size in pieces
-export const SECTION_COLS = 6;
-export const SECTION_ROWS = 5;
+export const SECTION_COLS = 9;
+export const SECTION_ROWS = 6;
 
 // Total puzzle size (num rows + cols)
 export const PUZZLE_COLS = SECTION_COLS * NUM_SECTION_COLS;

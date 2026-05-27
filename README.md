@@ -8,12 +8,14 @@ This project blends **portfolio storytelling + interactive navigation**, turning
 ## ✨ Features
 
 ### 🧩 Interactive Puzzle Navigation
+
 - Website is structured as movable puzzle pieces
 - Drag and reposition pieces to complete the full image
 - Pieces represent a section of the site (Projects, Experience, About, etc.)
 - Completing the puzzle reveals the full portfolio layout
 
 ### 🧭 Click-to-Navigate Sections
+
 - Don’t want to play? No problem
 - Click pieces to navigate and read more about me without completing the puzzle
 - You can still explore the same information without assembling everything first
